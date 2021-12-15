@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+
+<!--    servlet 标签给tomcat配置servlet程序-->
+    <servlet>
+<!--        给servlet起别名-->
+        <servlet-name>HelloServlet</servlet-name>
+<!--        servlet全类名-->
+        <servlet-class>xyz.leeyangy.servlet.HelloServlet</servlet-class>
+    </servlet>
+
+<!--    servlet-mapping给servlet配置一个servlet访问地址-->
+    <servlet-mapping>
+<!--        告诉服务器配置的地址给哪个servlet程序使用-->
+        <servlet-name>HelloServlet</servlet-name>
+<!--        标签配置访问地址-->
+        <url-pattern>/hello</url-pattern>
+        <!--
+        url-pattern标签配置访问地址
+        /       斜杠在服务器解析时候，表示地址为 http://ip:port/工程路径
+        /hello  表示地址为http://ip:port/工程路径/hello
+
+
+
+        -->
+    </servlet-mapping>
+</web-app>
