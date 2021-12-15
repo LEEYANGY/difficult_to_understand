@@ -6,6 +6,15 @@ import java.io.IOException;
 
 public class HelloServlet  implements Servlet {
 //    servlet四种生命周期
+//    执行servlet构造器
+//    执行init初始化方法
+//    执行service方法
+//    执行destroy方法
+
+
+    public HelloServlet() {
+        System.out.println("构造器方法");
+    }
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
@@ -19,7 +28,7 @@ public class HelloServlet  implements Servlet {
 
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        System.out.println("Hello Servlet 被找到了");
+        System.out.println("Hello Servlet 被访问了");
     }
 
     @Override
@@ -29,6 +38,6 @@ public class HelloServlet  implements Servlet {
 
     @Override
     public void destroy() {
-
+        System.out.println("destroy销毁方法");
     }
 }
