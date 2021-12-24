@@ -1,31 +1,56 @@
 /**
  * 语法使用c11进行学习。
- * 数组-一维数组
+ * 数组-二维数组
  */
 #include <stdio.h>
-#define Mouths 12
+#define Mouths 4
+#define Years 3
+
+int findArray(int find);
 
 int main(void) {
-//    数组
-//    打印每个月的天数
-//    方法一，给数组附上初始值
-    int days1[Mouths]={31,28,31,30,31,30,31,31,30,31,30,31};
-    for(int index=0;index<Mouths;index++){
-        printf("Mouths %2d has %2d days.\n",index+1,days1[index]);
+//    二维数组
+//    第一种写法
+//    int rain[Years][Mouths]={{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+//    第二种写法
+    int rain[Years][Mouths]={1,2,3,4,5,6,7,8,9,10,11,12};
+//    外层循环
+    for (int i = 0; i < Years; ++i) {
+//        内层循环
+        for (int j = 0; j < Mouths; ++j) {
+//            打印数组
+            printf("%d    ",rain[i][j]);
+//            printf("%d",rain[j]);
+        }
+        printf("\n");
     }
-    printf("\n");
-//    方法二，不赋初始值
-    int days2[]={31,28,31,30,31,30,31,31,30,31,30,31};
-    for(int index=0;index<Mouths;index++){
-        printf("Mouths %2d has %2d days.\n",index+1,days2[index]);
-    }
-    printf("\n");
-    //    方法二，不赋初始值
-    int days3[]={31,28,31,30,31,30,31,31,30,31,30,31};
-//    sizeof days3是整个数组的大小，sizeof days3[0]是第一个数组的下标,表示第一个数组大小，整个数组的大小除于一个即为数组长度
-    for(int index=0;index<(sizeof days3/sizeof days3[0]);index++){
-        printf("Mouths %2d has %2d days.\n",index+1,days3[index]);
+    printf("\n\n\n");
+
+//    查找元素是否存在
+    int search=6;
+    findArray(search);
+//    printf("%d",findArray(search));
+    printf("%d",search);
+    return 0;
+}
+
+//查找数组元素
+int findArray(int finding){
+    int rain[Years][Mouths]={{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+//    外层循环
+    for (int i = 0; i < Years; ++i) {
+        //    内层循环
+        for (int j = 0; j < Mouths; ++j) {
+            if(finding==rain[i][j]){
+                printf("finding: ",rain[i][j]);
+                break;
+            } else{
+
+                break;
+            }
+        }
     }
 
-    return 0;
+
+    return finding;
 }
