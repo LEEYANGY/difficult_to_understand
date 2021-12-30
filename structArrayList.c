@@ -3,7 +3,6 @@
 //
 
 #include "stdio.h"
-#include "stdlib.h"
 
 //定义结构体类型
 struct Student{
