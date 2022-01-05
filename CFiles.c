@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "stdlib.h"
+#include "string.h"
 /**
  *
  *  C对文件的定义：
@@ -37,54 +38,70 @@
  */
 int main(void){
 
-//    定义一个文件指针
-    FILE *fp;
+//    定义文件指针
+    FILE *fIn;
+    FILE *fOut;
 
-//    定义一个指针变量
-    char ch;
-    char filename[10];
+    //文件名
+    char fInName[100];
+    char fOutName[100];
+//    等待用户输入的字符串
+    char fContext;
 
-//    将fopen函数返回值赋给指针变量fp
-    fp = fopen("1111","r");
-    if( (fp = fopen("1111","rb") ) == NULL ){
-        printf("打开文件失败");
-        exit(0);
-    } else{
-        printf("打开成功\n");
-    }
-
-    printf("请输入文件名");
-//    读入文件名
-    scanf("%9s",filename);
-    getchar();
-
-//    打开c文件
-    if ( (fp = fopen(filename,"w")) == NULL  ){
-        printf("Can't open file\n");
-        exit(0);
-    }
-
-//    从键盘获取第一个字符
-    ch = getchar();
-    while (ch != '#'){
+//    判断文件是否存在，如果不存在，则手动创建
+    printf("Please input file name:\n");
+    scanf("%99s",fInName);
+//    打开文件，如果为NULL，表示失败
+    if ( ( fIn = fopen(fInName,"r") ) == NULL ){
+        printf("Open failed\n");
+        if ( ( fOut = fopen(strcpy(fOutName,fInName),"w") ) == NULL ){
+            printf("Creation failed\n");
+        } else{
+            printf("Working for you create file\n");
+            printf("Please input char , if you want exit please in put #  to end write:");
+//    第一次读入用户从键盘输入的字符串
+            fContext=getchar();
+//    写入一个文件
+            while (fContext != '#'){
 //        向磁盘写入一个文件
-        fputc(ch,fp);
-//        将输入到磁盘的文字显示出来
-        putchar(ch);
-//        再从键盘接收输入的字符
-        ch = getchar();
+                fputc(fContext,fOut);
+//        从键盘获取用户输入的内容
+                fContext=getchar();
+            }
+            printf("File created successfully\n");
+        }
+    } else{
+        printf("This file already exists,open success ! \n");
+    }
+    //    关闭文件,相当于刷新文件
+    fclose(fIn);
+    fclose(fOut);
+
+//    查询文件是否写入成功
+//    printf("Please in put file name:\n");
+//    scanf("%99s",fInName);
+//    打开文件，如果为NULL，表示失败
+    if ( ( fIn = fopen(fInName,"r") ) ==NULL ){
+        printf("Open failed,file does not exist");
+//        终止程序
+//        exit(0);
+    } else{
+        printf("Open successfully!\n");
+//      从指定文件中读取内容
+        fContext=fgetc(fIn);
+//      文件读取不是eof的话
+        while ( !feof(fIn) ){
+//            将文件中的内容分输出到屏幕上
+            fputc(fContext,fOut);
+//          再从指定文件中读取内容
+            putchar(fContext);
+//          从指定文件中读取内容
+            fContext=fgetc(fIn);
+        }
     }
 
-//    从键盘获取字符
-//    fgetc();
-//    用put函数写入到磁盘文件
-//    fputc();
-
-//    使用完文件后一定要关闭文件
-//    fclose()
-    fclose(fp);
-    //换行
-    putchar(10);
+//    关闭文件
+    fclose(fIn);
+    fclose(fOut);
     return 0;
 }
-
