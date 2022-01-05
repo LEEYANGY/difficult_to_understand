@@ -3,6 +3,7 @@
 //
 #include "stdio.h"
 #include "math.h"
+#include "stdlib.h"
 /**
  *
  *  C对文件的定义：
@@ -38,16 +39,52 @@ int main(void){
 
 //    定义一个文件指针
     FILE *fp;
+
+//    定义一个指针变量
+    char ch;
+    char filename[10];
+
 //    将fopen函数返回值赋给指针变量fp
-//    fp = fopen("readme.txt","r");
-    if( (fp = fopen("readme.txt","rb") ) == NULL ){
+    fp = fopen("1111","r");
+    if( (fp = fopen("1111","rb") ) == NULL ){
         printf("打开文件失败");
-//        exit(0);
+        exit(0);
+    } else{
+        printf("打开成功\n");
     }
+
+    printf("请输入文件名");
+//    读入文件名
+    scanf("%9s",filename);
+    getchar();
+
+//    打开c文件
+    if ( (fp = fopen(filename,"w")) == NULL  ){
+        printf("Can't open file\n");
+        exit(0);
+    }
+
+//    从键盘获取第一个字符
+    ch = getchar();
+    while (ch != '#'){
+//        向磁盘写入一个文件
+        fputc(ch,fp);
+//        将输入到磁盘的文字显示出来
+        putchar(ch);
+//        再从键盘接收输入的字符
+        ch = getchar();
+    }
+
+//    从键盘获取字符
+//    fgetc();
+//    用put函数写入到磁盘文件
+//    fputc();
 
 //    使用完文件后一定要关闭文件
 //    fclose()
     fclose(fp);
+    //换行
+    putchar(10);
     return 0;
 }
 
