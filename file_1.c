@@ -17,5 +17,7 @@ int main(int argc , char *argv[]){
 //        将文件内容输出到屏幕
         putchar(ch);
     }
+//    关闭文件
+    fclose(fp);
     return 0;
 }
