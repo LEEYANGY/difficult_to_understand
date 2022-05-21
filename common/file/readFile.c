@@ -17,19 +17,19 @@
  *  fwrite(fp
  */
 
-void readFile(){
-    char filename[100]="/tmp/tmp.XScG2EA2hw/out/test.txt";
+void readFile() {
+    char filename[100] = "/tmp/tmp.XScG2EA2hw/out/test.txt";
     struct student *head;
     struct student stu[100];
-    FILE *wf= fopen(filename,"r");
+    FILE *wf = fopen(filename, "r");
     for (int i = 0; i < 5; ++i) {
-        fscanf(wf,"%s %d %lf %lf",stu[i].name,&stu[i].id,&stu[i].score_c,&stu[i].score_web);
+        fscanf(wf, "%s %d %lf %lf", stu[i].name, &stu[i].id, &stu[i].score_c, &stu[i].score_web);
 //        fscanf(wf,"%s",stu[i].name);
 //        fscanf(wf,"%d",&stu[i].id);
 //        fscanf(wf,"%lf",&stu[i].score_c);
 //        fscanf(wf,"%lf",&stu[i].score_web);
 
-        printf("%-20s %5d %.2lf %.2lf\n",stu[i].name,stu[i].id,stu[i].score_c,stu[i].score_web);
+        printf("%-20s %5d %.2lf %.2lf\n", stu[i].name, stu[i].id, stu[i].score_c, stu[i].score_web);
     }
 //    int i=0;
 //    while (fscanf(wf,"%s",stu[i].name)!=-1){

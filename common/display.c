@@ -3,10 +3,11 @@
 //
 
 #include "common.h"
+
 //
 // Created by LEEYANGY on 2022/5/20.
 //
-void display_menu(){
+void display_menu() {
     printf("-------欢迎使用学生管理系统--------\n");
     printf("--------1.添加学生---------------\n");
     /**

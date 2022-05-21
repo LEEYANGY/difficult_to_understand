@@ -10,16 +10,16 @@
  * @param delID
  * @return head
  */
-struct student *del(struct student *head,int delID){
-    struct student *current=head,*prev;
+struct student *del(struct student *head, int delID) {
+    struct student *current = head, *prev;
 
-    while(current!=NULL){
-        if(delID==current->id){
-            prev->next=current->next;
+    while (current != NULL) {
+        if (delID == current->id) {
+            prev->next = current->next;
             break;
-        } else{
-            prev=current;
-            current=current->next;
+        } else {
+            prev = current;
+            current = current->next;
         }
     }
 

@@ -8,7 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-typedef struct student{
+
+typedef struct student {
 //    ---数据域---start---
 //    学生类姓名，长度限制在20个字符以内，以英文输入
     char name[20];
@@ -20,14 +21,14 @@ typedef struct student{
 //    ---数据域---end---
 //    链表指向下一个目标 ---指针域
     struct student *next;
-}stu;
+} stu;
 /* 函数原型 */
 
 /* 操作：      显示用户操作菜单     */
 void display_menu();
 
 /* 操作：*/
-void searchID(struct student *head,int sID);
+void searchID(struct student *head, int sID);
 
 /* 操作：   释放已分配的内存（如果有的话）            */
 /*         current指向一个已经初始化的链表         */
@@ -59,13 +60,13 @@ struct student *creatLinkList();
 /* 操作：向已存在的链表中在指定位置插入数据          */
 /* 前置条件：                                  */
 /* 后置条件：                                  */
-struct student *insert(struct student *head,int insertData,int site);
+struct student *insert(struct student *head, int insertData, int site);
 
 /* 操作：*/
-struct student *del(struct student *head,int delID);
+struct student *del(struct student *head, int delID);
 
 /* 操作：*/
-struct student *modify(struct student *head,int modifyID,int modifyAfterID);
+struct student *modify(struct student *head, int modifyID, int modifyAfterID);
 
 /* 操作：*/
 //include readFile
