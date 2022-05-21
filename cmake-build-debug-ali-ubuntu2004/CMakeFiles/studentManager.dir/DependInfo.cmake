@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "/tmp/tmp.XScG2EA2hw/common/creatLinkList.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/creatLinkList.c.o"
   "/tmp/tmp.XScG2EA2hw/common/del.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/del.c.o"
   "/tmp/tmp.XScG2EA2hw/common/display.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/display.c.o"
+  "/tmp/tmp.XScG2EA2hw/common/file/readFile.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/file/readFile.c.o"
+  "/tmp/tmp.XScG2EA2hw/common/file/writerFile.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/file/writerFile.c.o"
   "/tmp/tmp.XScG2EA2hw/common/freeLinkList.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/freeLinkList.c.o"
   "/tmp/tmp.XScG2EA2hw/common/insert.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/insert.c.o"
   "/tmp/tmp.XScG2EA2hw/common/modify.c" "/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir/common/modify.c.o"

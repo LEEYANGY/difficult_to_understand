@@ -23,5 +23,8 @@ int main() {
     printf("删除元素函数执行成功--------------\n");
     freeLinkList(current);
     printf("释放内存函数执行成功--------------\n");
+//    saveFile();
+    readFile();
+    printf("读取文件成功！ ");
     return 0;
 }

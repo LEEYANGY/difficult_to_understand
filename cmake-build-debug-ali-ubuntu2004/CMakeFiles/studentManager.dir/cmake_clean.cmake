@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/studentManager.dir/common/creatLinkList.c.o"
   "CMakeFiles/studentManager.dir/common/del.c.o"
   "CMakeFiles/studentManager.dir/common/display.c.o"
+  "CMakeFiles/studentManager.dir/common/file/readFile.c.o"
+  "CMakeFiles/studentManager.dir/common/file/writerFile.c.o"
   "CMakeFiles/studentManager.dir/common/freeLinkList.c.o"
   "CMakeFiles/studentManager.dir/common/insert.c.o"
   "CMakeFiles/studentManager.dir/common/modify.c.o"

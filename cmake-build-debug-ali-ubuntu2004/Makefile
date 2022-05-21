@@ -231,6 +231,60 @@ common/display.c.s:
 	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/display.c.s
 .PHONY : common/display.c.s
 
+common/file/readFile.o: common/file/readFile.c.o
+
+.PHONY : common/file/readFile.o
+
+# target to build an object file
+common/file/readFile.c.o:
+	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/file/readFile.c.o
+.PHONY : common/file/readFile.c.o
+
+common/file/readFile.i: common/file/readFile.c.i
+
+.PHONY : common/file/readFile.i
+
+# target to preprocess a source file
+common/file/readFile.c.i:
+	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/file/readFile.c.i
+.PHONY : common/file/readFile.c.i
+
+common/file/readFile.s: common/file/readFile.c.s
+
+.PHONY : common/file/readFile.s
+
+# target to generate assembly for a file
+common/file/readFile.c.s:
+	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/file/readFile.c.s
+.PHONY : common/file/readFile.c.s
+
+common/file/writerFile.o: common/file/writerFile.c.o
+
+.PHONY : common/file/writerFile.o
+
+# target to build an object file
+common/file/writerFile.c.o:
+	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/file/writerFile.c.o
+.PHONY : common/file/writerFile.c.o
+
+common/file/writerFile.i: common/file/writerFile.c.i
+
+.PHONY : common/file/writerFile.i
+
+# target to preprocess a source file
+common/file/writerFile.c.i:
+	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/file/writerFile.c.i
+.PHONY : common/file/writerFile.c.i
+
+common/file/writerFile.s: common/file/writerFile.c.s
+
+.PHONY : common/file/writerFile.s
+
+# target to generate assembly for a file
+common/file/writerFile.c.s:
+	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/common/file/writerFile.c.s
+.PHONY : common/file/writerFile.c.s
+
 common/freeLinkList.o: common/freeLinkList.c.o
 
 .PHONY : common/freeLinkList.o
@@ -414,6 +468,12 @@ help:
 	@echo "... common/display.o"
 	@echo "... common/display.i"
 	@echo "... common/display.s"
+	@echo "... common/file/readFile.o"
+	@echo "... common/file/readFile.i"
+	@echo "... common/file/readFile.s"
+	@echo "... common/file/writerFile.o"
+	@echo "... common/file/writerFile.i"
+	@echo "... common/file/writerFile.s"
 	@echo "... common/freeLinkList.o"
 	@echo "... common/freeLinkList.i"
 	@echo "... common/freeLinkList.s"

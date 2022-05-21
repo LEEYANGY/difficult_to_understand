@@ -91,6 +91,12 @@
 		<Unit filename="/tmp/tmp.XScG2EA2hw/common/display.c">
 			<Option target="studentManager"/>
 		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/file/readFile.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/file/writerFile.c">
+			<Option target="studentManager"/>
+		</Unit>
 		<Unit filename="/tmp/tmp.XScG2EA2hw/common/freeLinkList.c">
 			<Option target="studentManager"/>
 		</Unit>

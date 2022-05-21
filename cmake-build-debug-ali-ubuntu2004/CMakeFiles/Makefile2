@@ -74,12 +74,12 @@ clean: CMakeFiles/studentManager.dir/clean
 CMakeFiles/studentManager.dir/all:
 	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/depend
 	$(MAKE) -f CMakeFiles/studentManager.dir/build.make CMakeFiles/studentManager.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target studentManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13 "Built target studentManager"
 .PHONY : CMakeFiles/studentManager.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/studentManager.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles 13
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/studentManager.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles 0
 .PHONY : CMakeFiles/studentManager.dir/rule

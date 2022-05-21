@@ -9,8 +9,6 @@ struct student *creatLinkList(){
     int count=1;
     struct student *head,*prev,*current;
 //    分配动态内存
-//    head=(struct student*) malloc(sizeof (struct student));
-//    prev=(struct student*) malloc(sizeof (struct student));
     head=NULL;
     current=(struct student*) malloc(sizeof (struct student));
     printf("请输入第%d个学生的学号(以0为结束输入):",count);

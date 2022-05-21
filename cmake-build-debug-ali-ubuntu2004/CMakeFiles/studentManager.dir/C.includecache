@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/tmp/tmp.XScG2EA2hw/common/common.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
+/tmp/tmp.XScG2EA2hw/common/file/writerFile.c
+../common.h
+/tmp/tmp.XScG2EA2hw/common/common.h
+
