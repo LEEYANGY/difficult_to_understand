@@ -4,7 +4,7 @@
 
 #include "common.h"
 /**
- *  °´Id²éÑ¯²åÈë
+ *  æŒ‰IdæŸ¥è¯¢æ’å…¥
  * @param head
  * @param insertID
  * @param site
@@ -12,32 +12,32 @@
  */
 struct student *insert(struct student *head,int insertID,int site){
     struct student *prev,*current=head;
-//    ·ÖÅäÒ»¸ö¶¯Ì¬ÄÚ´æ
+//    åˆ†é…ä¸€ä¸ªåŠ¨æ€å†…å­˜
     prev=(struct student*) malloc(sizeof(struct student));
     prev->id=insertID;
-    printf("ÇëÊäÈëÑ§ÉúµÄÐÕÃû:");
-    scanf("%s",&prev->name);
-    printf("ÇëÊäÈëÑ§ÉúµÄcÓïÑÔ³É¼¨:");
-    scanf("%f",&prev->score_c);
-    printf("ÇëÊäÈëÑ§ÉúµÄweb³É¼¨:");
-    scanf("%f",&prev->score_web);
+    printf("è¯·è¾“å…¥å­¦ç”Ÿçš„å§“å:");
+    scanf("%s",prev->name);
+    printf("è¯·è¾“å…¥å­¦ç”Ÿçš„cè¯­è¨€æˆç»©:");
+    scanf("%lf",&prev->score_c);
+    printf("è¯·è¾“å…¥å­¦ç”Ÿçš„webæˆç»©:");
+    scanf("%lf",&prev->score_web);
     if(head==NULL){
-        printf("²åÈëÊ§°Ü,Ã»ÓÐÊý¾Ý!");
+        printf("æ’å…¥å¤±è´¥,æ²¡æœ‰æ•°æ®!");
         return head;
     }else{
         while(current->next!=NULL){
-//            ÕÒµ½Î»ÖÃ²åµ½ËüµÄºóÃæ
+//            æ‰¾åˆ°ä½ç½®æ’åˆ°å®ƒçš„åŽé¢
             if(current->id==site){
                 prev->next=current->next;
                 current->next=prev;
                 break;
             } else{
-//                currentÏòºóÒÆ¶¯
+//                currentå‘åŽç§»åŠ¨
                 current=current->next;
             }
         }
     }
-//    Î²²å,ÉÏÃæ×ßµ½Í·ÒÔºó¾Í¾ÍÐÐÎ²²å
+//    å°¾æ’,ä¸Šé¢èµ°åˆ°å¤´ä»¥åŽå°±å°±è¡Œå°¾æ’
     if(current->next==NULL){
         prev->next=current->next;
         current->next=prev;

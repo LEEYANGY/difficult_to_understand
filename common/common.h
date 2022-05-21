@@ -9,8 +9,8 @@ struct student{
 //    学生类id
     int id;
 //    c和web课成绩
-    float score_c;
-    float score_web;
+    double score_c;
+    double score_web;
 //    链表指向下一个目标
     struct student *next;
 };
@@ -21,4 +21,4 @@ void printLinkList(struct student *head);
 struct student *creatLinkList();
 struct student *insert(struct student *head,int insertData,int site);
 struct student *del(struct student *head,int delID);
-struct student *modify(struct student *head,int modyfitID,int modifyAfterID);
+struct student *modify(struct student *head,int modifyID,int modifyAfterID);

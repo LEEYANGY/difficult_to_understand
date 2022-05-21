@@ -1,0 +1,3 @@
+/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/rebuild_cache.dir
+/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/edit_cache.dir
+/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/CMakeFiles/studentManager.dir

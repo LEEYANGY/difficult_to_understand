@@ -8,46 +8,46 @@
 struct student *creatLinkList(){
     int count=1;
     struct student *head,*prev,*current;
-//    ·ÖÅä¶¯Ì¬ÄÚ´æ
+//    åˆ†é…åŠ¨æ€å†…å­˜
 //    head=(struct student*) malloc(sizeof (struct student));
 //    prev=(struct student*) malloc(sizeof (struct student));
     head=NULL;
     current=(struct student*) malloc(sizeof (struct student));
-    printf("ÇëÊäÈëµÚ%d¸öÑ§ÉúµÄÑ§ºÅ(ÒÔ0Îª½áÊøÊäÈë):",count);
+    printf("è¯·è¾“å…¥ç¬¬%dä¸ªå­¦ç”Ÿçš„å­¦å·(ä»¥0ä¸ºç»“æŸè¾“å…¥):",count);
     scanf("%d",&current->id);
-//    idºÅ²»Îª0,¾Í¼ÌÐø²åÈë
+//    idå·ä¸ä¸º0,å°±ç»§ç»­æ’å…¥
     while (current->id!=0){
-//        ÅÐ¶Ï³õÊ¼Ìõ¼þ
+//        åˆ¤æ–­åˆå§‹æ¡ä»¶
         if(head==NULL){
-//            Í·½ÚµãÎªNULLµÄ»°,¾ÍÈÃheadÖ¸Ïòcurrent
+//            å¤´èŠ‚ç‚¹ä¸ºNULLçš„è¯,å°±è®©headæŒ‡å‘current
             head=current;
         } else {
-//            ÕýÔÚ²åÈëÊý¾ÝµÄ»°,¾ÍÈÃprevÖ¸Ïòcurrent
-//            Ö¸ÏòÏÂÒ»¸ö½Úµã
+//            æ­£åœ¨æ’å…¥æ•°æ®çš„è¯,å°±è®©prevæŒ‡å‘current
+//            æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
             prev->next=current;
         }
-//        printf("ÇëÊäÈëµÚ %d ¸öÑ§ÉúµÄÑ§ºÅ: ",++count);
+//        printf("è¯·è¾“å…¥ç¬¬ %d ä¸ªå­¦ç”Ÿçš„å­¦å·: ",++count);
 //        scanf("%d",&current->id);
-        printf("ÇëÊäÈëµÚ%d¸öÑ§ÉúÐÕÃû:",count);
-        scanf("%s",&current->name);
-        printf("ÇëÊäÈëµÚ%d¸öÑ§ÉúcµÄ³É¼¨:",count);
-        scanf("%f",&current->score_c);
-        printf("ÇëÊäÈëµÚ%d¸öÑ§ÉúwebµÄ³É¼¨:",count);
-        scanf("%f",&current->score_web);
-//        °ÑcurrentµÄµØÖ·¸øprev,¾ÍÊÇcurrentÀïÃæËù±£´æµÄÊý¾Ý
+        printf("è¯·è¾“å…¥ç¬¬%dä¸ªå­¦ç”Ÿå§“å:",count);
+        scanf("%s",current->name);
+        printf("è¯·è¾“å…¥ç¬¬%dä¸ªå­¦ç”Ÿcçš„æˆç»©:",count);
+        scanf("%lf",&current->score_c);
+        printf("è¯·è¾“å…¥ç¬¬%dä¸ªå­¦ç”Ÿwebçš„æˆç»©:",count);
+        scanf("%lf",&current->score_web);
+//        æŠŠcurrentçš„åœ°å€ç»™prev,å°±æ˜¯currenté‡Œé¢æ‰€ä¿å­˜çš„æ•°æ®
         prev=current;
-//        ÖØÐÂÉêÇë¶¯Ì¬ÄÚ´æ
+//        é‡æ–°ç”³è¯·åŠ¨æ€å†…å­˜
         current=(struct student*) malloc(sizeof (struct student));
-        printf("ÇëÊäÈëµÚ%d¸öÑ§ÉúµÄÑ§ºÅ:",++count);
+        printf("è¯·è¾“å…¥ç¬¬%dä¸ªå­¦ç”Ÿçš„å­¦å·:",++count);
         scanf("%d",&current->id);
     }
-//    ¼ÓÉÏnull±íÊ¾½áÊø±ê¼Ç
+//    åŠ ä¸Šnullè¡¨ç¤ºç»“æŸæ ‡è®°
     prev->next=NULL;
     /**
-     * ÓÐµãÀàËÆµÚÒ»´ÎÌí¼ÓµÄÎÄ¼þ,ÔÚÌí¼ÓÍêÊý¾ÝºóÊÖ¶¯½øÐÐ±£´æµ½ÎÄ¼þÖÐ
+     * æœ‰ç‚¹ç±»ä¼¼ç¬¬ä¸€æ¬¡æ·»åŠ çš„æ–‡ä»¶,åœ¨æ·»åŠ å®Œæ•°æ®åŽæ‰‹åŠ¨è¿›è¡Œä¿å­˜åˆ°æ–‡ä»¶ä¸­
      */
-//    ÊÍ·ÅÄÚ´æ
+//    é‡Šæ”¾å†…å­˜
     free(current);
-//    °ÑÊ×µØÖ··µ»Ø,×÷ÎªÏÂÒ»´ÎÊ¹ÓÃ
+//    æŠŠé¦–åœ°å€è¿”å›ž,ä½œä¸ºä¸‹ä¸€æ¬¡ä½¿ç”¨
     return head;
 }

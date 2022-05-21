@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="studentManager"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="studentManager">
+				<Option output="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/studentManager" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 studentManager"/>
+					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="studentManager/fast">
+				<Option output="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/studentManager" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 studentManager/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/tmp/tmp.XScG2EA2hw/cmake-build-debug-ali-ubuntu2004/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/common.h">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/counter.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/creatLinkList.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/del.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/display.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/freeLinkList.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/insert.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/modify.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/printLinkList.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/common/searchID.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/main.c">
+			<Option target="studentManager"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.XScG2EA2hw/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

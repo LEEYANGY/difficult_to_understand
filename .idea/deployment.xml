@@ -5,8 +5,11 @@
       <paths name="ali-ubuntu2004 (1badada9-3460-4f61-b610-463b4836a336)">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/tmp/tmp.XScG2EA2hw" local="$PROJECT_DIR$" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-ali-ubuntu2004" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>

@@ -4,9 +4,9 @@
 
 #include "common.h"
 void printLinkList(struct student *head){
-    printf("ÐÕÃû         Ñ§ºÅ  c    web\n");
+    printf("å§“å       å­¦å·  c    web\n");
     while(head!=NULL){
-        printf("%-10s %5d  %.2f  %.2f\n",head->name,head->id,head->score_c,head->score_web);
+        printf("%-10s %7d  %.2lf  %.2lf\n",head->name,head->id,head->score_c,head->score_web);
         head=head->next;
     }
 }
