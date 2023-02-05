@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<h2 v-text="message"></h2>
+		<h2 v-text="info"></h2>
+		
+		{{message	}}大括号用来添加额外想要添加的文字或其它玩意儿！还能添加表达式
+		
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			
+			var app = new Vue({
+				el:"#app",
+				data:{
+					message:"LEEYANGY",
+					info:"Hello Vue"
+				}
+			})
+			
+		</script>
+	</body>
+</html>

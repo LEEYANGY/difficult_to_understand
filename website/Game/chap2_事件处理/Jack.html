@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../js/pixi.min.js"></script>
+		<script>
+			var app = new PIXI.Application(740,460);
+			document.body.appendChild(app.view);
+			//添加背景元素
+			var bg = new PIXI.Sprite.fromImage("../imgs/bg.png")
+			app.stage.addChild(bg);
+			
+			//添加上下左右按钮
+			var up = new PIXI.Sprite.fromImage("../imgs/shang.png");
+			//上元素位置
+			app.stage.addChild(up);
+			up.x=345;
+			up.y=342;
+			//0.5透明度
+			up.alpha=0.5;
+			
+			var down = new PIXI.Sprite.fromImage("../imgs/xia.png");
+			//下元素
+			app.stage.addChild(down);
+			down.x=347;
+			down.y=400;
+			down.alpha=0.5;
+			
+			var left = new PIXI.Sprite.fromImage("../imgs/zuo.png");
+			//左元素
+			app.stage.addChild(left);
+			left.x=295;
+			left.y=400;
+			left.alpha=0.5;
+			
+			var right = new PIXI.Sprite.fromImage("../imgs/you.png");
+			//右元素
+			app.stage.addChild(right);
+			right.x=400;
+			right.y=400;
+			right.alpha=0.5;
+			
+			//添加人物元素
+			var Jack = new PIXI.Sprite.fromImage("../imgs/jack.png");
+			app.stage.addChild(Jack);
+			//人物位置
+			Jack.x=150;
+			Jack.y=240;
+			
+			//激活左单击事件
+			left.interactive = true ;
+			function leftMove(){
+				Jack.x=Jack.x-10;
+			}
+			left.on("click",leftMove);
+			
+			//激活右单击事件
+			right.interactive = true ;
+			function rightMove(){
+				Jack.x=Jack.x+10;
+			}
+			right.on("click",rightMove);
+			
+			//激活上单击事件
+			up.interactive = true ;
+			function upMove(){
+				Jack.y=Jack.y-10;
+			}
+			up.on("click",upMove);
+			
+			//激活下单击事件
+			down.interactive = true ;
+			function downMove(){
+				Jack.y=Jack.y+10;
+			}
+			down.on("click",downMove);
+			
+		</script>
+	</body>
+</html>

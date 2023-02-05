@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Button和函数运用</title>
+	</head>
+	<body>
+		<script>
+			//这里是直接写入 HTML 输出流
+			document.write("Hello JS");
+			document.write("<h1>标题</h1>");
+			document.write("<p>段落</p>");
+			
+			//这里是函数
+			function changeImage(){
+				element=document.getElementById('myDemoImage')
+				if(element.src.match("boom")){
+					element.src="../imgs/bao03.png";
+				}else{
+					element.src="../imgs/bao01.png";
+				}
+			}
+		</script>
+		<button type="button" onclick="alert('点我干嘛?!')">点我!</button>
+		<img id="myDemoImage" onclick="changeImage()" src="../imgs/bao03.png" title="爆炸!!!">
+	</body>
+</html>

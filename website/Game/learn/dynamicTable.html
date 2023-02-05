@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>动态表格案例</title>
+	</head>
+	<body>
+		<div>
+			<input type="text" id = "id" placeholder="请输入编号">
+			<input type="text" id = "name" placeholder="请输入姓名">
+			<input type="text" id = "gender" placeholder="请输入性别">
+			<input type="button" id = "btn_add" value="添加">
+		</div>
+		
+		
+		
+		<table border="5" cellspacing="6" cellpadding="1">
+			<tr>
+				<th>Header</th>
+				<th>1</th>
+			</tr>
+		
+			<tr>
+				<td>Data</td>	
+				<td>111</td>
+			</tr>
+			
+			<td>test1</td>
+			<td>test2</td>
+			<td>test3</td>
+			<td>test4</td>
+			
+			<tr>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+			</tr>
+			
+			<tr>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td>2</td>
+				<td><a href="">删除</a></td>
+			</tr>
+			
+			<tr>
+				<th>Header</th>
+				<th>demo</th>
+				<caption>这是表格</caption>
+			</tr>
+		</table>
+		
+		<script>
+			/*
+			分析
+				1.添加
+					(1).给添加按钮绑定单击事件
+					(2).获取文本内用
+					(3).创建td===>>>table data ,设置td的文本为文本框内容
+					(4).创建tr
+					(5).将突td添加到tr中
+					(6).获取table,将tr添加到table中
+			*/
+			// 1.获取按钮
+		document.getElementById("btn_add").onclick=function(){
+			// 2.获取文本框内容
+			var id = document.getElementById("id").value;
+			var id = document.getElementById("name").value;
+			var id = document.getElementById("gender").value;
+			
+			// 3.创建td,赋值td标签体 id的id  ......
+			var td_id = document.createElment("td");
+			td_id.appendChild(id);
+			var td_name = document.createElment("td");
+			td_name.appendChild(name);
+			var td_gender = document.createElment("td");
+			td_gender.appendChild(gender);
+			
+			// 4.创建tr
+			var tr = document.createElement("tr");
+			// 5.将td添加到tr中
+			tr.appendChild(td_id);
+			tr.appendChild(td_name);
+			tr.appendChild(td_gender);
+			// 6.获取table
+			var table = document.getElementsByName("table")[0];
+			table.appendChild(tr);
+		}	
+		</script>
+	</body>
+</html>

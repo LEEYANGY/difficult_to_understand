@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>常见事件</title>
+	</head>
+	<script>
+		//加载完成事件
+		window.onload = function(){
+			// 失去表单用于表单校验,例如:在输入用户名时候,光标离开当前文本框进行判断条件
+			// document.getElementById("username").onblur=function(){
+			// 	alert("失去焦点...");
+			// }
+			// 绑定鼠标事件
+			// document.getElementById("username").onmouseover = function(){
+			// 	alert("鼠标来了...");
+			// }
+			// 绑定鼠标事件
+			// document.getElementById("username").onmousedown = function(){
+			// 	alert("鼠标点击了...");
+			// }
+			//
+			// document.getElementById("username").onkeydown = function(){
+			// 	if(event.keyCode==13){
+			// 		alert("提交表单");
+			// 	}
+				// 查看键码 Unicode字符码
+				// alert(event.keyCode);
+				// 回车13
+			//}
+			// document.getElementById("username").onchange = function(){
+			// 	alert("改变了...");
+			// }
+			// document.getElementById("city").onchange = function(){
+			// 	alert("改变了...");
+			// }
+			// onsubmit确认按钮被点击   *可以阻止表单提交  方法返回false阻止提交
+			document.getElementById("form").onsubmit=function(){
+				//校验用户名格式是否正确
+				var flag = true;
+				return flag;
+			}
+		}
+		
+		
+		// function checkForm(){
+		// 	return false;
+		// }
+		
+		/*	内部生成
+		*  function fun(){
+			return checkForm();
+		}
+		*/
+		
+		
+	</script>
+	
+	<body>
+		<!-- <form action="#" id="form" onclick="return checkForm();"> -->
+		<form action="#" id="form">
+			<input name="username" id="username">	
+			<select id="city">
+				<option>--请选择--</option>
+				<option>北京</option>
+				<option>武汉</option>
+				<option>长沙</option>
+				<option>桂林</option>
+				<option>柳州</option>
+			</select>
+			<input type="submit" value="提交啊!">
+		</form>
+	</body>
+</html>

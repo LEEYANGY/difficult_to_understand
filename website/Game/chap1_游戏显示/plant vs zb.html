@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="../js/pixi.min.js"></script>
+		<script>
+			//新建一个应用程序
+			var app = new PIXI.Application(1008,640);
+			document.body.appendChild(app.view);
+			
+			//添加图片元素
+			var bg=new PIXI.Sprite.fromImage("../imgs/bg1.png");
+			var item=new PIXI.Sprite.fromImage("../imgs/item.png");
+			var sun=new PIXI.Sprite.fromImage("../imgs/sun.png");
+			var zb1=new PIXI.Sprite.fromImage("../imgs/js1.png");
+			var zb2=new PIXI.Sprite.fromImage("../imgs/js2.png");
+			var zb3=new PIXI.Sprite.fromImage("../imgs/js3.png");
+			var zb4=new PIXI.Sprite.fromImage("../imgs/js4.png");
+			//将图片显示出来
+			app.stage.addChild(bg);
+			app.stage.addChild(item);
+	
+			//放置4个僵尸位置
+			//围栏僵尸僵尸
+			zb1.x=824;
+			zb1.y=378;
+			app.stage.addChild(zb1);
+			//暴走僵尸
+			zb2.x=646;
+			zb2.y=253;
+			app.stage.addChild(zb2);
+			//铁桶僵尸
+			zb3.x=661;
+			zb3.y=149;
+			app.stage.addChild(zb3);
+			//路障僵尸
+			zb4.x=560;
+			zb4.y=371;
+			app.stage.addChild(zb4);
+			//app.stage.addChild(sun);
+			//sun_price 阳光价格
+			var sunp = new  PIXI.Text("100");
+			//阳光坐标位置
+			sunp.x=16;
+			sunp.y=63;
+			//文本颜色
+			sunp.style.fill="#000000";
+			app.stage.addChild(sunp);
+		</script>
+	</body>
+</html>

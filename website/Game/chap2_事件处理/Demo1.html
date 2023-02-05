@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		
+		<script src="../js/pixi.min.js"></script>
+		<script>
+			//创建应用,宽500，高700像素 单位：像素
+			var app = new PIXI.Application(500,700);
+			
+			//在网页添加应用的界面
+			//document(文档) ：网页
+			//body ：存储网页中可以显示的元素
+			//appendChild:追加一个元素
+			//app.view应用界面
+			document.body.appendChild(app.view);
+			
+			//添加元素
+			var plane = new PIXI.Sprite.fromImage("../../imgs/plane.png");
+			plane.x=150;
+			plane.y=450;
+			app.stage.addChild( plane );
+			
+			var text = new PIXI.Text("得分：0000");
+			
+			//设置文本颜色
+			text.style.fill="#ffff7f";
+			text.x=360;
+			text.y=10;
+			
+			//在应用窗口中添加元素
+			app.stage.addChild(text);
+			
+			plane.width=200;
+			plane.height=200;
+			
+			plane.rotation=10*0.0174;
+			
+			
+			
+		</script>
+	</body>
+</html>

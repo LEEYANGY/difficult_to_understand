@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="app">
+		{{ message }}
+		
+			<h2>{{ MyInfo.name }} {{MyInfo.Email}}</h2>
+			
+			<ul>
+				<li>{{campus[1]}}</li>
+			</ul>
+		
+		</div>
+		
+		<script src="../js/vue.js"></script>
+		<script>
+			var app = new Vue({
+				el:"#app",
+				
+				data:{
+					message:"芜湖,这是Vue!",
+					MyInfo:{
+						name:"LEEYANGY",
+						Email:"lyy2000713@gmail.com"
+					},
+					campus:["1111","2222","3333"]
+				}
+				
+			})
+		</script>
+	</body>
+</html>
+<!-- data: 数据对象  -->
+<!--Vue中用到的数据定义data中-->
+<!--data中开业写负载的数据类型-->
+<!--渲染复杂的类型数据事，遵循js语法即可>
+
+
+
+
+

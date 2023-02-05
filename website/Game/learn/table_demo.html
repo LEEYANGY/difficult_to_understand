@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表格全选</title>
+		<style>
+			table{
+				border: 1px solid;
+				width: 500px;
+				margin-left: 30%;
+			}
+			
+			td,th{
+				text-align: center;
+				border: 1px solid;
+			}
+			
+			div{
+				margin-top: 10px;
+				margin-left: 30%;
+			}
+
+			.out{
+				background-color: white;
+			}
+						
+			.over{
+				background-color: pink;
+			}
+
+		</style>
+		<script>
+			/*
+			*分析过程：
+			* 	1.全选
+			* 		获取所有的checkbox
+			* 		遍历checkbox，设置每一个checkbox状态为选中
+			*/
+			
+			
+			//1.在页面加载完后绑定事件
+			window.onload=function(){
+				// 全选
+				// 2.给全选按钮绑定单击事件
+				document.getElementById("selectAll").onclick=function(){
+					// 全选  获取所有的checkbox
+					var CheckBoxs = document.getElementsByName("CheckBoxs");
+					// 遍历
+					for(var i=0;i<CheckBoxs.length;i++){
+						CheckBoxs[i].checked=true;
+					}
+				}
+				
+				// 全不选
+				// 2.给全不选按钮绑定单击事件
+				document.getElementById("unSelectAll").onclick=function(){
+					// 全不选  获取所有的checkbox
+					var CheckBoxs = document.getElementsByName("CheckBoxs");
+					// 遍历
+					for(var i=0;i<CheckBoxs.length;i++){
+						CheckBoxs[i].checked=false;
+					}
+				}
+				
+				// 反选
+				// 2.给反选按钮绑定单击事件
+				document.getElementById("selectRev").onclick=function(){
+					// 反选  获取所有的checkbox
+					var CheckBoxs = document.getElementsByName("CheckBoxs");
+					// 遍历
+					for(var i=0;i<CheckBoxs.length;i++){
+						CheckBoxs[i].checked=!CheckBoxs[i].checked;
+					}
+				}
+				
+				// 全选
+				// 2.给全选按钮绑定单击事件
+				document.getElementById("firstCheckBoxs").onclick=function(){
+					// 全选  获取所有的checkbox
+					var CheckBoxs = document.getElementsByName("CheckBoxs");
+					// 遍历
+					for(var i=0;i<CheckBoxs.length;i++){
+						// 设置每一个CheckBox状态等于第一个CheckBox
+						CheckBoxs[i].checked=this.checked;
+					}
+				}
+				
+				// 给所有tr绑定鼠标移到元素之上和移出元素之上事件
+				var trs = document.getElementsByTagName("tr");
+					for(var i=0;i<trs.length;i++){
+						// 移入
+						trs[i].onmouseover=function(){
+							this.className="over";
+						}
+					
+						// 移出
+						trs[i].onmouseout=function(){
+							//this.className="out";
+							this.className="out";
+						}
+					}	
+			}
+			
+		</script>
+	</head>
+	<body>
+		<table>
+			<caption>学生信息</caption>
+			
+			<tr>
+				<th><input type="checkbox" id="firstCheckBoxs"></th>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+			
+			<tr>
+				<td><input type="checkbox" name="CheckBoxs"></td>
+				<td>1</td>
+				<td>LEEYAGY</td>
+				<td>men</td>
+				<td><a href="javascript:void(0);">删除</a></td>
+			</tr>
+			
+			<tr>
+				<td><input type="checkbox" name="CheckBoxs"></td>
+				<td>1</td>
+				<td>LEEYAGY</td>
+				<td>men</td>
+				<td><a href="javascript:void(0);">删除</a></td>
+			</tr>
+			
+			
+		</table>
+		
+		<div>
+			<input type="button" id="selectAll" value="全选">
+			<input type="button" id="unSelectAll" value="全不选">
+			<input type="button" id="selectRev" value="反选">
+		</div>
+	</body>
+</html>

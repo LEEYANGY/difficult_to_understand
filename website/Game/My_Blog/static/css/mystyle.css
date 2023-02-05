@@ -1,0 +1,53 @@
+/* 1个em==14个像素 */
+.m-padded-tb-mini{
+	padding-top: 0.2em !important;
+	padding-bottom: 0.2em !important;
+}
+.m-opacity-tb-tiny{
+	padding-top: 0.3em !important;
+	padding-bottom: 0.3em !important;	
+}
+.m-opacity-tb-small{
+	padding-top: 0.5em !important;
+	padding-bottom: 0.5em !important;	
+}
+.m-opacity-tb{
+	padding-top: 1em !important;
+	padding-bottom: 1em !important;	
+}
+.m-opacity-tb-large{
+	padding-top: 2em !important;
+	padding-bottom: 2em !important;	
+}
+.m-opacity-tb-big{
+	padding-top: 3m !important;
+	padding-bottom: 3em !important;	
+}
+.m-opacity-tb-huge{
+	padding-top: 4em !important;
+	padding-bottom: 4em !important;	
+}
+.m-padded-tb-massive{
+	padding-top: 10em !important;
+	padding-bottom: 10em !important;
+}
+
+/*------text--------*/
+.m-text-thin{
+	font-weight: 300 !important;
+}
+.m-text-spaced{
+	letter-spacing: 10px !important;
+}
+
+.m-text-lined{
+	line-height: 1.8;
+}
+.m-opacity-mini{
+	opacity: 0.8 !important;
+}
+
+
+.m-inline-block{
+	display: inline-block !important; 
+}

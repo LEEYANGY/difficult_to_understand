@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id = "app">
+		    <input type="button" value="v-on指令" v-on:click="toDo">
+			<input type="button" value="v-on简写指令" @click="toDo">
+			<input type="button" value="双击事件" @dblclick="toDo"/>
+		</div>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var app = new Vue ({
+				el:"#app",
+				methods:{
+					//逻辑
+					toDo:function(){
+						alert("你点我干嘛？");
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

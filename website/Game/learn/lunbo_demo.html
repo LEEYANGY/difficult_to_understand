@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Demo</title>
+	</head>
+	<body>
+		<img id = "img" src="../My_Blog/static/imgs/bao01.png">
+		
+		<!-- 刷新 -->
+		<input type = "button" id = "btn" value = "刷新">
+		<input type = "button" id = "goToNemo" value = "访问Nemo社区">
+		
+		<script>
+			var num = 1;
+			function f(){
+				num ++ ;
+				if (num > 7){
+					num = 1;
+				}
+				var img = document.getElementById("img");
+				img.src = "../My_Blog/static/imgs/bao0"+num+".png";
+			}
+			//定时器
+			setInterval(f,100);
+			
+			// 刷新方法实现
+			var btn = document.getElementById("btn");
+			// 绑定事件
+			btn.onclick = function(){
+				// 重载页面
+				location.reload();
+			}
+			
+			var goToNemo = document.getElementById("goToNemo");
+			goToNemo.onclick = function(){
+				location.href = "https://www.link-nemo.com/";
+			}
+			
+		</script>
+		
+		
+		
+		
+		
+		<!-- 倒计时 -->
+		<p>
+			<span id = "time">5</span>
+		</p>
+		<script>
+			var second = 5;
+			
+			function showTime(){
+				second --;
+				var time = document.getElementById("time");
+				time.innerHTML = second + "";
+				if(second<=0){
+					second=6;
+				}
+			}
+			setInterval(showTime,1000);
+		</script>
+	
+	<!-- history -->
+	<!-- back();加载history前一个URL -->
+	<!-- forward();加载history下一个URL -->
+	<!-- go();加载history列表中的某个具体页面 -->
+	
+	<input type = "button" id = "getHistory" value = "获取历史记录">
+	<input type = "button" id = "goBack" value = "返回上一个网址">
+	<input type = "button" id = "goNext" value = "跳转到下一个网址">
+	
+	<script>
+		var getHistory = document.getElementById("goHistory");
+		getHistory.onclick(){
+			var length =history.length;
+			alert(length);
+		}
+	</script>
+		
+	<script>
+		var back = document.getElementById("goBack");
+		back.onclick(){
+			history.back();
+		}
+	</script>
+	
+	<script>
+		var next = document.getElementById("goNext");
+		next.onclick(){
+			// History.forward();
+			history.go(1);
+		}
+	</script>
+	
+	</body>
+</html>
