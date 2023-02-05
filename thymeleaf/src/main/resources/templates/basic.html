@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ch" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{app.css}">
+    <title>thymeleaf学习</title>
+</head>
+
+    <body>
+        <div>
+            <h2>方法一:</h2>
+            <h2 th:text="${user.username}"></h2>
+            <p th:text="${user.age}"></p>
+        </div>
+
+    <div th:object="${user}">
+        <h2>方法二:</h2>
+        <h2 th:text="*{username}"></h2>
+        <h2 th:text="*{age}"></h2>
+    </div>
+
+    <div>
+<!--        th:if-->
+        <h2>th:if :</h2>
+        <h2 th:if="${user.isVip}">会员</h2>
+    </div>
+
+    <div>
+        <h2>th:each</h2>
+        <ul>
+            <li th:each="tag:${user.tags}" th:text="${tag}"></li>
+        </ul>
+    </div>
+
+    <div th:switch="${user.sex}">
+        <h2>th:switch</h2>
+        <h2 th:case="1">男</h2>
+        <h2 th:case="2">女</h2>
+        <h2 th:case="*">保密</h2>
+    </div>
+
+    <div class="app"></div>
+
+    </body>
+<script th:inline="javascript">
+    const user = /*[[${user}]]*/{};
+        console.log(user);
+</script>
+</html>
