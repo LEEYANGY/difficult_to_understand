@@ -1,0 +1,37 @@
+2021-06-30 20:00:15.006 === [main] === INFO  === com.meng.library.LibraryApplicationTests === Starting LibraryApplicationTests using Java 1.8.0_271 on DESKTOP-B7K81HT with PID 11528 (started by Nemo in E:\librarycode\library)
+2021-06-30 20:00:15.007 === [main] === INFO  === com.meng.library.LibraryApplicationTests === The following profiles are active: prod
+2021-06-30 20:00:15.542 === [main] === INFO  === o.s.d.r.config.RepositoryConfigurationDelegate === Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-06-30 20:00:15.545 === [main] === INFO  === o.s.d.r.config.RepositoryConfigurationDelegate === Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2021-06-30 20:00:15.564 === [main] === INFO  === o.s.d.r.config.RepositoryConfigurationDelegate === Finished Spring Data repository scanning in 13 ms. Found 0 MongoDB repository interfaces.
+2021-06-30 20:00:15.585 === [main] === INFO  === o.s.d.r.config.RepositoryConfigurationDelegate === Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-06-30 20:00:15.587 === [main] === INFO  === o.s.d.r.config.RepositoryConfigurationDelegate === Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-06-30 20:00:15.601 === [main] === INFO  === o.s.d.r.config.RepositoryConfigurationDelegate === Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2021-06-30 20:00:15.920 === [main] === INFO  === o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker === Bean 'redisConfig' of type [com.meng.library.utils.redis.config.RedisConfig$$EnhancerBySpringCGLIB$$d80f355f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-06-30 20:00:16.817 === [main] === INFO  === org.mongodb.driver.cluster === Cluster created with settings {hosts=[127.0.0.1:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2021-06-30 20:00:16.818 === [main] === INFO  === org.mongodb.driver.cluster === Adding discovered server 127.0.0.1:27017 to client view of cluster
+2021-06-30 20:00:17.040 === [main] === INFO  === c.a.d.s.b.a.DruidDataSourceAutoConfigure === Init DruidDataSource
+2021-06-30 20:00:17.371 === [main] === INFO  === com.alibaba.druid.pool.DruidDataSource === {dataSource-1} inited
+2021-06-30 20:00:18.418 === [main] === INFO  === org.mongodb.driver.cluster === Cluster created with settings {hosts=[127.0.0.1:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2021-06-30 20:00:18.419 === [main] === INFO  === org.mongodb.driver.cluster === Adding discovered server 127.0.0.1:27017 to client view of cluster
+2021-06-30 20:00:18.876 === [cluster-ClusterId{value='60dc5cd00cdbb32f234be499', description='null'}-127.0.0.1:27017] === INFO  === org.mongodb.driver.cluster === Exception in monitor thread while connecting to server 127.0.0.1:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:128)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:81)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:476)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:218)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:200)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:162)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:394)
+	at java.net.Socket.connect(Socket.java:606)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:64)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	... 3 common frames omitted
+2021-06-30 20:00:19.493 === [main] === INFO  === com.meng.library.LibraryApplicationTests === Started LibraryApplicationTests in 4.717 seconds (JVM running for 5.5)
+2021-06-30 20:00:19.928 === [SpringApplicationShutdownHook] === INFO  === com.alibaba.druid.pool.DruidDataSource === {dataSource-1} closing ...
+2021-06-30 20:00:19.930 === [SpringApplicationShutdownHook] === INFO  === com.alibaba.druid.pool.DruidDataSource === {dataSource-1} closed

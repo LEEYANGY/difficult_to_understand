@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    构造器注入
+        在bean中定义引用类型属性并提供可访问的构造方法
+
+        在配置中使用constructor-arg标签ref属性注入类型对象
+
+
+        选择？
+
+        强制依赖使用构造器进行，使用setter注入有概率不进行注入导致null对象出现
+
+        可选依赖使用setter注入进行，灵活性强
+
+        spring倡导使用构造器，第三方框架内部大多数采用构造器注入对数据初始化
+
+
+
+-->
+    <!--方法一-->
+    <!--&lt;!&ndash;    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl" init-method="init" destroy-method="destroy"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;    <bean id="userDao" class="xyz.leeyangy.dao.impl.UserDaoImpl"/>&ndash;&gt;-->
+    <!--    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl">-->
+    <!--        <constructor-arg name="connectionNum" value="100"/>-->
+    <!--        <constructor-arg name="databaseName" value="mysql"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="userDao" class="xyz.leeyangy.dao.impl.UserDaoImpl"/>-->
+    <!--&lt;!&ndash;    setter 注入&ndash;&gt;-->
+    <!--&lt;!&ndash;    <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl">&ndash;&gt;-->
+    <!--&lt;!&ndash;        <property name="bookDao" ref="bookDao"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;    </bean>&ndash;&gt;-->
+    <!--&lt;!&ndash;    构造器注入&ndash;&gt;-->
+    <!--    <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl">-->
+    <!--&lt;!&ndash;        name中写入构造方法中的形参名称BookDao bookDao&ndash;&gt;-->
+    <!--        <constructor-arg name="bookDao" ref="bookDao"/>-->
+    <!--        <constructor-arg name="userDao" ref="userDao"/>-->
+    <!--    </bean>-->
+<!--    方法二  解决形参名称问题-->
+<!--        <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl">-->
+<!--            <constructor-arg type="int" value="100"/>-->
+<!--            <constructor-arg type="java.lang.String" value="mysql"/>-->
+<!--        </bean>-->
+<!--        <bean id="userDao" class="xyz.leeyangy.dao.impl.UserDaoImpl"/>-->
+<!--        <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl">-->
+<!--    &lt;!&ndash;        name中写入构造方法中的形参名称BookDao bookDao&ndash;&gt;-->
+<!--            <constructor-arg name="bookDao" ref="bookDao"/>-->
+<!--            <constructor-arg name="userDao" ref="userDao"/>-->
+<!--        </bean>-->
+
+<!--方法三  解决参数重复问题，使用位置解决参数匹配-->
+    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl">
+        <constructor-arg index="0" value="100"/>
+        <constructor-arg index="1" value="mysql"/>
+    </bean>
+    <bean id="userDao" class="xyz.leeyangy.dao.impl.UserDaoImpl"/>
+    <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl">
+        <!--        name中写入构造方法中的形参名称BookDao bookDao-->
+        <constructor-arg name="bookDao" ref="bookDao"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+    </bean>
+
+</beans>

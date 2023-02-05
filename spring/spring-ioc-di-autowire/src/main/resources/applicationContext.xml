@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    auto wire  按类型-->
+    <!--    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl"/>-->
+    <bean class="xyz.leeyangy.dao.impl.BookDaoImpl"/>
+    <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl" autowire="byType"/>
+
+    <!--    auto wire  按set名-->
+<!--    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl"/>-->
+<!--    <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl" autowire="byName"/>-->
+
+    <!--
+    自动装配？  自己寻找类型，然后自动装进去
+    autowise用于类型依赖注入，不能对简单类型进行操作
+    使用按类型装配时(byType) 必须保障容器内相同类型bean唯一
+    使用按名称装配时(byName) 必须保障容器中具有指定名称的bean，因变量名与配置耦合，不推荐使用
+    自动装配优先级低于setter注入与构造器注入，同时出现时自动装配配置失效
+-->
+</beans>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+<!--    管理DruidDataSource对象-->
+<!--    <bean id="dataSourceForDruid" class="com.alibaba.druid.pool.DruidDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--        <property name="url" value="jdbc:mysql://leeyangy.xyz:3306/spring_db?serverTimezone=PRC"/>-->
+<!--        <property name="username" value="leeyangy"/>-->
+<!--        <property name="password" value="123321456"/>-->
+<!--    </bean>-->
+
+<!--    管理-->
+<!--    <bean id="dataSourceForC3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--        <property name="jdbcUrl" value="jdbc:mysql://leeyangy.xyz:3306/spring_db?serverTimezone=PRC"/>-->
+<!--        <property name="user" value="leeyangy"/>-->
+<!--        <property name="password" value="123321456"/>-->
+<!--    </bean>-->
+<!--    1.开启context命名空间-->
+<!--    2.使用context空间加载properties文件
+        classpath:*.properties    加载properties文件标准格式
+        classpath *:*.properties  表示从类路径或jar包中搜索并加载properties文件
+        -->
+
+    <context:component-scan base-package="xyz.leeyangy"/>
+
+    <context:property-placeholder location="classpath*:*.properties" system-properties-mode="NEVER"/>
+<!--    3.使用属性展位符读取properties文件中的属性-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.passwd}"/>
+    </bean>
+
+<!--    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl">-->
+<!--        <property name="name" value="${jdbc.driver}"/>-->
+<!--    </bean>-->
+</beans>

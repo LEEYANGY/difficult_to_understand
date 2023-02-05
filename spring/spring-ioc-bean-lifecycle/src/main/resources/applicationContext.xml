@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl" init-method="init" destroy-method="destroy"/>
+
+    <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+<!--                  配置service与dao的关系&ndash;&gt;-->
+        <!--        property表示配置当前bean属性
+                    name属性配置哪一个具体的属性
+                    ref 参照哪一个bean
+            -->
+        <!--        <property name="bookDao" ref="bookDao"/>-->
+        <!--        </bean>-->
+</beans>

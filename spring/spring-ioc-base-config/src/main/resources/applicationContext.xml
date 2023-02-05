@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="bookDao" class="xyz.leeyangy.dao.impl.BookDaoImpl"/>
+
+
+</beans>
+        <!--    1.导入spring坐标spring-context 对应版本-->
+
+        <!--    2.配置bean
+                    bean标签配置bean
+                    id 属性标签给bean起名字(id用来配置bean名称)
+                    class 属性表示当前给bean定义类型（配置bean的全路径类名）
+        -->
+        <!--
+                bean作用范围
+                        默认为单例，如需配置多例
+                        表现层，业务，数据，工具对象可以交给spring管理
+                        封装实体域对象，不适合给spring
+
+                bean本质上就是对象，创建bean使用构造方法完成
+
+            <bean id="bookService" class="xyz.leeyangy.service.impl.BookServiceImpl">
+                  配置service与dao的关系-->
+        <!--        property表示配置当前bean属性
+                    name属性配置哪一个具体的属性
+                    ref 参照哪一个bean
+            -->
+        <!--        <property name="bookDao" ref="bookDao"/>-->
+        <!--        </bean>-->
