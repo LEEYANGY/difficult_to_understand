@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en" xml:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>test post param</title>
+</head>
+<body>
+    <h1>测试请求参数</h1>
+    <br>
+<!--    <a th:href="@{/testServletAPI}">测试使用servletAPI获取请求参数</a>-->
+    <a th:href="@{/testServletAPI(username='admin',password='password')}">测试使用servletAPI获取请求参数</a>
+    <br>
+    <a th:href="@{/testParams(username='admin',password='password')}">测试使用控制器的形参获取请求参数</a>
+    <br>
+<!--    表单一-->
+<!--    <form th:action="@{/testParam}" method="get">-->
+<!--        用户名:<input type="text" name="username"><br>-->
+<!--        密  码:<input type="password" name="password"><br>-->
+<!--        爱  好:<input type="checkbox" name="hobby" value="a">a-->
+<!--               <input type="checkbox" name="hobby" value="b">b-->
+<!--               <input type="checkbox" name="hobby" value="c">c<br>-->
+<!--                <input type="submit" value="测试使用控制器的形参获取请求参数">-->
+<!--    </form>-->
+<!--    表单二-->
+    <br>
+    <form th:action="@{/testParams}" method="get">
+        用户名:<input type="text" name="user_name"><br>
+        密  码:<input type="password" name="passwd"><br>
+        爱  好:<input type="checkbox" name="hob" value="a">a
+        <input type="checkbox" name="hob" value="b">b
+        <input type="checkbox" name="hob" value="c">c<br>
+        <input type="submit" value="测试使用控制器的形参获取请求参数">
+    </form>
+</body>
+</html>

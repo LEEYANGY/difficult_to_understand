@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录功能测试</title>
+</head>
+<body>
+  <h1>登录页面</h1>
+  <a th:href="@{/login/success}">111111111111</a>
+    <form th:action="@{/login/success}" method="post">
+      <input type="submit" value="测试method POST属性">
+    </form>
+
+  <form th:action="@{/login/success}" method="get">
+    <input type="submit" value="测试method GET属性">
+  </form>
+
+    <form th:action="@{/login/success(username='admin',password='admin')}" method="post">
+        <input type="submit" value="提交post请求，携带参数">
+    </form>
+
+  <a th:href="@{/login/success(username='admin',password='admin')}" methods="get">测试请求头</a>
+  <br>   <!--  换行  -->
+  <a th:href="@{/testPath/1}">测试@ResquestMapping支持路径中占位符==>> /testPath 1 </a>
+  <br>   <!--  换行  -->
+  <a th:href="@{/testPath/1/leeyangy}">测试@ResquestMapping支持路径中占位符==>> /testPath  1 leeyangy </a>
+  <br>   <!--  换行  -->
+  <a th:href="@{/param}">测试@ResquestMapping支持路径中占位符==>> /param </a>
+  <br>   <!--  换行  -->
+<!--  <a th:href="@{/Param}">测试@ResquestMapping支持路径中占位符==>> /testParam </a>-->
+<form th:action="@{/testPOJO}" method="post">
+  用户名:<input type="text" name="user_name"><br>
+  密  码:<input type="password" name="passwd"><br>
+  性  别:<input type="radio" name="sex" value="男">男
+        <input type="radio" name="sex" value="女">女<br>
+  年  龄:<input type="text" name="age"><br>
+  邮  箱:<input type="email" name="email"><br>
+        <input type="submit" value="登录">
+</form>
+<hr>
+  <form th:action="@{/testPOJO}" method="get">
+    用户名:<input type="text" name="username"><br>
+    密  码:<input type="password" name="password"><br>
+    性  别:<input type="radio" name="sex" value="男">男
+    <input type="radio" name="sex" value="女">女<br>
+    年  龄:<input type="text" name="age"><br>
+    邮  箱:<input type="email" name="email"><br>
+    <input type="submit" value="登录">
+  </form>
+</body>
+</html>

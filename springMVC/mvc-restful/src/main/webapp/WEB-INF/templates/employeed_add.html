@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Employee</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+
+<form th:action="@{/employee}" method="post">
+  lastName:<input type="text" name="lastName"><br>
+  email:<input type="text" name="email"><br>
+  gender:<input type="radio" name="gender" value="1">male
+  <input type="radio" name="gender" value="0">female<br>
+  <input type="submit" value="add"><br>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script></head>
+<body>
+    <h1>首页</h1>
+<form th:action="@{/user/login}" method="post">
+    用户名：<input type="text" name="username" value="admin">
+    密 码：<input type="password" name="password" value="admin">
+    <input type="submit" value="登录">
+</form>
+<a th:href="@{/user/sumPages}">尝试跳转到首页</a>
+</body>
+</html>
