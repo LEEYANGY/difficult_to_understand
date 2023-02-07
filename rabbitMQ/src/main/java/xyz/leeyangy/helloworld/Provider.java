@@ -2,8 +2,8 @@ package xyz.leeyangy.helloworld;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import org.junit.Test;
+import xyz.leeyangy.helloworld.utils.RabbitMQUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -26,21 +26,8 @@ public class Provider {
      */
     @Test
     public void testProvider() throws IOException, TimeoutException {
-//        创建连接rabbitmq服务器
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-//        设置连接主机
-        connectionFactory.setHost("localhost");
-//        设置端口号
-        connectionFactory.setPort(5672);
-//        设置那个虚拟主机
-        connectionFactory.setVirtualHost("/null");
-//        设置用户名和密码
-        connectionFactory.setUsername("null");
-        connectionFactory.setPassword("null.");
-
-//        获取连接对象
-        Connection connection = connectionFactory.newConnection();
-
+//        创建连接
+        Connection connection = RabbitMQUtil.getConnection();
 //        获取连接通道
         Channel channel = connection.createChannel();
 
@@ -50,17 +37,16 @@ public class Provider {
 //        参数3：是否独占队列 true 独占，false 不独占
 //        参数4： 是否在消费完成后自动删除队列 true 删除  false 不删除
 //        参数5：额外附加参数
-        channel.queueDeclare("hello",false,false,false,null);
+        channel.queueDeclare("hello", false, false, false, null);
 
 //        发布消息
 //        参数1：交换机名称
 //        参数2： 队列名称
 //        参数3：残敌消息额外设置
 //        参数4: 消息具体内容
-        channel.basicPublish("","hello",null,"hello rabbitmq".getBytes());
+        channel.basicPublish("", "hello", null, "hello rabbitmq".getBytes());
 
 //        关闭连接
-        channel.close();
-        connection.close();
+        RabbitMQUtil.closeConnectionAndChannel(channel, connection);
     }
 }

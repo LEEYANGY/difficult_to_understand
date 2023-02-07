@@ -1,7 +1,7 @@
 package xyz.leeyangy.helloworld;
 
 import com.rabbitmq.client.*;
-import org.junit.Test;
+import xyz.leeyangy.helloworld.utils.RabbitMQUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -24,21 +24,8 @@ public class Consumer {
      */
 //    @Test
     public static void main(String[] args) throws IOException, TimeoutException {
-        //        创建连接工厂
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-//        设置主机
-        connectionFactory.setHost("localhost");
-//        设置端口
-        connectionFactory.setPort(5672);
-//        设置虚拟机
-        connectionFactory.setVirtualHost("/null");
-//        设置用户名和密码
-        connectionFactory.setPassword("null");
-        connectionFactory.setUsername("null");
-
-//        建立连接
-        Connection connection = connectionFactory.newConnection();
-
+//        创建连接
+        Connection connection = RabbitMQUtil.getConnection();
 //        创建通道
         Channel channel = connection.createChannel();
 //        绑定消息队列
@@ -56,11 +43,8 @@ public class Consumer {
             }
         });
 
-//        关闭连接  注释的话,该程序会一直等待消息
-//        channel.close();
-//        connection.close();
-
+//        关闭连接
+        RabbitMQUtil.closeConnectionAndChannel(channel, connection);
     }
-
 
 }
