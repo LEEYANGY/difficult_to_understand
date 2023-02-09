@@ -14,7 +14,7 @@ import com.rabbitmq.client.Connection;
 public class RabbitMQUtil {
 
     //  创建连接工厂
-    private static final ConnectionFactory connectionFactory;
+    private static ConnectionFactory connectionFactory;
 
     static {
 //        静态代码块,在类加载时候执行一次(因为开销特别大,故写到静态代码块中)
