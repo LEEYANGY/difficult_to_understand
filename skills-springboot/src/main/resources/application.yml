@@ -1,0 +1,8 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    port: 25
+    username: null@qq.com
+    password: null
+    default-encoding: utf-8
+    protocol: smtp
