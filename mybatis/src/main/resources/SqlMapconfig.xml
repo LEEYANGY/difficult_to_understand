@@ -24,5 +24,7 @@
     <mappers>
 <!--        在resource下做映射-->
         <mapper resource="com/leeyangy/dao/IUserDao.xml"/>
+        <!--在resource下做映射,这里使用class也可以完成-->
+<!--        <mapper class="com.leeyangy.dao.IUserDao"/>-->
     </mappers>
 </configuration>
