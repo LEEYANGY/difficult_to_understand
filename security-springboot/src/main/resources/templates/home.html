@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Spring Security Example</title>
+</head>
+<body>
+<h1>Welcome!</h1>
+
+<p>Click <a th:href="@{/hello}">首页</a> to see a greeting.</p>
+<p>Click <a th:href="@{/login}">登录</a> to see a greeting.</p>
+
+<h1>
+  level1
+  <p>Click <a th:href="@{/level1/1}">level1--1</a> to see a greeting.</p>
+  <p>Click <a th:href="@{/level1/2}">level1--2</a> to see a greeting.</p>
+  <p>Click <a th:href="@{/level1/3}">level1--3</a> to see a greeting.</p>
+</h1>
+
+<h1>
+  level2
+  <p>Click <a th:href="@{/level2/1}">level2--1</a> to see a greeting.</p>
+  <p>Click <a th:href="@{/level2/2}">level2--2</a> to see a greeting.</p>
+  <p>Click <a th:href="@{/level2/3}">level2--3</a> to see a greeting.</p>
+</h1>
+
+<h1>
+  level3
+  <p>Click <a th:href="@{/level3/1}">level3--1</a> to see a greeting.</p>
+  <p>Click <a th:href="@{/level3/2}">level3--2</a> to see a greeting.</p>
+  <p>Click <a th:href="@{/level3/3}">level3--3</a> to see a greeting.</p>
+</h1>
+
+</body>
+</html>
