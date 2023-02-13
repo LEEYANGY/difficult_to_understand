@@ -3,9 +3,7 @@ package xyz.leeyangy.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import xyz.leeyangy.pojo.User;
 
 /**
  * @Author liyangyang
@@ -30,10 +28,15 @@ public class RouterController {
         return "views/login";
     }
 
+    @RequestMapping("logout")
+    public String toLogout() {
+        System.out.println("logout");
+        return "redirect:home";
+    }
+
     @PostMapping("/user/login")
-    public String login(@RequestBody User user) {
+    public String login() {
         System.out.println("login method");
-        System.out.println(user);
         return "home";
     }
 
