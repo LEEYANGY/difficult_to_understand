@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * @Date: 2023/02/14 2:47
  * @Package xyz.leeyangy.config
  * @Version 1.0
- * @Description:
+ * @Description: 重写一些方法，实现功能
  */
 
 @Configuration
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.logout().deleteCookies("remove").invalidateHttpSession(true)
 //                .logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
-        http.exceptionHandling().accessDeniedPage("/403");
+        http.exceptionHandling().accessDeniedPage("/e403");
     }
 
     /**
@@ -109,22 +109,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                and 连接更多
                 .and().withUser("lee").password(new BCryptPasswordEncoder().encode("lee")).roles("vip3");
     }
-
-    /**
-     * Override this method to configure {@link WebSecurity}. For example, if you wish to
-     * ignore certain requests.
-     * <p>
-     * Endpoints specified in this method will be ignored by Spring Security, meaning it
-     * will not protect them from CSRF, XSS, Clickjacking, and so on.
-     * <p>
-     * Instead, if you want to protect endpoints against common vulnerabilities, then see
-     * {@link #configure(HttpSecurity)} and the {@link HttpSecurity#authorizeRequests}
-     * configuration method.
-     *
-     * @param web
-     */
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//
-//    }
 }
