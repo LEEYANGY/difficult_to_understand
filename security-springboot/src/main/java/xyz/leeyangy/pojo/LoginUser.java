@@ -1,13 +1,18 @@
 package xyz.leeyangy.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import xyz.leeyangy.pojo.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Author liyangyang
@@ -18,11 +23,24 @@ import java.util.Collection;
  */
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class LoginUser implements UserDetails {
 
     private User user;
+
+    private List<String> permissions;
+
+    public LoginUser(User user, List<String> permissions) {
+        this.user = user;
+        this.permissions = permissions;
+    }
+
+
+    //    不需要序列化到redis中
+    @JSONField(serialize = false)
+//    List<GrantedAuthority> authorities;
+    private List<GrantedAuthority> authorities;
+//    private List<SimpleGrantedAuthority> authorities;
 
     /**
      * Returns the authorities granted to the user. Cannot return <code>null</code>.
@@ -32,8 +50,30 @@ public class LoginUser implements UserDetails {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+//        List<GrantedAuthority> authorities = new ArrayList<>();
+//        List<GrantedAuthority> authorities;
+//        不为空直接返回
+        if (authorities != null) return authorities;
+
+//        为空，new ArrayList<>()
+        authorities = new ArrayList<>();
+//        下面是为空的过程
+//        把permissions中权限信息封装成SimpGrantedAuthority
+//        方法一:遍历
+        for (String permission : permissions) {
+//            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(permission);
+//            添加权限
+            authorities.add(new SimpleGrantedAuthority(permission));
+        }
+
+//        方法二：stream流
+//        authorities = permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+
+        return authorities;
     }
+
+    //原因
 
     /**
      * Returns the password used to authenticate the user.

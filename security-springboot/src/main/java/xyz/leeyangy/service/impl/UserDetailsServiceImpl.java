@@ -10,6 +10,9 @@ import xyz.leeyangy.pojo.LoginUser;
 import xyz.leeyangy.pojo.User;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -48,8 +51,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new RuntimeException("账号不存在");
         }
 //        查询对应权限信息
+//        模拟数据
+        List<String> list = new ArrayList<>(Arrays.asList("test","vip1","vip2","admin"));
+
 //        如果执行到此处，说明有该用户，需要返回一个UserDetail
 
-        return new LoginUser(user);
+        return new LoginUser(user,list);
     }
 }
