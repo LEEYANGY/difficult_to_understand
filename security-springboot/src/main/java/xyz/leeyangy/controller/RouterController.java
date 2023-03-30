@@ -22,24 +22,6 @@ public class RouterController {
         return "home";
     }
 
-    @RequestMapping("login")
-    public String toLogin() {
-        System.out.println("into login page");
-        return "views/login";
-    }
-
-    @RequestMapping("logout")
-    public String toLogout() {
-        System.out.println("logout");
-        return "redirect:home";
-    }
-
-    @PostMapping("/user/login")
-    public String login() {
-        System.out.println("login method");
-        return "home";
-    }
-
     @RequestMapping("/level1/{id}")
     public String level1(@PathVariable("id") int id) {
         System.out.println("into level1 pages");
