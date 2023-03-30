@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: null
+    password: null
+    url: jdbc:mysql://localhost/security_demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+  redis:
+    password: 10010
+    port: 6379
+    host: localhost
+    database: 0
