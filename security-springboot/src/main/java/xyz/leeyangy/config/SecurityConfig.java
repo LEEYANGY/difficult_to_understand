@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import xyz.leeyangy.filter.JwtAuthenticationTokenFilter;
+import xyz.leeyangy.handle.AccessDeniedHandleImpl;
+import xyz.leeyangy.handle.AuthenticationEntryPointImpl;
 
 import javax.annotation.Resource;
 
@@ -171,6 +173,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    @Resource
+    private AuthenticationEntryPointImpl authenticationEntryPoint;
+
+    @Resource
+    private AccessDeniedHandleImpl accessDeniedHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -187,5 +195,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 //        添加过滤器
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
+//        配置移仓处理
+        http.exceptionHandling()
+//                配置认证失败过滤器
+                .authenticationEntryPoint(authenticationEntryPoint)
+//                配置授权失败过滤器
+                .accessDeniedHandler(accessDeniedHandler);
     }
 }
