@@ -43,4 +43,12 @@ public class RouterController {
         System.out.println("into level3 pages");
         return "views/level3/"+id;
     }
+
+    @RequestMapping("/level4/{id}")
+    @PreAuthorize("@myExpression.hasAuthority('system:admin:list')")
+    public String myExpression(@PathVariable("id") int id) {
+        System.out.println("into level3 pages");
+        return "home";
+    }
+
 }
