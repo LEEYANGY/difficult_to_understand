@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import xyz.leeyangy.mapper.MenuMapper;
 import xyz.leeyangy.mapper.UserMapper;
 import xyz.leeyangy.pojo.LoginUser;
 import xyz.leeyangy.pojo.User;
@@ -28,6 +29,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private MenuMapper menuMapper;
+
     /**
      * Locates the user based on the username. In the actual implementation, the search
      * may possibly be case sensitive, or case insensitive depending on how the
@@ -46,14 +50,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getUserName, username);
         User user = userMapper.selectOne(queryWrapper);
-        System.out.println(user);
         if (Objects.isNull(user)) {
             throw new RuntimeException("账号不存在");
         }
 //        查询对应权限信息
 //        模拟数据
-        List<String> list = new ArrayList<>(Arrays.asList("test","vip1","vip2","admin"));
-
+        List<String> list = menuMapper.selectPermsByUserId(user.getId()) ;
 //        如果执行到此处，说明有该用户，需要返回一个UserDetail
 
         return new LoginUser(user,list);

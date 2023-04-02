@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -22,7 +24,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("sys_menu")
-public class Menu {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Menu implements Serializable {
+
+    private static final long serialVersionUID = -54979041104113736L;
 
     /**
      * 菜单ID

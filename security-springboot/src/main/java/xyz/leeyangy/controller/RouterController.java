@@ -24,7 +24,7 @@ public class RouterController {
     }
 
     @RequestMapping("/level1/{id}")
-    @PreAuthorize("hasAnyAuthority('vip1')")
+    @PreAuthorize("hasAnyAuthority('system:admin:list')")
     public String level1(@PathVariable("id") int id) {
         System.out.println("into level1 pages");
         return "views/level1/"+id;
