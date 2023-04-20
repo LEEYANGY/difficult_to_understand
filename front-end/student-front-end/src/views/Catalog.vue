@@ -1,7 +1,7 @@
 <template>
   <div class="catalog">
     <!-- 用户未登录 -->
-    <div class="catalog-login" v-if="isLogin === 0">
+    <div class="catalog-login" v-if="store.getIsLogin === 0">
       <div class="catalog-login-tip">
         您还暂未登录<br/>登录账号后方可查看
       </div>
@@ -15,16 +15,17 @@
       </div>
     </div>
 
-<!--    登录之后-->
+    <!--    登录之后-->
     <!-- 用户已登录 -->
-<!--    <List v-if="isLogin == 1" />-->
-    <div class="order-fixed-btn" v-if="isLogin === 1">
+    <!--    <List v-if="isLogin == 1" />-->
+    <div class="order-fixed-btn" v-if="store.getIsLogin === 1">
       <van-button
           round
           color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
           icon="plus"
           to="/apply"
-      >添加申请</van-button
+      >添加申请
+      </van-button
       >
     </div>
   </div>
@@ -32,6 +33,9 @@
 
 <script>
 // import {Toast} from "vant";
+
+import {ref} from "vue";
+import {useUserStore} from "../store/user.ts";
 
 export default {
   name: "Catalog",
@@ -41,21 +45,15 @@ export default {
       return this.moment
     }
   },
+  setup() {
+    const store = useUserStore();
+    return {
+      store,
 
-  data: () => ({
-    // 是否登录状态
-    isLogin: 0,
-  }),
-  methods: {
-    // todo
-    checkLogin: function () {
-      if (this.uid && this.token) {
-        this.isLogin = 0;
-      }
-    },
+    }
   },
+  methods: {},
   mounted() {
-    this.checkLogin();
   },
   created() {
     //   this.$http({

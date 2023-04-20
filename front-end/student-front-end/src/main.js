@@ -1,12 +1,6 @@
 import {createApp} from 'vue'
-// 原装css害人不浅啊
-// import './style.css'
 import App from './App.vue'
 import router from "./router";
-import store from "./store/index.js";
-
-// import 'amfe-flexible'
-// import 'postcss'
 
 // 1. 引入你需要的组件
 import Vant from 'vant'
@@ -16,9 +10,20 @@ import {NavBar, Tabbar, TabbarItem, List, PullRefresh, Notify, showNotify, BackT
 import 'vant/lib/index.css';
 import './api/axios'
 
+// pinia
 import {createPinia} from "pinia";
+
+const store = createPinia();
+
+// 持久化pinia
+// const piniaPlugin = (context: PiniaPluginContext) => {
+//     console.log(context,'context')
+// };
+// // 注册插件
+// store.use(piniaPlugin);
+
 
 createApp(App)
     .use(Vant, NavBar, Tabbar, TabbarItem, List, PullRefresh, Notify, showNotify, BackTop)
-    .use(router).use(createPinia())
+    .use(router).use(store)
     .mount('#app')

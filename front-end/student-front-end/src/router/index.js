@@ -100,6 +100,21 @@ const routes = [
         path: '/other',
         name: 'other',
         component: () => import("../views/Other.vue"),
+    },
+    {
+        path: '/detail/:id',
+        name: 'detail',
+        component: () =>import("../components/zone/Detail.vue"),
+    },
+    {
+        path: '/edit/:id',
+        name: 'edit',
+        component: () =>import("../components/zone/Edit.vue"),
+    },
+    {
+        path: '/userprofile/:userId',
+        name: 'userprofile',
+        component:()=>import('../components/manager/UserInfo.vue')
     }
 ];
 

@@ -7,6 +7,14 @@ import {Dialog} from "vant";
 
 axios.defaults.baseURL = "/api"
 
+// 设置请求头
+let reqInstance = axios.create({
+    headers: {
+        Authorization: 'Bearer ${localStorage.getItem("access_token")'
+    }
+})
+
+
 // 前置拦截
 axios.interceptors.request.use(config => {
     nprogress.start();
@@ -31,11 +39,11 @@ axios.interceptors.response.use(response => {
     },
     error => {
         // console.log(error)
-        if(error.response.data) {
+        if (error.response.data) {
             error.message = error.response.data.msg
         }
 
-        if(error.response.status === 401) {
+        if (error.response.status === 401) {
             store.commit("REMOVE_INFO")
             router.push("/user/login")
         }
