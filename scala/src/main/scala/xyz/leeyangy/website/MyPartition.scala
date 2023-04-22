@@ -4,6 +4,7 @@ import breeze.numerics.log
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.{FileSystem, Path}
 import org.apache.spark.Partitioner
+import org.apache.spark.internal.Logging
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -25,8 +26,10 @@ import org.apache.spark.{SparkConf, SparkContext}
  */
 class MyPartition(numParts: Int) extends Partitioner {
 
+//  返回需要创建的分区个数
   override def numPartitions: Int = numParts
 
+//  需要对输入的数据进行处理，并返回该键的分区id，范围是0~numPartitions-1
   override def getPartition(key: Any): Int = {
     if (key.toString().toInt % 2 == 0) {
       0
@@ -35,13 +38,14 @@ class MyPartition(numParts: Int) extends Partitioner {
     }
   }
 
+//  判断两个数据是否相等，spark内部会比较两个rdd分区是否一样
   override def equals(other: Any): Boolean = other match {
     case mypartition: MyPartition => mypartition.numPartitions == numPartitions
     case _ => false
   }
 }
 
-object ToDistribute {
+object ToDistribute extends Logging{
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("test partition").setMaster("local")
     val sc = new SparkContext(conf)
