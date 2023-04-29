@@ -6,7 +6,7 @@
   "actions": {
     "routerEvent": {
       "action": "router",
-      "abilityName": "com.dragonwindg.school.MainAbility",
+      "abilityName": "com.dragonwings.school.MainAbility",
       "params": {
         "message": "add detail"
       }

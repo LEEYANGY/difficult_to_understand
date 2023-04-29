@@ -54,16 +54,20 @@ import axios from "axios";
 export default {
   name: "Detail",
   setup() {
+    const store = useUserStore();
+
     // const
     const onClickLeft = () => history.back();
     const onClickRight = () => {
-      // if (store.getUser.id===1){
+      console.log(sponsorBy.value,JSON.parse(store.getUser)[0].userId)
+      if (JSON.parse(store.getUser)[0].userId===sponsorBy.value){
       // 路由传参
-      console.log(sponsorBy.value)
-      // router.push({name: 'edit', params: {id: id}})
-      // }
+
+      router.push({name: 'edit', params: {id: id}})
+      }else {
+        showDialog({type:"danger",message:"没有权限"})
+      }
     };
-    const store = useUserStore();
     const sponsorBy = ref(0);
     const title = ref('');
     const description = ref('');

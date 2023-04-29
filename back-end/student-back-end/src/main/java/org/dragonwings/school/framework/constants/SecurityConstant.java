@@ -15,7 +15,8 @@ public interface SecurityConstant {
 //            动态内容
             "/system/zone/getAllArticle/**",
             "/system/zone/getDetail/**",
-            "/system/zone/getMaxTotal/**"
-
+            "/system/zone/getMaxTotal/**",
+//            聊天
+//            "/imserver/**"
     };
 }

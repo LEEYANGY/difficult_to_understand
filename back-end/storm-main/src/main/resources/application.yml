@@ -1,0 +1,18 @@
+server:
+  port: 38888
+
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: leeyangy
+#    password: 123321456
+#    url: jdbc:mysql://leeyangy.xyz/security_demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+#  redis:
+#    password: zxw0715@0626!
+#    port: 6379
+#    host: 117.50.95.187
+#    database: 0
+
+#mybatis-plus:
+#  type-aliases-package: xyz.leeyangy.pojo
+#  mapper-locations: classpath:/mappers/*Mapper.xml
