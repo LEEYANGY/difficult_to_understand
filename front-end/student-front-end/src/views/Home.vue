@@ -16,7 +16,7 @@
         :finished="finished"
         finished-text="没有更多的啦,我也是有底线的~~"
         @load="onLoad"
-        offset="30"
+        offset="10"
         :immediate-check="true"
     >
       <van-cell v-for="item in list" :key="item" :title="item.title" :to="'/detail/' + item.id"/>
