@@ -10,6 +10,7 @@
     >
       <view slot="action" bind:tap="onClick">搜索</view>
     </van-search>
+    <Notices v-show="isShow"></Notices>
     <!--    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">-->
     <van-list
         v-model:loading="loading"
@@ -32,16 +33,20 @@ import {onMounted, reactive, ref} from 'vue';
 import axios from "axios";
 import {showDialog, showToast} from "vant";
 import index from "vuex";
+import Notices from "../components/zone/Notices.vue";
 
 export default {
   name: "Home",
+  components: {Notices},
   computed: {
     index() {
       return index
     }
   },
   setup() {
-
+    // 是否显示通知消息  TODO 需要修改成登录后，message中有内容可消费，否则 即使登录了也不展示通知
+    const isShow = ref((localStorage.getItem("USER_LOGIN")));
+    // 校园动态集合
     const list = ref([]);
     const loading = ref(false);
     const finished = ref(false);
@@ -120,6 +125,7 @@ export default {
       page,
       limit,
       total,
+      isShow,
       loading,
       finished,
       countList,
