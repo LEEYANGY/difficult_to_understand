@@ -43,12 +43,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    //    jwt认证过滤器
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    //    自定义的认证失败响应拦截器
     @Resource
     private AuthenticationEntryPointImpl authenticationEntryPoint;
 
+    //    自定义的权限响应拦截器
     @Resource
     private AccessDeniedHandleImpl accessDeniedHandler;
 
@@ -77,6 +80,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler);
 
 //        允许跨域
-        http.cors();
+//        http.cors();
     }
 }
