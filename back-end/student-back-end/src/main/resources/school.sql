@@ -186,7 +186,7 @@ CREATE TABLE `sys_role_menu`
 (
     `role_id` BIGINT(200) NOT NULL DEFAULT '0' COMMENT '角色ID',
     `menu_id` BIGINT(200) NOT NULL DEFAULT '0' COMMENT '菜单ID'
-        #     PRIMARY KEY (`role_id`, `menu_id`)
+    #     PRIMARY KEY (`role_id`, `menu_id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 2
   DEFAULT CHARSET = utf8mb4 COMMENT ='角色和菜单关联表';
@@ -197,12 +197,105 @@ CREATE TABLE `sys_user_role`
 (
     `user_id` BIGINT(200) NOT NULL DEFAULT '0' COMMENT '用户ID',
     `role_id` BIGINT(200) NOT NULL DEFAULT '0' COMMENT '角色ID'
-        #     PRIMARY KEY (`user_id`, `role_id`)
+    #     PRIMARY KEY (`user_id`, `role_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='用户和角色关联表';
 
+DROP TABLE IF EXISTS `chats`;
+CREATE TABLE `chats`
+(
+    `id`               BIGINT(20)                                              NOT NULL AUTO_INCREMENT COMMENT '聊天室ID',
+    `gid`              BIGINT(20)                                              NOT NULL COMMENT '查找聊天室的UID',
+    `room_name`        varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '聊天室名称',
+    `room_description` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '聊天室简介',
+#     `from_user_id`     BIGINT(200)                                             NOT NULL COMMENT '发送人',
+    `subject`          varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息',
+#     `to_user_id`       BIGINT(200)                                             NOT NULL COMMENT '接收人',
+    `status`           CHAR(1)                                                      DEFAULT '0' COMMENT '角色状态（0正常 1停用）',
+    `del_flag`         CHAR(1)                                                      DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+    `create_by`        BIGINT(20)                                                   DEFAULT NULL COMMENT '创建者',
+    `create_time`      DATETIME                                                     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by`        BIGINT(20)                                                   DEFAULT NULL COMMENT '更新者',
+    `update_time`      DATETIME                                                     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`           VARCHAR(500)                                                 DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic
+    COMMENT ='聊天室信息';
 
--- user,class_info,user_class,teacher_class,schedule_table,course_score,event,zone,sys_menu,sys_role,sys_role_menu,sys_user_role
+
+# 关联聊天室的聊天内容
+DROP TABLE IF EXISTS `chats_content`;
+CREATE TABLE `chats_content`
+(
+    `id`           BIGINT(20)                                              NOT NULL AUTO_INCREMENT COMMENT '聊天记录ID',
+    `cid`          BIGINT(20)                                              NOT NULL COMMENT '关联聊天室ID',
+    `from_user_id` BIGINT(200)                                             NOT NULL COMMENT '发送人',
+    `subject`      varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息',
+    `status`       CHAR(1)                                                      DEFAULT '0' COMMENT '角色状态（0正常 1停用）',
+    `del_flag`     CHAR(1)                                                      DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+    `create_by`    BIGINT(20)                                                   DEFAULT NULL COMMENT '创建者',
+    `create_time`  DATETIME                                                     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by`    BIGINT(20)                                                   DEFAULT NULL COMMENT '更新者',
+    `update_time`  DATETIME                                                     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`       VARCHAR(500)                                                 DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic
+    COMMENT ='聊天室信息';
+
+
+# 广播消息 message
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message`
+(
+    `id`          BIGINT(20)                                              NOT NULL AUTO_INCREMENT COMMENT '广播ID',
+    `author`      BIGINT(200)                                             NOT NULL DEFAULT '0' COMMENT '发送用户ID',
+    `title`       varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL     DEFAULT NULL COMMENT '消息主题',
+    `subject`     varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL     DEFAULT NULL COMMENT '消息内容',
+    `status`      CHAR(1)                                                          DEFAULT '0' COMMENT '角色状态（0正常 1停用）',
+    `del_flag`    CHAR(1)                                                          DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+    `create_by`   BIGINT(20)                                                       DEFAULT NULL COMMENT '创建者',
+    `create_time` DATETIME                                                         DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by`   BIGINT(20)                                                       DEFAULT NULL COMMENT '更新者',
+    `update_time` DATETIME                                                         DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`      VARCHAR(500)                                                     DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic
+    COMMENT ='广播消息message';
+
+# 健康消息上报
+DROP TABLE IF EXISTS `health_report`;
+CREATE TABLE `health_report`
+(
+    `id`          BIGINT(20)                                              NOT NULL AUTO_INCREMENT COMMENT '广播ID',
+    `sponsor_id`  BIGINT(200)                                             NOT NULL DEFAULT '0' COMMENT '申报用户ID',
+    `sponsor`     varchar(255)                                            NOT NULL COMMENT '发布人姓名',
+    `title`       varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL     DEFAULT NULL COMMENT '申报主题',
+    `subject`     varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL     DEFAULT NULL COMMENT '申报内容',
+    `status`      CHAR(1)                                                          DEFAULT '0' COMMENT '申报状态（0正常 1停用）',
+    `del_flag`    CHAR(1)                                                          DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+    `create_by`   BIGINT(20)                                                       DEFAULT NULL COMMENT '创建者',
+    `create_time` DATETIME                                                         DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by`   BIGINT(20)                                                       DEFAULT NULL COMMENT '更新者',
+    `update_time` DATETIME                                                         DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `remark`      VARCHAR(500)                                                     DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  COLLATE = utf8_general_ci
+  ROW_FORMAT = Dynamic
+    COMMENT ='健康信息上报';
+
+
+-- user,class_info,user_class,teacher_class,schedule_table,course_score,event,zone,sys_menu,sys_role,sys_role_menu,sys_user_role,message,chats,chats_content,health_report
 
 -- 日志记录
 
@@ -319,7 +412,6 @@ VALUES (10000000001, 202001),
        (10000000003, 202004);
 
 # 课程关联班级
-
 INSERT INTO classdesign.course_class (class_id, course_id)
 VALUES (202001, 1),
        (202001, 2),
@@ -411,3 +503,65 @@ VALUES ('测试1', '测试内容', '20223035104', 'lyy', DEFAULT, DEFAULT, null,
        ('测试49', '测试内容', '20223035104', 'lyy', DEFAULT, DEFAULT, null, DEFAULT, null, DEFAULT, null),
        ('测试50', '测试内容', '20223035104', 'lyy', DEFAULT, DEFAULT, null, DEFAULT, null, DEFAULT, null),
        ('测试51', '测试内容', '20223035104', 'lyy', DEFAULT, DEFAULT, null, DEFAULT, null, DEFAULT, null);
+
+# 通知
+INSERT
+INTO classdesign.message (author, title, subject, status, del_flag, create_by, create_time, update_by,
+                          update_time, remark)
+VALUES (20223035104, '测试', '51放假通知', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null)
+
+# 添加一个群聊
+INSERT INTO classdesign.chats (gid, room_name, room_description, subject, status, del_flag, create_by, create_time,
+                               update_by, update_time, remark)
+VALUES (10000000, '测试群聊', '正在开发一个群聊功能', null, DEFAULT, DEFAULT, 0, DEFAULT, 0, DEFAULT, '测试中');
+
+# 聊天记录
+INSERT INTO classdesign.chats_content (cid, from_user_id, subject, status, del_flag, create_by, create_time, update_by,
+                                       update_time, remark)
+VALUES (1, 20223035104, '模拟数据12', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null),
+       (1, 20223035103, '模拟数据asd', DEFAULT, DEFAULT, 20223035103, DEFAULT, 20223035103, DEFAULT, null),
+       (1, 20223035102, '模拟数据asaxc', DEFAULT, DEFAULT, 20223035102, DEFAULT, 20223035102, DEFAULT, null),
+       (1, 20223035104, '模拟数据asdazxc', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null),
+       (1, 20223035102, '模拟数据asdasd', DEFAULT, DEFAULT, 20223035102, DEFAULT, 20223035102, DEFAULT, null),
+       (1, 20223035102, '模拟数据zcx234vzc', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null),
+       (1, 20223035103, '模拟数据asdfew', DEFAULT, DEFAULT, 20223035103, DEFAULT, 20223035103, DEFAULT, null),
+       (1, 20223035104, '模拟数据czxv', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null),
+       (1, 20223035102, '模拟数据zcxv', DEFAULT, DEFAULT, 20223035102, DEFAULT, 20223035102, DEFAULT, null),
+       (1, 20223035102, '模拟数据zxcqw2131!@#v', DEFAULT, DEFAULT, 20223035102, DEFAULT, 20223035102, DEFAULT, null),
+       (1, 20223035104, '模拟数据zxcvae)(*&', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null),
+       (1, 20223035104, '模拟数据..,.;[]', DEFAULT, DEFAULT, 20223035104, DEFAULT, 20223035104, DEFAULT, null);
+
+// 每日健康消息上报
+INSERT INTO classdesign.health_report (sponsor_id, sponsor, title, subject, status, del_flag, create_by, create_time, update_by, update_time, remark)
+VALUES
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-01 01:16:28', 20223035104, '2023-05-01 01:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-02 02:16:28', 20223035104, '2023-05-02 02:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-03 03:16:28', 20223035104, '2023-05-03 03:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-04 04:16:28', 20223035104, '2023-05-04 04:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-05 05:16:28', 20223035104, '2023-05-05 05:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-06 06:16:28', 20223035104, '2023-05-06 06:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-07 07:16:28', 20223035104, '2023-05-07 07:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-08 08:16:28', 20223035104, '2023-05-08 08:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-09 09:16:28', 20223035104, '2023-05-09 09:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-10 10:16:28', 20223035104, '2023-05-10 10:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-11 11:16:28', 20223035104, '2023-05-11 11:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-12 12:16:28', 20223035104, '2023-05-12 12:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-13 13:16:28', 20223035104, '2023-05-13 13:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-14 14:16:28', 20223035104, '2023-05-14 14:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-15 15:16:28', 20223035104, '2023-05-15 15:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-16 16:16:28', 20223035104, '2023-05-16 16:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-17 17:16:28', 20223035104, '2023-05-17 17:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-18 18:16:28', 20223035104, '2023-05-18 18:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-19 19:16:28', 20223035104, '2023-05-19 19:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-20 20:16:28', 20223035104, '2023-05-20 20:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-21 21:16:28', 20223035104, '2023-05-21 21:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-22 22:16:28', 20223035104, '2023-05-22 22:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-23 23:16:28', 20223035104, '2023-05-23 23:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-24 18:16:28', 20223035104, '2023-05-24 18:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-25 09:16:28', 20223035104, '2023-05-25 09:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-26 02:16:28', 20223035104, '2023-05-26 02:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-27 06:16:28', 20223035104, '2023-05-27 06:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-28 07:16:28', 20223035104, '2023-05-28 07:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-29 01:16:28', 20223035104, '2023-05-29 01:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-30 02:16:28', 20223035104, '2023-05-30 02:16:28', '每日健康信息上报'),
+    (20223035104, 'lyy', '每日健康信息上报', '每日健康信息上报', DEFAULT, DEFAULT, 20223035104, '2023-05-31 00:16:28', 20223035104, '2023-05-31 00:16:28', '每日健康信息上报')
