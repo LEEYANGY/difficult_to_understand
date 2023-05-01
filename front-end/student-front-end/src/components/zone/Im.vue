@@ -16,9 +16,6 @@
   <div class="content_box" id="box" ref="scrollBox">
     <!--    显示聊天记录最新的日期-->
     <div class="timer">{{ new Date() }}</div>
-    <!--  这里是内容    :class="item.position == 'left' ? 'userbox2' : 'userbox'"
-        v-for="(item, index) in chatList"
-        :key="index" -->
     <div :class="item.createBy == uid ? 'userbox' : 'userbox2'"
          v-for="(item, index) in chatList"
          :key="index"
@@ -31,9 +28,6 @@
           {{ item.subject }}
         </div>
       </div>
-      <!--      用户：{{item.createBy}} <br>-->
-      <!--      发送时间：{{item.createTime}} <br>-->
-      <!--      消息内容： {{item.subject}} <br>-->
       <div>
         <van-image round width="50px" height="50px"
                    src="https://ts1.cn.mm.bing.net/th/id/R-C.729885902b9a3…L%2bPzJGEk3xpdaEX5QqKICr0%3d&risl=&pid=ImgRaw&r=0"/>
@@ -61,7 +55,7 @@
           label-align="center"
       >
         <template #button>
-          <van-button size="small" type="primary">发送</van-button>
+          <van-button size="small" type="primary" @click="sends">发送</van-button>
         </template>
       </van-field>
     </van-cell-group>
@@ -85,36 +79,37 @@ export default {
     // userId
     const uid = ref(JSON.parse(useUserStore().getUser)[0].userId)
     // 聊天记录
-    const chatList = ref([
-      {}
-    ],);
-
+    const chatList = ref([{}]);
+    // 发送聊天信息
+    const sends = () => {
+      chatList.value = chatList.value.concat(
+          [
+            {
+              "createBy": uid,
+              "subject": message.value
+            }
+          ]
+      )
+    }
     axios.get('/system/zone/getChatContent/10000000').then(res => {
-      console.log('line 95. content:' + res)
       chatList.value = res.data.data.chatsContentList
       roomName.value = res.data.data.roomName
-      console.log('line 105. roomName====' + res.data.data.roomName)
     })
 
     const initChat = () => {
       setTimeout(() => {
         axios.get('/system/zone/getChatContent/10000000').then(res => {
-          // console.log('line 95. content:'+res.data)
           chatList.value = res.data.data.chatsContentList
-          // roomName = res.data.data.roomName
-          console.log('line 105. roomName====' + res.data.data.roomName)
         })
       }, 1000);
     }
-    const loading = ref(false);
-    const finished = ref(false);
 
-    // messageList.value = {'id:1,name:lee'}
     return {
       uid,
       message,
       chatList,
       roomName,
+      sends,
       initChat,
       onClickLeft,
     };
