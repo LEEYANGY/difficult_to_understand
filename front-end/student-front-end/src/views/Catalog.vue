@@ -23,11 +23,23 @@
           round
           color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
           icon="plus"
-          to="/apply"
+          to="/approval"
       >添加申请
       </van-button
       >
     </div>
+
+    <div class="order-fixed-btn" v-if="store.getIsLogin === 1">
+      <van-button
+          round
+          color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
+          icon="plus"
+          :to="'/im/'+JSON.parse(store.getUser)[0].userId"
+      >进入聊天
+      </van-button
+      >
+    </div>
+
   </div>
 </template>
 
@@ -36,9 +48,11 @@
 
 import {ref} from "vue";
 import {useUserStore} from "../store/user.ts";
+import Im from "../components/zone/Im.vue";
 
 export default {
   name: "Catalog",
+  components: {Im},
   // ide自动添加属性
   computed: {
     moment() {
@@ -47,9 +61,12 @@ export default {
   },
   setup() {
     const store = useUserStore();
+    const jsonParse = (obj) => {
+      return JSON.parse(JSON.stringify(obj));
+    };
     return {
       store,
-
+      jsonParse,
     }
   },
   methods: {},

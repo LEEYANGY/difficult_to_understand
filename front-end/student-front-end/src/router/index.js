@@ -97,6 +97,11 @@ const routes = [
         meta: {},
     },
     {
+        path: '/im/:userId',
+        name: 'im',
+        component:()=>import('../components/zone/Im.vue')
+    },
+    {
         path: '/other',
         name: 'other',
         component: () => import("../views/Other.vue"),
