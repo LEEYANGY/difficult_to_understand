@@ -42,9 +42,9 @@
       </van-skeleton>
 
       <van-grid direction="horizontal" :column-num="3">
-        <van-grid-item icon="photo-o" text="自助审批"/>
+        <van-grid-item icon="photo-o" text="自助审批" />
         <van-grid-item icon="photo-o" text="我的动态"/>
-        <van-grid-item icon="photo-o" text="校园服务"/>
+        <van-grid-item icon="photo-o" text="校园服务" to="/catalog"/>
       </van-grid>
 
       <div class="user-login-action">
