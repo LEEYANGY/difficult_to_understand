@@ -17,6 +17,7 @@ public interface SecurityConstant {
             "/system/zone/getDetail/**",
             "/system/zone/getMaxTotal/**",
 //            聊天
-//            "/imserver/**"
+            "/imserver/**",
+            "/system/zone/getChatContent/**"
     };
 }
