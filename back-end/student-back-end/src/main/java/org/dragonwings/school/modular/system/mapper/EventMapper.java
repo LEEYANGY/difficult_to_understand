@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author liyangyang
- * @since 2023-04-12
+ * @since 2023-05-02
  */
 public interface EventMapper extends BaseMapper<Event> {
 
