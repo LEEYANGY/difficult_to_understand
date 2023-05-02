@@ -47,8 +47,8 @@
 <script>
 import {closeToast, showDialog, showLoadingToast, showToast, Toast} from "vant";
 import {ref} from "vue";
-import {useUserStore} from "../../../store/user.ts";
-import router from "../../../router/index.js";
+import {useUserStore} from "../../store/user.ts";
+import router from "../../router/index.js";
 import axios from "axios";
 
 export default {

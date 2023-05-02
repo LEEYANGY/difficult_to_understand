@@ -51,14 +51,14 @@ const routes = [
         component: () => import("../views/Home/Home.vue"),
         title: '主页',
         meta: {},
-        // children: [
-        //     {
-        //         path: 'detail/:id',
-        //         name: 'detail',
-        //         component: () => import("../components/zone/Detail.vue"),
-        //         meta: {},
-        //     }
-        // ],
+        children: [
+            {
+                path: 'detail/:id',
+                name: 'detail',
+                component: () => import("../components/Zone/Detail.vue"),
+                meta: {},
+            }
+        ],
     },
     {
         path: '/user',
@@ -85,7 +85,7 @@ const routes = [
     {
         path: '/login',
         name: "login",
-        component: () => import("../views/User/Login.vue"),
+        component: () => import("../components/manager/Login.vue"),
         title: '登录',
         meta: {},
     },
@@ -106,20 +106,20 @@ const routes = [
         name: 'other',
         component: () => import("../views/Other.vue"),
     },
-    {
-        path: '/detail/:id',
-        name: 'detail',
-        component: () =>import("../views/Home/Zone/Detail.vue"),
-    },
+    // {
+    //     path: '/detail/:id',
+    //     name: 'detail',
+    //     component: () =>import("../views/Home/Zone/Detail.vue"),
+    // },
     {
         path: '/edit/:id',
         name: 'edit',
-        component: () =>import("../views/Home/Zone/Edit.vue"),
+        component: () =>import("../components/Zone/Edit.vue"),
     },
     {
         path: '/userprofile/:userId',
         name: 'userprofile',
-        component:()=>import('../views/User/UserInfo.vue')
+        component:()=>import('../components/manager/UserInfo.vue')
     }
 ];
 
