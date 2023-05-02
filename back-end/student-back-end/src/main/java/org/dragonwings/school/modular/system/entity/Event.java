@@ -1,6 +1,7 @@
 package org.dragonwings.school.modular.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -30,6 +31,11 @@ public class Event extends BaseUserTimeEntity {
     private String title;
 
     /**
+     * 去哪呢
+     */
+    private String area;
+
+    /**
      * 发起人工号
      */
     private String sponsorId;
@@ -52,6 +58,7 @@ public class Event extends BaseUserTimeEntity {
     /**
      * 返校时间
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
     private Date backTime;
 
     /**
