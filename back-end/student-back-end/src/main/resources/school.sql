@@ -286,6 +286,7 @@ CREATE TABLE `health_report`
     `subject`     varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL     DEFAULT NULL COMMENT '申报内容',
     `status`      CHAR(1)                                                          DEFAULT '0' COMMENT '申报状态（0正常 1停用）',
     `del_flag`    CHAR(1)                                                          DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+    `health_type` CHAR(1)                                                          DEFAULT '0' COMMENT '健康状态（0健康 1生病 2新冠 3流感 4其它）',
     `create_by`   BIGINT(20)                                                       DEFAULT NULL COMMENT '创建者',
     `create_time` DATETIME                                                         DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by`   BIGINT(20)                                                       DEFAULT NULL COMMENT '更新者',
