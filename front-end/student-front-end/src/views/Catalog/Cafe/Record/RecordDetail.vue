@@ -1,12 +1,9 @@
 <template>
-  <van-nav-bar
-      title="自助审批"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-  />
+  <Header msg="我的申请记录"/>
+  <div class="qr">
 
-  <!--  常规表单-->
+    <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+  </div>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <!--      申请原因-->
@@ -81,7 +78,6 @@
       <van-field
           v-model="timer"
           is-link
-          readonly
           name="backTime"
           label="返校时间选择"
           placeholder="点击选择时间"
@@ -96,7 +92,7 @@
     <div style="margin: 16px;">
       <p>湖北工业大学</p>
       <van-button round block type="primary" native-type="submit">
-        发送申请
+        发送修改申请
       </van-button>
     </div>
   </van-form>
@@ -104,22 +100,36 @@
 </template>
 
 <script>
-import {ref} from "vue";
-import {areaList} from '@vant/area-data';
-import {useUserStore} from "../../../store/user.ts";
+import Header from "../../../../components/header/Header/Header.vue";
 import axios from "axios";
-import {showNotify} from "vant";
-import router from "../../../router/index.js";
+import router from "../../../../router/index.js";
+import {showNotify, showToast} from "vant";
+import {ref} from "vue";
+// import QRCode from "qrcodejs2";
+// import vueQr from "vue-qr";
+import QrcodeVue from 'qrcode.vue';
+import {areaList} from "@vant/area-data";
+
 
 export default {
-  name: "Approval",
+  name: "RecordDetail",
+
+  computed: {
+    areaList() {
+      return areaList
+    }
+  },
+  components: {Header, QrcodeVue},
   setup() {
-    const onClickLeft = () => history.back();
-    const username = ref(JSON.parse(useUserStore().getUser)[0].userName);
-    const uid = ref(JSON.parse(useUserStore().getUser)[0].userId);
+    const tid = ref(0)
+    const username = ref('');
+    const uid = ref('');
     const cause = ref('');
     const showPickerCause = ref(false);
-    // 转换申请事由
+    //传入的值，要求是字符串,需要将对象进行转换
+    const value = JSON.stringify({name: username.value, allow: true, banTime: new Date()});
+    //二维码大小
+    const size = 200;
     const eventType = ref('');
     const columns = [
       {text: '实习', value: '0'},
@@ -152,18 +162,35 @@ export default {
       address.value = selectedOptions.map((item) => item.text).join('/');
     };
 
-    // 表单提交
+    axios.get('/system/event/getMyCafeDetailRecord/' + router.currentRoute.value.params.id)
+        .then(res => {
+          if (res.data.code === 200) {
+            tid.value = res.data.data.id
+            cause.value = res.data.data.title
+            username.value = res.data.data.sponsor
+            uid.value = res.data.data.sponsorId
+            timer.value = res.data.data.backTime
+            address.value = res.data.data.area
+            eventType.value = res.data.data.eventType
+            showToast({type: "success", message: '获取成功'})
+          } else if (res.data.code === 404) {
+            showToast({type: "danger", message: res.data.message})
+          }
+        })
+
     const onSubmit = (values) => {
       axios({
-        method: 'post',
-        url: 'system/event/cafeAdd',
+        method: 'put',
+        url: 'system/event/updateRecord',
         data: {
+          id: tid.value,
           sponsorId: uid.value,
           sponsor: username.value,
           title: cause.value,
           eventType: eventType.value,
           area: address.value,
-          backTime: timer.value
+          backTime: timer.value,
+          status: 1,
         }
       }).then(res => {
         if (res.data.code === 200) {
@@ -180,19 +207,23 @@ export default {
           });
     };
 
+    const creatQrCode = () => {
+
+    };
+
     return {
       uid,
       timer,
       cause,
-      columns,
       address,
+      columns,
       username,
-      areaList,
       showArea,
-      showPickerCause,
+      eventType,
       showPickerTimer,
+      showPickerCause,
       onSubmit,
-      onClickLeft,
+      creatQrCode,
       onConfirmCause,
       onConfirmTimer,
       onConfirmAddress,
@@ -205,5 +236,9 @@ export default {
 p {
   text-align: center;
   color: dodgerblue;
+}
+
+.qr {
+  text-align: center;
 }
 </style>

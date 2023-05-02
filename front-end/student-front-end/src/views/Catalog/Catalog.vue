@@ -1,4 +1,5 @@
 <template>
+  <Header msg="校园专区" v-if="isShow && $route.matched.length === 1"/>
   <router-view/>
   <CheckLogin v-if="!isShow && $route.matched.length === 1"/>
   <CatalogList v-if="isShow && $route.matched.length === 1"/>
@@ -9,10 +10,10 @@ import {ref} from "vue";
 import Im from "./IM/Im.vue";
 import CheckLogin from "../../components/manager/CheckLogin.vue";
 import CatalogList from "../../components/manager/CatalogList.vue";
+import Header from "../../components/header/Header/Header.vue";
 
 export default {
-  name: "Catalog",
-  components: {CatalogList, CheckLogin, Im},
+  components: {Header, CatalogList, CheckLogin, Im},
   // ide自动添加属性
   computed: {
     moment() {
@@ -28,6 +29,7 @@ export default {
   methods: {},
   mounted() {
   },
+
   created() {
     //   this.$http({
     //     url:'http://localhost:8888',
