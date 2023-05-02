@@ -111,6 +111,7 @@ CREATE TABLE `event`
     `event_type`  CHAR(1)    DEFAULT '1' COMMENT '事件类型(0实习，1看病，2.探亲，3.培训，4.请假，5.其它)',
     `status`      CHAR(1)    DEFAULT '0' COMMENT '事件状态 (0正常，1停用)',
     `back_time`   DATETIME            NOT NULL COMMENT '返校时间',
+    `area`        varchar(255)        NOT NULL COMMENT '去哪呢',
     `create_by`   BIGINT(20) DEFAULT null COMMENT '创建人用户id',
     `create_time` DATETIME   DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_by`   BIGINT(20) DEFAULT null COMMENT '变更人',
