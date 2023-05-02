@@ -44,12 +44,6 @@ public class ZoneController {
     @Resource
     ChatsService chatsService;
 
-    @Resource
-    ChatsMapper chatsMapper;
-
-    @Resource
-    ChatsContentMapper chatsContentMapper;
-
     /**
      * 日志记录
      */
