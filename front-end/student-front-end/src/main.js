@@ -2,9 +2,6 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import router from "./router";
 
-// generator qrcode
-// import QRCode from 'qrcodejs2'
-
 // 1. 引入你需要的组件
 import Vant from 'vant'
 // 底部导航栏
@@ -17,14 +14,6 @@ import './api/axios'
 import {createPinia} from "pinia";
 
 const store = createPinia();
-
-// 持久化pinia
-// const piniaPlugin = (context: PiniaPluginContext) => {
-//     console.log(context,'context')
-// };
-// // 注册插件
-// store.use(piniaPlugin);
-
 
 createApp(App)
     .use(Vant, NavBar, Tabbar, TabbarItem, List, PullRefresh, Notify, showNotify, BackTop)

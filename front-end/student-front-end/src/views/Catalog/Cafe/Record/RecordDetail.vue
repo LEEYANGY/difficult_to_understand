@@ -2,7 +2,7 @@
   <Header msg="我的申请记录"/>
   <div class="qr">
 
-    <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
+    <qrcode-vue :value="qrvalue" :size="qrsize" level="H"></qrcode-vue>
   </div>
   <van-form @submit="onSubmit">
     <van-cell-group inset>
@@ -100,15 +100,13 @@
 </template>
 
 <script>
-import Header from "../../../../components/header/Header/Header.vue";
 import axios from "axios";
+import QrcodeVue from 'qrcode.vue';
 import router from "../../../../router/index.js";
+import Header from "../../../../components/header/Header/Header.vue";
+import {areaList} from "@vant/area-data";
 import {showNotify, showToast} from "vant";
 import {ref} from "vue";
-// import QRCode from "qrcodejs2";
-// import vueQr from "vue-qr";
-import QrcodeVue from 'qrcode.vue';
-import {areaList} from "@vant/area-data";
 
 
 export default {
@@ -124,12 +122,12 @@ export default {
     const tid = ref(0)
     const username = ref('');
     const uid = ref('');
+    // 初始化二维码信息
+    const qrvalue = ref(JSON.stringify({qr_status: "error_init,please contact admin solver this problem!"}));
+    //二维码大小
+    const qrsize = 200;
     const cause = ref('');
     const showPickerCause = ref(false);
-    //传入的值，要求是字符串,需要将对象进行转换
-    const value = JSON.stringify({name: username.value, allow: true, banTime: new Date()});
-    //二维码大小
-    const size = 200;
     const eventType = ref('');
     const columns = [
       {text: '实习', value: '0'},
@@ -173,10 +171,13 @@ export default {
             address.value = res.data.data.area
             eventType.value = res.data.data.eventType
             showToast({type: "success", message: '获取成功'})
+            //传入的值，要求是字符串,需要将对象进行转换
+            qrvalue.value = JSON.stringify(res.data.data);
           } else if (res.data.code === 404) {
             showToast({type: "danger", message: res.data.message})
           }
         })
+
 
     const onSubmit = (values) => {
       axios({
@@ -215,6 +216,8 @@ export default {
       uid,
       timer,
       cause,
+      qrsize,
+      qrvalue,
       address,
       columns,
       username,
