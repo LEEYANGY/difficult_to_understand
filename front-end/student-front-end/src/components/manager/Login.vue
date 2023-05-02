@@ -63,8 +63,8 @@ export default {
 
   // 入口函数
   setup() {
-    const username = ref('20223035104');
-    const password = ref('20223035104');
+    const username = ref('10000000001');
+    const password = ref('10000000001');
     const store = useUserStore();
     const onSubmit = (values) => {
       // console.log('submit', values);
