@@ -52,75 +52,76 @@ const routes = [
         title: '主页',
         meta: {},
         children: [
+            // 子路由1 获取动态详细内容
             {
                 path: 'detail/:id',
                 name: 'detail',
                 component: () => import("../components/Zone/Detail.vue"),
-                meta: {},
-            }
+                meta: {
+                    title: '动态详情'
+                },
+
+            },
+            // 子路由2 修改动态内容
+            {
+                path: '/edit/:id',
+                name: 'edit',
+                component: () => import("../components/Zone/Edit.vue"),
+                meta: {
+                    title: '修改动态内容'
+                }
+            },
         ],
     },
-    {
-        path: '/user',
-        name: "user",
-        component: () => import("../views/User/User.vue"),
-        title: '用户管理',
-        meta: {},
-        // children: [
-        //     // {
-        //     //     // 当 /user/:id/profile 匹配成功
-        //     //     // UserProfile 将被渲染到 User 的 <router-view> 内部
-        //     //     path: '/login',
-        //     //     name: 'login',
-        //     //     component: () => import("../components/manager/Login.vue"),
-        //     // },
-        //     {
-        //         // 当 /user/:id/posts 匹配成功
-        //         // UserPosts 将被渲染到 User 的 <router-view> 内部
-        //         path: 'login',
-        //         component: () => import("../views/Login.vue"),
-        //     },
-        // ],
-    },
-    {
-        path: '/login',
-        name: "login",
-        component: () => import("../components/manager/Login.vue"),
-        title: '登录',
-        meta: {},
-    },
+    // 校园专区
     {
         path: "/catalog",
         name: "catalog",
         component: () => import("../views/Catalog/Catalog.vue"),
         title: '学校专栏',
         meta: {},
+        children: [
+            // 子路1 聊天
+            {
+                path: '/catalog/im/:userId',
+                name: 'im',
+                component: () => import('../views/Catalog/IM/Im.vue')
+            },
+        ]
     },
+
+    // 用户专区
     {
-        path: '/im/:userId',
-        name: 'im',
-        component:()=>import('../views/Catalog/IM/Im.vue')
+        path: '/user',
+        name: "user",
+        component: () => import("../views/User/User.vue"),
+        title: '用户管理',
+        meta: {},
+        children: [
+            {
+                path: '/user/login',
+                name: "login",
+                component: () => import("../components/manager/Login.vue"),
+                title: '登录',
+                meta: {},
+
+            },
+            {
+                path: '/user/:userId',
+                name: 'userprofile',
+                component: () => import('../components/manager/UserInfo.vue')
+            }
+        ],
     },
+
+    // 调试页面
     {
         path: '/other',
         name: 'other',
         component: () => import("../views/Other.vue"),
     },
-    // {
-    //     path: '/detail/:id',
-    //     name: 'detail',
-    //     component: () =>import("../views/Home/Zone/Detail.vue"),
-    // },
-    {
-        path: '/edit/:id',
-        name: 'edit',
-        component: () =>import("../components/Zone/Edit.vue"),
-    },
-    {
-        path: '/userprofile/:userId',
-        name: 'userprofile',
-        component:()=>import('../components/manager/UserInfo.vue')
-    }
+
+
 ];
 
 // 创建路由实例

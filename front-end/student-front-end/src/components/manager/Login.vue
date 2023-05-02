@@ -63,8 +63,8 @@ export default {
 
   // 入口函数
   setup() {
-    const username = ref('');
-    const password = ref('');
+    const username = ref('20223035104');
+    const password = ref('20223035104');
     const store = useUserStore();
     const onSubmit = (values) => {
       // console.log('submit', values);
@@ -123,7 +123,7 @@ export default {
               // });
               // window.localStorage.setItem("LOGIN_FLAG", this.store.isLogin)
               showNotify({type: "success", message: "登录成功！"});
-              router.replace('/user')
+              router.replace('/')
             } else if (res.data.code === 500) {
               showNotify({type: "danger", message: "服务器内部异常，请联系管理员！"});
             } else {

@@ -9,7 +9,7 @@
     <div class="user-login-action">
       <div style="margin: 16px;">
         <van-button round block type="primary" class="user-login-btn"
-                    to="/login">
+                    to="/user/login">
           登录
         </van-button>
       </div>

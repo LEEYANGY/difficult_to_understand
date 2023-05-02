@@ -1,26 +1,18 @@
 <template>
-
-
-    <CheckLogin v-if="!isShow"/>
-
-  <!--    登录之后-->
-  <!-- 用户已登录 -->
-    <CatalogList  v-if="isShow" />
-
-
-
+  <router-view/>
+  <CheckLogin v-if="!isShow && $route.matched.length === 1"/>
+  <CatalogList v-if="isShow && $route.matched.length === 1"/>
 </template>
 
 <script>
 import {ref} from "vue";
 import Im from "./IM/Im.vue";
 import CheckLogin from "../../components/manager/CheckLogin.vue";
-import Header from "../../components/header/Header/Header.vue";
 import CatalogList from "../../components/manager/CatalogList.vue";
 
 export default {
   name: "Catalog",
-  components: {Header, CatalogList, CheckLogin, Im},
+  components: {CatalogList, CheckLogin, Im},
   // ide自动添加属性
   computed: {
     moment() {

@@ -14,7 +14,7 @@
         />
         <!--              <van-skeleton-image/>-->
         <div :style="{ flex: 1, marginLeft: '16px' }">
-          <van-cell v-for="item in user" :key="item" :title="item.title" :to="'/userprofile/' + item.id">
+          <van-cell v-for="item in user" :key="item" :title="item.title" :to="'/user/' + item.id">
             用户姓名:{{ item.userName }}
             <br>
             用户id:{{ item.userId }}

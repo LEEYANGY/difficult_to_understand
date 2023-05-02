@@ -8,16 +8,18 @@
       @click-right="onClickRight"
   />
 
-  <van-skeleton title avatar :row="3" />
+  <van-skeleton title avatar :row="3" v-if="1" />
 
 </template>
 
 <script>
+import {showToast} from "vant";
+
 export default {
   name: "UserInfo",
   setup() {
     const onClickLeft = () => history.back();
-    const onClickRight = () => showToast('保存了吼~');
+    const onClickRight = () => showToast({type:"success",message:"保存了吼"});
     return {
       onClickLeft,
       onClickRight,

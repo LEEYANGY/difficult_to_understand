@@ -17,7 +17,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="add-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >健康信息申报
         </van-button
         >
@@ -28,7 +28,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="chat-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >进入聊天
         </van-button
         >
@@ -39,7 +39,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="comment-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >查看消息
         </van-button
         >
@@ -50,7 +50,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="location-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >签到
         </van-button
         >
@@ -61,7 +61,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="apps-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >查看课表
         </van-button
         >
@@ -72,7 +72,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="share-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >发布校园动态
         </van-button
         >
@@ -83,7 +83,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="more-o"
-            :to="'/im/'+uid"
+            :to="'/catalog/im/'+uid"
         >更多功能敬请期待....
         </van-button
         >

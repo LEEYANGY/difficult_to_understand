@@ -7,6 +7,7 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
   />
+  <router-view/>
   <van-form @failed="onFailed">
     <van-cell-group inset>
       <!-- 通过 pattern 进行正则校验 -->
