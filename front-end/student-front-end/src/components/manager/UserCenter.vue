@@ -1,7 +1,6 @@
 <template>
-  <van-nav-bar
-      title="用户中心"
-  />
+<!--    <Header msg="用户中心"/>-->
+  <van-nav-bar title="用户中心"/>
 
   <van-skeleton>
     <template #template>
@@ -25,7 +24,7 @@
   </van-skeleton>
 
   <van-grid direction="horizontal" :column-num="3">
-    <van-grid-item icon="photo-o" text="自助审批"/>
+    <van-grid-item icon="photo-o" text="自助审批记录" to="/catalog/myCafeRecord"/>
     <van-grid-item icon="photo-o" text="我的动态"/>
     <van-grid-item icon="photo-o" text="校园服务" to="/catalog"/>
   </van-grid>
@@ -48,11 +47,13 @@ import {useRouter} from "vue-router";
 import {useUserStore} from "../../store/user.ts";
 import {ref} from "vue";
 import {showNotify} from "vant";
+import axios from "axios";
 
 export default {
   name: "UserCenter",
   components: {Support},
   setup() {
+    const msg = ref('用户中心')
     const router = useRouter();
     const store = useUserStore();
     const isLogin = ref(store.getIsLogin)
@@ -62,12 +63,24 @@ export default {
 
     // 注销登录事件
     const logout = () => {
+      // axios.get('/system/user/logout').then(
+      //     res => {
+      //       if (res.data.code === 200) {
       localStorage.removeItem('USER_TOKEN')
       localStorage.removeItem('USER_INFO')
       localStorage.removeItem('USER_LOGIN')
       showNotify({type: "success", message: "注销登录成功！"});
       location.reload()
       router.replace('/user')
+      // } else if (res.data.code === 500) {
+      //   showNotify({type: "danger", message: "服务器内部异常，请联系管理员！"});
+      // } else {
+      //   showNotify({type: "danger", message: res.data.message});
+      // }
+      // })
+      // .catch((error) => {
+      //   showNotify({type: "danger", message: "其他错误：" + error});
+      // });
     };
 
     const setting = () => {
@@ -76,6 +89,7 @@ export default {
     };
 
     return {
+      msg,
       user,
       store,
       isShow,

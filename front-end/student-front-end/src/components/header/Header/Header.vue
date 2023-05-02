@@ -1,24 +1,29 @@
 <template>
   <van-nav-bar
-      title="用户中心"
+      :title="msg"
       left-text="返回"
-      right-text="保存"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="onClickRight"
   />
 </template>
 
 <script>
+import {showToast} from "vant";
+import {ref} from "vue";
+
 export default {
   name: "Header",
   setup() {
     const onClickLeft = () => history.back();
-    const onClickRight = () => showToast('保存了吼~');
     return {
       onClickLeft,
-      onClickRight,
     };
+  },
+  props:{
+    msg:{
+      type: String,
+      required: true
+    },
   },
 }
 </script>

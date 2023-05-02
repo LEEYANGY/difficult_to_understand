@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import org.dragonwings.school.framework.respone.ResponseResult;
+import org.dragonwings.school.framework.response.ResponseResult;
 import org.dragonwings.school.modular.utils.web.WebUtil;
 
 import javax.servlet.ServletException;

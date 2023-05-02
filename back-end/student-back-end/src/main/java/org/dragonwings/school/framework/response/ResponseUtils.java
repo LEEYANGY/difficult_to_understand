@@ -1,4 +1,4 @@
-package org.dragonwings.school.framework.respone;
+package org.dragonwings.school.framework.response;
 
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.http.ContentType;

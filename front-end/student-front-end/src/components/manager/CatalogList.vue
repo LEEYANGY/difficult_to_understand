@@ -6,7 +6,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="add-o"
-            to="/approval"
+            :to="'post/approval/'+uid"
         >添加申请
         </van-button
         >
@@ -17,7 +17,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="add-o"
-            :to="'/catalog/im/'+uid"
+            :to="'im/'+uid"
         >健康信息申报
         </van-button
         >
@@ -28,7 +28,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="chat-o"
-            :to="'/catalog/im/'+uid"
+            :to="'im/'+uid"
         >进入聊天
         </van-button
         >
@@ -39,7 +39,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="comment-o"
-            :to="'/catalog/im/'+uid"
+            :to="'im/'+uid"
         >查看消息
         </van-button
         >
@@ -50,7 +50,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="location-o"
-            :to="'/catalog/im/'+uid"
+            :to="'im/'+uid"
         >签到
         </van-button
         >
@@ -61,7 +61,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="apps-o"
-            :to="'/catalog/im/'+uid"
+            :to="'im/'+uid"
         >查看课表
         </van-button
         >
@@ -72,7 +72,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="share-o"
-            :to="'/catalog/im/'+uid"
+            :to="'edit/'+0"
         >发布校园动态
         </van-button
         >
@@ -82,8 +82,18 @@
         <van-button
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
+            icon="hot-o"
+            :to="'im/'+uid"
+        >我参加的活动
+        </van-button
+        >
+      </van-col>
+
+      <van-col span="8">
+        <van-button
+            round
+            color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="more-o"
-            :to="'/catalog/im/'+uid"
         >更多功能敬请期待....
         </van-button
         >

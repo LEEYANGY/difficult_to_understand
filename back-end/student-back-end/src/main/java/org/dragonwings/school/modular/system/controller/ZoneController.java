@@ -1,27 +1,20 @@
 package org.dragonwings.school.modular.system.controller;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.dragonwings.school.framework.respone.ResponseData;
+import org.dragonwings.school.framework.response.ResponseData;
 import org.dragonwings.school.framework.socket.WebSocketServer;
 import org.dragonwings.school.modular.system.entity.Chats;
-import org.dragonwings.school.modular.system.entity.ChatsContent;
 import org.dragonwings.school.modular.system.entity.Zone;
-import org.dragonwings.school.modular.system.mapper.ChatsContentMapper;
-import org.dragonwings.school.modular.system.mapper.ChatsMapper;
 import org.dragonwings.school.modular.system.mapper.ZoneMapper;
 import org.dragonwings.school.modular.system.service.ChatsService;
 import org.dragonwings.school.modular.system.service.ZoneService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -50,29 +43,18 @@ public class ZoneController {
     private static final Logger log = LoggerFactory.getLogger(WebSocketServer.class);
 
     /**
-     * 分页查询
-     *
-     * @param page
-     * @param limit
-     * @return
+     * @Param: [page, limit]
+     * @return: org.dragonwings.school.framework.response.ResponseData
+     * @Author: liyangyang
+     * @Date: 2023/5/3 1:26
+     * @Description: 分页查询
      */
     @GetMapping("/getAllArticle/{page}/{limit}")
     public ResponseData getAllArticle(@PathVariable Integer page, @PathVariable Integer limit) {
-        System.out.println("请求了动态接口");
-        if (page == null || page < 1) {
-            page = 1;
-        }
-        System.out.println("page====" + page + "==== limit====" + limit);
-//        获取总记录
-        int count = zoneService.count();
+//        防止错误传递
+        if (page == null || page < 1) page = 1;
+        if (limit == null || limit <= 1) limit = 10;
 
-        if (page >= (count / limit + 1)) {
-            System.out.println("超过最大页码");
-//            return ResponseData.error(401, "超出最大页码范围", null);
-        }
-        if (limit == null || limit <= 1) {
-            limit = 10;
-        }
 //        分页查询
         Page<Zone> pages = new Page<>(page, limit);
         QueryWrapper<Zone> queryWrapper = new QueryWrapper<>();
@@ -82,6 +64,13 @@ public class ZoneController {
         return ResponseData.success(200, "资源请求成功", zonePage);
     }
 
+    /**
+     * @Param: []
+     * @return: org.dragonwings.school.framework.response.ResponseData
+     * @Author: liyangyang
+     * @Date: 2023/5/3 1:26
+     * @Description: 获取最大记录数
+     */
     @GetMapping("/getMaxTotal")
     public ResponseData getMaxTotal() {
         return ResponseData.success(200, "获取成功", zoneService.count());
@@ -98,29 +87,66 @@ public class ZoneController {
         }
     }
 
-    //    查询所有聊天记录
+    /**
+     * @Param: [zone]
+     * @return: org.dragonwings.school.framework.response.ResponseData
+     * @Author: liyangyang
+     * @Date: 2023/5/3 1:25
+     * @Description: 这里服用了接口，在请求的时候进行id判断如果查不到数据，就做为添加
+     */
+    @PostMapping("/editZone")
+    public ResponseData addZone(@RequestBody Zone zone) {
+//        id == 0 || id == null 就认为是需要添加，反正修改
+        if (zone.getId() == 0 || zone.getId() == null) {
+//            重置id，让数据库给它自增
+            zone.setId(null);
+            if (zoneService.save(zone)) {
+                return ResponseData.success(200, "添加成功", null);
+            } else {
+                return ResponseData.success(500, "添加失败", null);
+            }
+//            这里是需要修改
+        } else {
+            if (zoneService.update(zone, new QueryWrapper<Zone>().eq("id", zone.getId()))) {
+                return ResponseData.success(200, "修改成功", null);
+            } else {
+                return ResponseData.error(500, "修改失败", null);
+            }
+        }
+    }
+
+    /**
+     * @Param: [id]
+     * @return: org.dragonwings.school.framework.response.ResponseData
+     * @Author: liyangyang
+     * @Date: 2023/5/3 2:29
+     * @Description: 通过id删除动态
+     */
+    @DeleteMapping("/delZone/{id}")
+    public ResponseData delZone(@PathVariable Integer id) {
+        if (zoneService.removeById(id)) {
+            return ResponseData.success(200, "删除成功", null);
+        } else {
+            return ResponseData.error(500, "删除失败", null);
+        }
+
+    }
+
+    /**
+     * @Param: [gid]
+     * @return: org.dragonwings.school.framework.response.ResponseData
+     * @Author: liyangyang
+     * @Date: 2023/5/3 1:26
+     * @Description: 查询所有聊天记录
+     */
     @GetMapping("/getChatContent/{gid}")
 //    @PreAuthorize("@myExpression.hasAuthority('student')")
     public ResponseData getChatContent(@PathVariable Long gid) {
-        log.info("请求了获取某群组的全部聊天接口");
         if (gid != null) {
-//            Chats chats = chatsService.findChatContentByGid(gid);
-//            组装多条件查询
-//            Chats chats = chatsMapper.subFindChatContentByGid(gid);
-//            if (!ObjectUtils.isEmpty(chats)) {
-//                log.info("群id：{}",chats.getId());
-//                List<ChatsContent> chatsContents = chatsContentMapper.subGetAllContentByCid(chats.getId());
-//                if (!ObjectUtils.isEmpty(chatsContents)) {
-//                    chats.setChatsContentList(chatsContents);
-//                    return ResponseData.success(200, "请求资源成功", chats);
-//                }
-//            } else {
-//                return ResponseData.error(404, "请求资源不存在", null);
-//            }
             Chats chats = chatsService.subFindChatContentByGid(gid);
-            if (!ObjectUtils.isEmpty(chats)){
+            if (!ObjectUtils.isEmpty(chats)) {
                 return ResponseData.success(200, "请求资源成功", chats);
-            }else {
+            } else {
                 return ResponseData.error(404, "请求资源不存在", null);
             }
         }
@@ -128,6 +154,7 @@ public class ZoneController {
     }
 //    获取所有在线成员
 //    @GetMapping()
+
 
 }
 

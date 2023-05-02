@@ -1,4 +1,4 @@
-package org.dragonwings.school.framework.respone;
+package org.dragonwings.school.framework.response;
 
 
 import java.io.Serializable;

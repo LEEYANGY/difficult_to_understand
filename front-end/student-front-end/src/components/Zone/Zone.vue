@@ -1,8 +1,4 @@
-<template xmlns:bind="https://jakarta.ee/xml/ns/jakartaee">
-  <div>
-    <!--    <router-view/>-->
-
-
+<template>
     <!--    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">-->
     <van-list
         v-model:loading="loading"
@@ -17,7 +13,6 @@
     <!--    </van-pull-refresh>-->
     <!--    回到顶部-->
     <van-back-top right="15vw" bottom="10vh"/>
-  </div>
 </template>
 
 <script>
@@ -29,7 +24,6 @@ export default {
   name: "Zone",
   setup() {
     // 是否显示通知消息  TODO 需要修改成登录后，message中有内容可消费，否则 即使登录了也不展示通知
-    const isShow = ref((localStorage.getItem("USER_LOGIN")));
     // 校园动态集合
     const list = ref([]);
     const loading = ref(false);
@@ -115,7 +109,6 @@ export default {
       refreshing,
       totalCount,
       onLoad,
-      jsonParse,
       getTotalCount,
     };
   },

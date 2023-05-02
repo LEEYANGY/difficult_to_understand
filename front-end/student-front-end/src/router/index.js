@@ -42,6 +42,7 @@
 // 引入路由组件
 import {createRouter, createWebHashHistory} from "vue-router";
 import approval from "../views/Catalog/Cafe/Approval.vue";
+import im from "../views/Catalog/IM/Im.vue";
 
 // 创建规则
 const routes = [
@@ -55,7 +56,7 @@ const routes = [
         children: [
             // 子路由1 获取动态详细内容
             {
-                path: 'detail/:id',
+                path: '/detail/:id',
                 name: 'detail',
                 component: () => import("../components/Zone/Detail.vue"),
                 meta: {
@@ -94,6 +95,17 @@ const routes = [
                 name: 'approval',
                 component: approval,
             },
+            // 申请记录查询
+            {
+                path: 'myCafeRecord',
+                name: 'myCafeRecord',
+                component:()=>import('../views/Catalog/Cafe/Record/MyCafeRecord.vue'),
+            },
+            {
+                path: '/recordDetail/:id',
+                name: 'recordDetail',
+                component:()=>import('../views/Catalog/Cafe/Record/RecordDetail.vue'),
+            }
             // 健康上报
             // {
             //
