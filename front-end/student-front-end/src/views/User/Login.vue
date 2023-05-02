@@ -49,13 +49,13 @@
 // import 'vant/lib/index.css';
 import {reactive, ref, toRefs} from 'vue';
 import axios from "axios";
-import router from "../router/index.js";
+import router from "../../router/index.js";
 import Cookies from "js-cookie";
 import {showNotify} from 'vant';
 
 // const
-import {useUserStore} from "../store/user.ts";
-import store from "../store/index.js";
+import {useUserStore} from "../../store/user.ts";
+import store from "../../store/index.js";
 // 1构建登录请求
 // 2.获取用户名和密码发送给服务器
 export default {

@@ -125,8 +125,8 @@
 // import {Toast} from "vant";
 
 import {ref} from "vue";
-import {useUserStore} from "../store/user.ts";
-import Im from "../components/zone/Im.vue";
+import {useUserStore} from "../../store/user.ts";
+import Im from "./IM/Im.vue";
 // import type { ColProps, RowProps, RowAlign, RowJustify } from 'vant';
 
 

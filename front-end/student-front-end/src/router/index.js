@@ -48,7 +48,7 @@ const routes = [
         path: "/",
         name: "home",
         // redirect: "/",
-        component: () => import("../views/Home.vue"),
+        component: () => import("../views/Home/Home.vue"),
         title: '主页',
         meta: {},
         // children: [
@@ -63,7 +63,7 @@ const routes = [
     {
         path: '/user',
         name: "user",
-        component: () => import("../views/User.vue"),
+        component: () => import("../views/User/User.vue"),
         title: '用户管理',
         meta: {},
         // children: [
@@ -85,21 +85,21 @@ const routes = [
     {
         path: '/login',
         name: "login",
-        component: () => import("../views/Login.vue"),
+        component: () => import("../views/User/Login.vue"),
         title: '登录',
         meta: {},
     },
     {
         path: "/catalog",
         name: "catalog",
-        component: () => import("../views/Catalog.vue"),
+        component: () => import("../views/Catalog/Catalog.vue"),
         title: '学校专栏',
         meta: {},
     },
     {
         path: '/im/:userId',
         name: 'im',
-        component:()=>import('../components/zone/Im.vue')
+        component:()=>import('../views/Catalog/IM/Im.vue')
     },
     {
         path: '/other',
@@ -109,17 +109,17 @@ const routes = [
     {
         path: '/detail/:id',
         name: 'detail',
-        component: () =>import("../components/zone/Detail.vue"),
+        component: () =>import("../views/Home/Zone/Detail.vue"),
     },
     {
         path: '/edit/:id',
         name: 'edit',
-        component: () =>import("../components/zone/Edit.vue"),
+        component: () =>import("../views/Home/Zone/Edit.vue"),
     },
     {
         path: '/userprofile/:userId',
         name: 'userprofile',
-        component:()=>import('../components/manager/UserInfo.vue')
+        component:()=>import('../views/User/UserInfo.vue')
     }
 ];
 

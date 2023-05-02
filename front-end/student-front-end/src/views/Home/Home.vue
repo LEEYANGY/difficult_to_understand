@@ -33,7 +33,7 @@ import {onMounted, reactive, ref} from 'vue';
 import axios from "axios";
 import {showDialog, showToast} from "vant";
 import index from "vuex";
-import Notices from "../components/zone/Notices.vue";
+import Notices from "../../components/Notices.vue";
 
 export default {
   name: "Home",

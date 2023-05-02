@@ -66,10 +66,10 @@
 
 
 import {ref} from "vue";
-import {useUserStore} from "../store/user.ts";
+import {useUserStore} from "../../store/user.ts";
 import {useRouter} from "vue-router";
 import {showNotify} from "vant";
-import router from "../router/index.js";
+import router from "../../router/index.js";
 
 export default {
   name: "User",

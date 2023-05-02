@@ -66,7 +66,7 @@
 <script>
 import {ref} from "vue";
 import axios from "axios";
-import {useUserStore} from "../../store/user.ts";
+import {useUserStore} from "../../../store/user.ts";
 
 export default {
   name: "Im",
