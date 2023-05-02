@@ -21,7 +21,7 @@ import {Dialog, showDialog} from "vant";
 */
 
 // 添加白名单
-const whiteUrls = ['/login','/home','getDetail','getMaxTotal','getAllArticle','getChatContent']
+const whiteUrls = ['/login','/home','getDetail','getMaxTotal','getAllArticle','getChatContent','cafeAdd','getTotal','getMyCafeRecord','editZone','delZone','getMyCafeDetailRecord','updateRecord']
 
 axios.defaults.baseURL = "/api"
 
