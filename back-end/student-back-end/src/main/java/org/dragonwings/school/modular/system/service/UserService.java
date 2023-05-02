@@ -1,10 +1,9 @@
 package org.dragonwings.school.modular.system.service;
 
-import org.dragonwings.school.framework.respone.ResponseResult;
+import org.dragonwings.school.framework.response.ResponseResult;
 import org.dragonwings.school.modular.system.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -22,4 +21,8 @@ public interface UserService extends IService<User> {
 
     //    注销
     ResponseResult logout();
+
+    ResponseResult putUserInfo(User user);
+
+    ResponseResult getUserInfo(Long userId);
 }

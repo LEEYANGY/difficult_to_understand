@@ -1,10 +1,8 @@
 package org.dragonwings.school.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.dragonwings.school.framework.exception.enums.abs.AbstractBaseExceptionEnum;
-import org.dragonwings.school.framework.respone.ResponseData;
-import org.dragonwings.school.framework.respone.ResponseResult;
-import org.dragonwings.school.framework.respone.ResponseUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.dragonwings.school.framework.response.ResponseResult;
 import org.dragonwings.school.modular.system.entity.User;
 import org.dragonwings.school.modular.system.entity.paramter.LoginUser;
 import org.dragonwings.school.modular.system.mapper.UserMapper;
@@ -23,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
@@ -58,7 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.eq(User::getUserId, username);
         User user = userMapper.selectOne(queryWrapper);
         if (ObjectUtils.isEmpty(user)) {
-            throw new  RuntimeException("没有该用户");
+            throw new RuntimeException("没有该用户");
         }
 //        查询权限
         List<String> list = new ArrayList<>();
@@ -110,5 +107,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return new ResponseResult(200, "注销成功");
     }
 
+    /**
+     * @param user
+     * @return
+     * @Description: 更新用户信息
+     */
+    @Override
+    public ResponseResult putUserInfo(User user) {
+        if (baseMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())) > 0) {
+            return new ResponseResult<>(200, "更新成功", null);
+        } else {
+            return new ResponseResult<>(500, "更新失败", null);
+        }
+    }
 
+    /**
+     * @param userId
+     * @return
+     * @Description: 获取用户信息
+     */
+    @Override
+    public ResponseResult getUserInfo(Long userId) {
+        User user = baseMapper.selectOne(new QueryWrapper<User>().eq("user_id", userId));
+//        保障密码安全
+        user.setPassword(null);
+        return new ResponseResult(200, "获取成功", user);
+    }
 }
