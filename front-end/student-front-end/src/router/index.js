@@ -41,6 +41,7 @@
 
 // 引入路由组件
 import {createRouter, createWebHashHistory} from "vue-router";
+import approval from "../views/Catalog/Cafe/Approval.vue";
 
 // 创建规则
 const routes = [
@@ -83,10 +84,20 @@ const routes = [
         children: [
             // 子路1 聊天
             {
-                path: '/catalog/im/:userId',
+                path: '/im/:userId',
                 name: 'im',
                 component: () => import('../views/Catalog/IM/Im.vue')
             },
+            // 子路由2 自助申请
+            {
+                path: '/post/approval/:userId',
+                name: 'approval',
+                component: approval,
+            },
+            // 健康上报
+            // {
+            //
+            // }
         ]
     },
 
