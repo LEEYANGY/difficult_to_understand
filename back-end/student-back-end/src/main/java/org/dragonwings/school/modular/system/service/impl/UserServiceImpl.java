@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -114,6 +115,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public ResponseResult putUserInfo(User user) {
+//        密码需要加密处理  不为空的话，就需要加密密码
+        if (user.getPassword() != null || user.getPassword() != "") {
+//            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        }
+        System.out.println(user.getPassword());
+//        修改用户数据
         if (baseMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())) > 0) {
             return new ResponseResult<>(200, "更新成功", null);
         } else {
@@ -130,7 +138,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public ResponseResult getUserInfo(Long userId) {
         User user = baseMapper.selectOne(new QueryWrapper<User>().eq("user_id", userId));
 //        保障密码安全
-        user.setPassword(null);
+        if (user.getPassword() != null || user.getPassword() != "") user.setPassword(null);
         return new ResponseResult(200, "获取成功", user);
     }
 }

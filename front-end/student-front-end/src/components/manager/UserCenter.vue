@@ -6,14 +6,13 @@
     <template #template>
       <div :style="{ display: 'flex', width: '100%' }">
         <van-image
-
             width="60"
             height="60"
             src="https://ts1.cn.mm.bing.net/th/id/R-C.729885902b9a3385a2babc27165a01d7?rik=Xko2QkNR6HcV5w&riu=http%3a%2f%2fpic.22520.cn%2fup%2f200810%2f1597052667744492.jpg&ehk=6vNPGmsces4Wh5RLj%2fUPL%2bPzJGEk3xpdaEX5QqKICr0%3d&risl=&pid=ImgRaw&r=0"
         />
         <!--              <van-skeleton-image/>-->
         <div :style="{ flex: 1, marginLeft: '16px' }">
-          <van-cell v-for="item in user" :key="item" :title="item.title" :to="'/user/' + item.id">
+          <van-cell v-for="item in user" :key="item" :title="item.title" :to="'/user/' + item.userId">
             用户姓名:{{ item.userName }}
             <br>
             用户id:{{ item.userId }}
@@ -25,7 +24,7 @@
 
   <van-grid direction="horizontal" :column-num="3">
     <van-grid-item icon="photo-o" text="自助审批记录" to="/catalog/myCafeRecord"/>
-    <van-grid-item icon="photo-o" text="我的动态"/>
+    <van-grid-item icon="photo-o" text="我的动态" to="/catalog/myzone/"/>
     <van-grid-item icon="photo-o" text="校园服务" to="/catalog"/>
   </van-grid>
 

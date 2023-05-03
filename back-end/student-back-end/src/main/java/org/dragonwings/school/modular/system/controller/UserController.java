@@ -60,11 +60,22 @@ public class UserController {
      */
     @GetMapping("/getUserInfo/{userId}")
     public ResponseResult getUserInfo(@PathVariable Long userId) {
+        System.out.println(userId);
         return userService.getUserInfo(userId);
     }
 
+    /**
+     * @Param: [user]
+     * @return: org.dragonwings.school.framework.response.ResponseResult
+     * @Author: liyangyang
+     * @Date: 2023/5/3 19:02
+     * @Description: 修改用户信息，该接口需要复用，比如说，在数据库中预先注册的用户，在首次登录之后需要请求此接口修改密码
+     */
     @PutMapping("/putUserInfo")
     public ResponseResult putUserInfo(@RequestBody User user) {
+
+        System.out.println(user);
+
         return userService.putUserInfo(user);
     }
 }
