@@ -76,6 +76,36 @@ public class ZoneController {
         return ResponseData.success(200, "获取成功", zoneService.count());
     }
 
+
+    /**
+     * @Param: [userId]
+     * @return: org.dragonwings.school.framework.response.ResponseData
+     * @Author: liyangyang
+     * @Date: 2023/5/3 23:17
+     * @Description: 查询用户动态记录
+     */
+    @GetMapping("/getUserMaxTotal/{userId}")
+    public ResponseData getUserMaxTotal(@PathVariable Long userId) {
+        System.out.println(userId);
+        return ResponseData.success(200, "获取成功", zoneService.count(new QueryWrapper<Zone>().eq("sponsor_id", userId)));
+    }
+
+    @GetMapping("/getMyArticle/{userId}/{page}/{limit}")
+    public ResponseData getMyArticle(@PathVariable Long userId, @PathVariable Integer page, @PathVariable Integer limit) {
+//        防止错误传递
+        if (page == null || page < 1) page = 1;
+        if (limit == null || limit <= 1) limit = 10;
+
+//        分页查询
+        Page<Zone> pages = new Page<>(page, limit);
+        QueryWrapper<Zone> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("sponsor_id", userId);
+        queryWrapper.orderByDesc("id");
+//        zoneService
+        Page<Zone> zonePage = zoneMapper.selectPage(pages, queryWrapper);
+        return ResponseData.success(200, "资源请求成功", zonePage);
+    }
+
     @GetMapping("/getDetail/{id}")
     public ResponseData getDetail(@PathVariable Integer id) {
         Zone detail = zoneService.getOne(new QueryWrapper<Zone>().eq("id", id));

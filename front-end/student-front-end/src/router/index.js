@@ -83,6 +83,11 @@ const routes = [
         title: '学校专栏',
         meta: {},
         children: [
+            {
+                path: 'myzone',
+                name: 'myzone',
+                component: () => import ('../components/Zone/MyZone.vue'),
+            },
             // 子路1 聊天
             {
                 path: '/im/:userId',
@@ -99,12 +104,12 @@ const routes = [
             {
                 path: 'myCafeRecord',
                 name: 'myCafeRecord',
-                component:()=>import('../views/Catalog/Cafe/Record/MyCafeRecord.vue'),
+                component: () => import('../views/Catalog/Cafe/Record/MyCafeRecord.vue'),
             },
             {
                 path: '/recordDetail/:id',
                 name: 'recordDetail',
-                component:()=>import('../views/Catalog/Cafe/Record/RecordDetail.vue'),
+                component: () => import('../views/Catalog/Cafe/Record/RecordDetail.vue'),
             }
             // 健康上报
             // {
