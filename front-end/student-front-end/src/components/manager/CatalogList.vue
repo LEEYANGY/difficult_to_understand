@@ -17,7 +17,7 @@
             round
             color="linear-gradient(to bottom right,rgb(18, 107, 175),rgb(130, 181, 102))"
             icon="add-o"
-            :to="'im/'+uid"
+            :to="'post/health/'+uid"
         >健康信息申报
         </van-button
         >
