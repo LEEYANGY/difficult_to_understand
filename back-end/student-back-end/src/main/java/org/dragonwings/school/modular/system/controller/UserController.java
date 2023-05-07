@@ -34,7 +34,6 @@ public class UserController {
     @PostMapping("/login")
     public ResponseResult login(@RequestBody User user, HttpServletResponse response) {
         System.out.println("==== 请求了登录接口 ====");
-        System.out.println("controller====" + user);
         return userService.login(user, response);
     }
 

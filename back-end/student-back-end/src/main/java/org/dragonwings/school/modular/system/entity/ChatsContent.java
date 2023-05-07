@@ -1,7 +1,7 @@
 package org.dragonwings.school.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
@@ -13,11 +13,11 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author liyangyang
- * @since 2023-05-01
+ * @since 2023-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("chats_content")
+@TableName("sys_chats_content")
 public class ChatsContent extends BaseUserTimeEntity {
 
     private static final long serialVersionUID = 1L;

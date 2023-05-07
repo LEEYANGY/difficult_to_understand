@@ -1,40 +1,71 @@
 package org.dragonwings.school.modular.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
+import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 用户表
+ * 用户信息表
  * </p>
  *
  * @author liyangyang
- * @since 2023-04-12
+ * @since 2023-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@TableName("sys_user")
 public class User extends BaseUserTimeEntity {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户id
+     * 用户ID
      */
+    @TableField("user_id")
     private Long userId;
 
     /**
-     * 用户名
+     * 部门ID
      */
+    @TableField("dept_id")
+    private Long deptId;
+
+    /**
+     * 用户账号
+     */
+    @TableField("user_name")
     private String userName;
+
+    /**
+     * 用户昵称
+     */
+    @TableField("nick_name")
+    private String nickName;
+
+    /**
+     * 用户类型（00系统用户）
+     */
+    @TableField("user_type")
+    private String userType;
+
+    /**
+     * 用户邮箱
+     */
+    private String email;
+
+    /**
+     * 手机号码
+     */
+    private String phonenumber;
 
     /**
      * 专业名,如计算机科学与技术...
@@ -42,14 +73,14 @@ public class User extends BaseUserTimeEntity {
     private String profession;
 
     /**
-     * 呢称
+     * 用户性别（0男 1女 2未知）
      */
-    private String nickName;
+    private String sex;
 
     /**
-     * 邮箱
+     * 头像地址
      */
-    private String email;
+    private String avatar;
 
     /**
      * 密码
@@ -57,34 +88,32 @@ public class User extends BaseUserTimeEntity {
     private String password;
 
     /**
-     * 账号状态 (0正常，1停用)
+     * 帐号状态（0正常 1停用）
      */
     private String status;
 
     /**
-     * 手机号
+     * 删除标志（0代表存在 2代表删除）
      */
-    private String phoneNumber;
+    @TableField("del_flag")
+    private String delFlag;
 
     /**
-     * 用户性别(0男，1女，2未知)
+     * 最后登录IP
      */
-    private String sex;
+    @TableField("login_ip")
+    private String loginIp;
 
     /**
-     * 用户头像
+     * 最后登录时间
      */
-    private String avatar;
+    @TableField("login_date")
+    private Date loginDate;
 
     /**
-     * 用户类型(0管理员，1普通用户)
+     * 备注
      */
-    private String userType;
-
-    /**
-     * 删除标志(0代表未删除，1代表逻辑删除)
-     */
-    private Integer delFlag;
+    private String remark;
 
 
 }

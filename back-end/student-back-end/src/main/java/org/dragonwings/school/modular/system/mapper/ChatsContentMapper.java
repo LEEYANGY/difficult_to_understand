@@ -23,7 +23,7 @@ public interface ChatsContentMapper extends BaseMapper<ChatsContent> {
      * @Date: 2023/5/1 17:32
      * @Description: 通过关联cid查询对应的聊天记录
      */
-    @Select("select * from chats_content where cid=#{cid}")
+    @Select("select * from sys_chats_content where cid=#{cid}")
     List<ChatsContent> subGetAllContentByCid(Long cid);
 
 

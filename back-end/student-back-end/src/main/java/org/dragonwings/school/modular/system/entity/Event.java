@@ -1,5 +1,6 @@
 package org.dragonwings.school.modular.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
@@ -14,10 +15,11 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author liyangyang
- * @since 2023-05-02
+ * @since 2023-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@TableName("sys_event")
 public class Event extends BaseUserTimeEntity {
 
     private static final long serialVersionUID = 1L;
@@ -29,11 +31,6 @@ public class Event extends BaseUserTimeEntity {
      * 事件主题
      */
     private String title;
-
-    /**
-     * 去哪呢
-     */
-    private String area;
 
     /**
      * 发起人工号
@@ -60,6 +57,11 @@ public class Event extends BaseUserTimeEntity {
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy/MM/dd")
     private Date backTime;
+
+    /**
+     * 去哪呢
+     */
+    private String area;
 
     /**
      * 删除标志(0代表未删除，1代表逻辑删除)

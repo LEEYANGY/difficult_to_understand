@@ -3,6 +3,7 @@ package org.dragonwings.school.modular.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.dragonwings.school.framework.response.ResponseResult;
+
 import org.dragonwings.school.modular.system.entity.User;
 import org.dragonwings.school.modular.system.entity.paramter.LoginUser;
 import org.dragonwings.school.modular.system.mapper.UserMapper;
@@ -10,6 +11,7 @@ import org.dragonwings.school.modular.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.dragonwings.school.modular.utils.jwt.JwtUtil;
 import org.dragonwings.school.modular.utils.redis.RedisCache;
+import org.slf4j.Logger;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -50,11 +52,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     //    实现从数据库中校验用户身份
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        log.info("loadUserByUsername===={}",username);
 //        查询用户信息
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
 //        使用用户id登录判断
         queryWrapper.eq(User::getUserId, username);
         User user = userMapper.selectOne(queryWrapper);
+        System.out.println("第一次查询"+user);
         if (ObjectUtils.isEmpty(user)) {
             throw new RuntimeException("没有该用户");
         }
@@ -62,18 +66,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<String> list = new ArrayList<>();
         list.add("admin");
         list.add("hello");
-
+        System.out.println(user);
         return new LoginUser(user, list);
     }
 
     //    登录校验
     @Override
     public ResponseResult login(User user, HttpServletResponse response) {
+        System.out.println("line 75. ===="+user);
 //        封装用户名和密码
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(user.getUserId(), user.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
+        System.out.println("在登录内部");
         if (Objects.isNull(authentication)) {
             throw new RuntimeException("登录失败");
         }
@@ -122,7 +127,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         System.out.println(user.getPassword());
 //        修改用户数据
-        if (baseMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())) > 0) {
+        if (baseMapper.update(user, new QueryWrapper<User>().eq("user_id", user.getUserId())) > 0) {
             return new ResponseResult<>(200, "更新成功", null);
         } else {
             return new ResponseResult<>(500, "更新失败", null);

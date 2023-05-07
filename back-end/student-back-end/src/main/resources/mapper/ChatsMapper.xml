@@ -37,6 +37,6 @@
 
     <!--    通过聊天室的id查询对应的聊天记录-->
     <select id="findChatContentByGid" resultMap="getAllChatContent" parameterType="long">
-        select * from chats c,chats_content cc where c.id = cc.cid and c.gid=#{gid}
+        select * from sys_chats c,sys_chats_content cc where c.id = cc.cid and c.gid=#{gid}
     </select>
 </mapper>

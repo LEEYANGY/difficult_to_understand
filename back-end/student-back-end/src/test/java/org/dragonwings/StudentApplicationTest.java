@@ -1,13 +1,9 @@
 package org.dragonwings;
 
-import org.dragonwings.school.modular.system.entity.Chats;
-import org.dragonwings.school.modular.system.service.ChatsService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
-import javax.annotation.Resource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 /**
@@ -35,7 +31,7 @@ public class StudentApplicationTest {
 //
 //    @Test
 //    void testGetEncodePassword(){
-//        String pass = "123321456";
+//        String pass = "20223035104";
 ////        redisTemplate.ge
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //        final String passHas = encoder.encode(pass);

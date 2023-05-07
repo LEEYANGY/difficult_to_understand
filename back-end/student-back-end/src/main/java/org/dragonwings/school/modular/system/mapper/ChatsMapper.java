@@ -23,6 +23,6 @@ public interface ChatsMapper extends BaseMapper<Chats> {
      */
     Chats findChatContentByGid(Long gid);
 
-    @Select("select * from chats where gid=#{gid}")
+    @Select("select * from sys_chats where gid=#{gid}")
     Chats subFindChatContentByGid(Long gid);
 }

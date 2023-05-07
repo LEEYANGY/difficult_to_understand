@@ -2,12 +2,12 @@
 <module relativePaths="false" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/front-end/HarmonyOS_front/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/front-end/student-front-end/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/front-end/HarmonyOS_front/entry/build" />
-      <excludeFolder url="file://$MODULE_DIR$/.idea/ZeppelinRemoteNotebooks" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/front-end/HarmonyOS_front/.hvigor" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/ZeppelinRemoteNotebooks" />
+      <excludeFolder url="file://$MODULE_DIR$/front-end/HarmonyOS_front/entry/build" />
+      <excludeFolder url="file://$MODULE_DIR$/front-end/student-front-end/dist" />
     </content>
   </component>
 </module>

@@ -1,5 +1,6 @@
 package org.dragonwings.school.modular.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,10 +13,11 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author liyangyang
- * @since 2023-04-12
+ * @since 2023-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
+@TableName("sys_zone")
 public class Zone extends BaseUserTimeEntity {
 
     private static final long serialVersionUID = 1L;

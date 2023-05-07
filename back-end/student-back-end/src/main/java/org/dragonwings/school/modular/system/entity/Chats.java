@@ -1,8 +1,8 @@
 package org.dragonwings.school.modular.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
@@ -16,11 +16,11 @@ import java.util.List;
  * </p>
  *
  * @author liyangyang
- * @since 2023-05-01
+ * @since 2023-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@TableName("chats")
+@TableName("sys_chats")
 public class Chats extends BaseUserTimeEntity {
 
     private static final long serialVersionUID = 1L;

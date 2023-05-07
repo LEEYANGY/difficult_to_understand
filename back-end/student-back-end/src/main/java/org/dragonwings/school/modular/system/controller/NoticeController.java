@@ -2,20 +2,19 @@ package org.dragonwings.school.modular.system.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 班级关联老师表 前端控制器
+ * 聊天室信息 前端控制器
  * </p>
  *
  * @author liyangyang
- * @since 2023-04-12
+ * @since 2023-05-01
  */
 @RestController
-@RequestMapping("/system/teacher-class")
-public class TeacherClassController {
+@RequestMapping("/system/notice")
+public class NoticeController {
 
 }
 

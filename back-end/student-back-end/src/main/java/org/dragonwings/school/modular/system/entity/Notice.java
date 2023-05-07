@@ -1,50 +1,53 @@
 package org.dragonwings.school.modular.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import org.dragonwings.school.framework.pojo.base.BaseUserTimeEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
+import java.sql.Blob;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 班级表
+ * 通知公告表
  * </p>
  *
  * @author liyangyang
- * @since 2023-04-12
+ * @since 2023-05-07
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ClassInfo extends BaseUserTimeEntity {
+@TableName("sys_notice")
+public class Notice extends BaseUserTimeEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 公告ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "notice_id", type = IdType.AUTO)
+    private Integer noticeId;
 
     /**
-     * 班级id
+     * 公告标题
      */
-    private Long classId;
+    private String noticeTitle;
 
     /**
-     * 班级名
+     * 公告类型（1通知 2公告）
      */
-    private String className;
+    private String noticeType;
 
     /**
-     * 班级状态 (0正常，1停用)
+     * 公告内容
+     */
+    private Blob noticeContent;
+
+    /**
+     * 公告状态（0正常 1关闭）
      */
     private String status;
-
-    /**
-     * 删除标志(0代表未删除，1代表逻辑删除)
-     */
-    private Integer delFlag;
 
     /**
      * 备注
