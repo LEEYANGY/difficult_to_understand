@@ -43,6 +43,7 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 import approval from "../views/Catalog/Cafe/Approval.vue";
 import im from "../views/Catalog/IM/Im.vue";
+import Health from "../views/Catalog/Cafe/Health.vue";
 
 // 创建规则
 const routes = [
@@ -110,11 +111,13 @@ const routes = [
                 path: '/recordDetail/:id',
                 name: 'recordDetail',
                 component: () => import('../views/Catalog/Cafe/Record/RecordDetail.vue'),
-            }
+            },
             // 健康上报
-            // {
-            //
-            // }
+            {
+                path: '/post/health/:userId',
+                name: 'health',
+                component: Health,
+            }
         ]
     },
 
