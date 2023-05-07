@@ -1,6 +1,6 @@
 <template>
   <!--    notify-->
-  <van-notice-bar left-icon="volume-o" :scrollable="false">
+  <van-notice-bar left-icon="volume-o" :scrollable="false" v-if="notifies!==undefined">
     <van-swipe
         vertical
         class="notice-swipe"
@@ -9,29 +9,36 @@
         :show-indicators="false"
     >
       <van-list v-for="(item,index) in notifies">
-        <van-swipe-item>{{ item.message }}</van-swipe-item>
+        <van-swipe-item>{{ item.subject }}</van-swipe-item>
       </van-list>
     </van-swipe>
   </van-notice-bar>
 </template>
 
-<script >
+<script>
 import {ref} from "vue";
+import axios from "axios";
 
 export default {
   name: "Notices",
   setup() {
     // 请求获取消息队列  模拟数据
-    const notifies = ref([{"message": "放假通知1"}, {"message": "放假通知2"}, {"message": "放假通知3"}])
-    return{
+    const notifies = ref();
+    axios.get('/system/message').then(res => {
+      if (res.data.code===200){
+        notifies.value = res.data.data
+      }else {
+        // notifies.value = ''
+      }
+    })
+    return {
       notifies,
     }
   },
-  data(){
-    return{
-
-    }
+  data() {
+    return {}
   },
+  // methods
 }
 </script>
 

@@ -1,9 +1,14 @@
 package org.dragonwings.school.modular.system.controller;
 
 
+import org.dragonwings.school.framework.response.ResponseData;
+import org.dragonwings.school.modular.system.service.MessageService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -16,6 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/system/message")
 public class MessageController {
+
+    @Resource
+    MessageService messageService;
+
+    @GetMapping
+    public ResponseData getMessage(){
+        return ResponseData.success(200,"获取成功",messageService.list());
+    }
 
 }
 
