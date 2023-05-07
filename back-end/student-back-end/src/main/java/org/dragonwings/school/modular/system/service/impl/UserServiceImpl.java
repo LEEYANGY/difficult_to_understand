@@ -121,12 +121,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         }
         System.out.println(user.getPassword());
-//        修改用户数据
-        if (baseMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())) > 0) {
-            return new ResponseResult<>(200, "更新成功", null);
-        } else {
+////        修改用户数据
+//        if (baseMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())) > 0) {
+//            return new ResponseResult<>(200, "更新成功", null);
+//        } else {
             return new ResponseResult<>(500, "更新失败", null);
-        }
+//        }
     }
 
     /**
