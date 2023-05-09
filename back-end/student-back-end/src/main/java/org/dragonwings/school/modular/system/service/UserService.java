@@ -25,4 +25,13 @@ public interface UserService extends IService<User> {
     ResponseResult putUserInfo(User user);
 
     ResponseResult getUserInfo(Long userId);
+
+    /***
+    * @Param: [user, response]
+    * @return: org.dragonwings.school.framework.response.ResponseResult
+    * @Author: liyangyang
+    * @Date: 2023/5/9 10:53
+    * @Description: 管理员登录
+    */
+    ResponseResult adminLogin(User user, HttpServletResponse response);
 }

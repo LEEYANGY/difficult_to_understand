@@ -96,6 +96,46 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return new ResponseResult(200, "登录成功", list);
     }
 
+    /**
+     * TODO
+     *
+     * @param user
+     * @param response
+     * @Param: [user, response]
+     * @return: org.dragonwings.school.framework.response.ResponseResult
+     * @Author: liyangyang
+     * @Date: 2023/5/9 10:53
+     * @Description: 管理员登录
+     */
+    @Override
+    public ResponseResult adminLogin(User user, HttpServletResponse response) {
+//        密码解密
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        User user1 = baseMapper.selectOne(new QueryWrapper<User>().eq("user_id", user.getUserId()));
+        if (user1 == null) {
+            throw new UsernameNotFoundException("没有该用户");
+        } else {
+//                判断密码
+            boolean matches = encoder.matches(user.getPassword(), user1.getPassword());
+            if (matches) {
+                //        在校验是不是管理员
+                List<User> list = userMapper.adminLogin(user);
+                if (list != null) {
+                    user1.setPassword(null);
+                    List<User> list1 =  new ArrayList<>();
+                    list1.add(user1);
+                    return new ResponseResult<>(200, "登录成功", list1);
+                } else {
+                    throw new UsernameNotFoundException("登录失败");
+                }
+            } else {
+                throw new UsernameNotFoundException("密码错误");
+            }
+        }
+
+    }
+
     //    注销登录
     @Override
     public ResponseResult logout() {
@@ -125,7 +165,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        if (baseMapper.update(user, new QueryWrapper<User>().eq("id", user.getId())) > 0) {
 //            return new ResponseResult<>(200, "更新成功", null);
 //        } else {
-            return new ResponseResult<>(500, "更新失败", null);
+        return new ResponseResult<>(500, "更新失败", null);
 //        }
     }
 

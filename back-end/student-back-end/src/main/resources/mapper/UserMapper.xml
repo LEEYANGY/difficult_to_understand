@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dragonwings.school.modular.system.mapper.UserMapper">
 
+    <select id="adminLogin" resultType="org.dragonwings.school.modular.system.entity.User">
+        select *
+        from user u,
+             sys_user_role ur,
+             sys_role r
+        where u.user_id = ur.user_id
+          and ur.role_id = r.id
+          and (r.id = 7 || r.id = 3)
+          and u.user_id = #{userId}
+    </select>
 </mapper>
