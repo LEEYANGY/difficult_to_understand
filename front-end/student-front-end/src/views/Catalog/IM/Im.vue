@@ -44,7 +44,7 @@
   <div class="bottom">
     <van-cell-group inset class="insert-text">
       <van-field
-          v-model="message"
+          v-model="content"
           rows="5"
           :autosize="{ maxHeight: 100, minHeight: 25 }"
           label=""
@@ -55,7 +55,7 @@
           label-align="center"
       >
         <template #button>
-          <van-button size="small" type="primary" @click="sends">发送</van-button>
+          <van-button size="small" type="primary" @click="sendMessage">发送</van-button>
         </template>
       </van-field>
     </van-cell-group>
@@ -64,33 +64,25 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
 import {useUserStore} from "../../../store/user.ts";
+import {showNotify} from "vant";
 
 export default {
   name: "Im",
   setup() {
     const onClickLeft = () => history.back();
     // 需要发送的文本消息
-    const message = ref('测试数据')
+    const content = ref('测试数据')
     // 聊天室名称
     const roomName = ref('')
     // userId
     const uid = ref(JSON.parse(useUserStore().getUser)[0].userId)
     // 聊天记录
     const chatList = ref([{}]);
-    // 发送聊天信息
-    const sends = () => {
-      chatList.value = chatList.value.concat(
-          [
-            {
-              "createBy": uid,
-              "subject": message.value
-            }
-          ]
-      )
-    }
+
+    // 获取聊天记录
     axios.get('/system/zone/getChatContent/10000000').then(res => {
       chatList.value = res.data.data.chatsContentList
       roomName.value = res.data.data.roomName
@@ -104,14 +96,66 @@ export default {
       }, 1000);
     }
 
+    // ws  TODO  如何优雅的连接和断开？
+    const ws = ref(null);
+    const messages = ref([]);
+
+    // 连接
+    const connect = () => {
+      // 拼接url
+      ws.value = new WebSocket("ws://localhost:18888/imserver/" + JSON.parse(useUserStore().getUser)[0].userId);
+
+      ws.value.onmessage = event => {
+        console.log('后端发来的消息：' + event.data)
+        messages.value.push(event.data);
+        // JSON.parse(event.data).users[0].username
+        console.log('line 112.====' + event.data)
+        showNotify({type: "primary", message: '在线用户:' + JSON.parse(event.data).users[0].username})
+      };
+    };
+
+    // 断开连接
+    const disconnect = () => {
+      ws.value.close();
+    };
+
+
+    // 组装消息
+    messages.value = {from: uid.value, to: 'lee', text: content.value}
+
+    // 发送聊天信息
+    const sendMessage = messages => {
+      console.log('line 126.====' + messages.value)
+
+      console.log(JSON.stringify(messages))
+      ws.value.send(JSON.stringify(messages));
+
+      chatList.value = chatList.value.concat(
+          [
+            {
+              "createBy": uid,
+              "subject": content.value
+            }
+          ]
+      )
+
+    };
+
+    onMounted(() => {
+      connect();
+    });
+
     return {
       uid,
-      message,
+      content,
       chatList,
       roomName,
-      sends,
       initChat,
       onClickLeft,
+      // ws
+      messages,
+      sendMessage,
+      disconnect
     };
   },
 
