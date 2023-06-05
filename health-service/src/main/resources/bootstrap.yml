@@ -1,0 +1,31 @@
+server:
+  port: 10001
+
+spring:
+  application:
+    name: health-service
+  cloud:
+    nacos:
+      discovery:
+        weight: 1
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+      config:
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+  main:
+    allow-bean-definition-overriding: true
+#    datasource
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  type-aliases-package: xyz.leeyangy.school.modular.system.entity
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0

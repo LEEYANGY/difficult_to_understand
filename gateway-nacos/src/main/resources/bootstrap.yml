@@ -1,0 +1,25 @@
+server:
+  port: 60001
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    #配置nacos服务发现以及配置的地址
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+      config:
+        server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850
+      #配置gateway相关信息
+    gateway:
+      routes:
+        - id: order_routes
+          uri: lb://user-service
+          predicates:
+            - Path=/system/user/**
+          filters:
+            - StripPrefix=1
+        - id: stock_routes
+          uri: lb://zone-service
+          predicates:
+            - Path=/system/zone/**
