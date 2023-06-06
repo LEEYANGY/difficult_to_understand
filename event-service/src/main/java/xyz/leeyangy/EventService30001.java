@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @MapperScan("xyz.leeyangy.**.mapper")
 @RestController
-public class ZoneService30001 {
+public class EventService30001 {
     public static void main(String[] args) {
         SpringApplication.run(
-                ZoneService30001.class, args
+                EventService30001.class, args
         );
     }
 

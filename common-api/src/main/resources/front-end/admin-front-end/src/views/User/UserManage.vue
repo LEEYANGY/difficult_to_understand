@@ -1,0 +1,107 @@
+<template>
+<!--  <van-nav-bar-->
+<!--      title="用户管理中心"-->
+<!--      left-text="返回"-->
+<!--      :right-text="showContent"-->
+<!--      left-arrow-->
+<!--      @click-left="onClickLeft"-->
+<!--      @click-right="onClickRight"-->
+<!--  />-->
+  <router-view/>
+  <!-- 用户未登录 -->
+  <CheckLogin v-if="!isShow && $route.matched.length === 1"/>
+  <!--    用户登录之后-->
+  <List v-if="isShow && $route.matched.length === 1"/>
+</template>
+
+<script>
+
+
+import {ref} from "vue";
+import Support from "../../components/BeiAn/Support.vue";
+import CheckLogin from "../../components/manager/CheckLogin.vue";
+import UserCenter from "../../components/manager/UserCenter.vue";
+import List from "../../components/user/List.vue";
+
+export default {
+  name: "User",
+  components: {List, UserCenter, CheckLogin, Support},
+  setup() {
+    // 是否展示组件
+    const isShow = ref((localStorage.getItem("USER_LOGIN")));
+    const showContent = ref('新增')
+    return {
+      isShow,
+      showContent,
+    };
+  },
+  // ide自动添加属性
+  computed: {
+    moment() {
+      return this.moment
+    }
+  },
+
+  methods: {
+    // logout() {
+    //   localStorage.removeItem('USER_TOKEN')
+    //   localStorage.removeItem('USER_INFO')
+    //   localStorage.removeItem('USER_LOGIN')
+    //   this.router.push('/')
+    //   // this.reload();
+    // },
+  },
+  mounted() {
+
+  },
+}
+</script>
+
+<style scoped>
+
+/*.user-logout {*/
+/*  !*text-align: center;*!*/
+/*  position: absolute;*/
+/*  width: 80%;*/
+/*  top: 50%;*/
+/*  left: 50%;*/
+/*  transform: translateX(-50%) translateY(-50%);*/
+/*}*/
+
+/*.avatar-style {*/
+
+/*}*/
+
+
+/*.user-info-box {*/
+/*  position: relative;*/
+/*  margin: 10px;*/
+/*  padding: 10px 20px 10px 10px;*/
+/*  background: #fff;*/
+/*  border-radius: 6px;*/
+/*  font-size: 14px;*/
+/*  color: #aaa;*/
+/*}*/
+
+/*.right-box {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  height: 100%;*/
+/*}*/
+
+/*.name-text {*/
+/*  margin: auto auto auto 10px;*/
+/*}*/
+
+/*.sign-text {*/
+/*  margin: auto auto auto 10px;*/
+/*}*/
+
+
+/*.mgt-icon {*/
+/*  position: absolute;*/
+/*  right: 10px;*/
+/*}*/
+
+
+</style>

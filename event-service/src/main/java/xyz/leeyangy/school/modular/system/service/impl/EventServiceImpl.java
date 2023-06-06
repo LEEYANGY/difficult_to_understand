@@ -49,8 +49,9 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
      */
     @Override
     public ResponseData cafeAdd(Event event) {
+        System.out.println(event);
 //        判断需要添加还是修改
-        if (event.getId() != 0L) {
+        if (event.getId() != null) {
             if (baseMapper.updateById(event)>=1) {
                 return ResponseData.success(200, "更新成功", null);
             }else {

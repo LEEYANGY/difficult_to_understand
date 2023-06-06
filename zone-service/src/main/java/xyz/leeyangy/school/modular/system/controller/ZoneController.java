@@ -2,6 +2,7 @@ package xyz.leeyangy.school.modular.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import xyz.leeyangy.school.framework.response.ResponseData;
@@ -26,9 +27,6 @@ public class ZoneController {
 
     @Resource
     ZoneService zoneService;
-
-    @Resource
-    ZoneMapper zoneMapper;
 
     /**
      * @Param: [page, limit]
@@ -63,7 +61,7 @@ public class ZoneController {
      * @Description: 查询用户动态记录
      */
     @GetMapping("/getUserMaxTotal/{userId}")
-    public ResponseData getUserMaxTotal(@PathVariable Long userId) {
+    public ResponseData getUserMaxTotal(@PathVariable("userId") Long userId) {
         return ResponseData.success(200, "获取成功", zoneService.count(new QueryWrapper<Zone>().eq("sponsor_id", userId)));
     }
 
@@ -75,7 +73,7 @@ public class ZoneController {
     * @Description: 分页查询我的动态内容
     */
     @GetMapping("/getMyArticle/{userId}/{page}/{limit}")
-    public ResponseResult getMyArticle(@PathVariable Long userId, @PathVariable Integer page, @PathVariable Integer limit) {
+    public ResponseData getMyArticle(@PathVariable("userId") Long userId, @PathVariable("page") Integer page, @PathVariable("limit") Integer limit) {
             return zoneService.getMyArticleByPage(userId,page,limit);
     }
 

@@ -1,6 +1,7 @@
 package xyz.leeyangy.school.modular.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import xyz.leeyangy.school.framework.response.ResponseData;
 import xyz.leeyangy.school.framework.response.ResponseResult;
 import xyz.leeyangy.school.modular.system.entity.Zone;
@@ -31,7 +32,7 @@ public interface ZoneService extends IService<Zone> {
     * @Date: 2023/6/6 1:40
     * @Description: 分页查询我的动态记录
     */
-    ResponseResult getMyArticleByPage(Long userId, Integer page, Integer limit);
+    ResponseData getMyArticleByPage(Long userId, Integer page, Integer limit);
 
     /**
     * @Param: [id]

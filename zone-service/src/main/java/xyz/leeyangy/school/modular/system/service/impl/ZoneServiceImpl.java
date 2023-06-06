@@ -3,7 +3,6 @@ package xyz.leeyangy.school.modular.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.util.ObjectUtils;
 import xyz.leeyangy.school.framework.response.ResponseData;
@@ -55,7 +54,7 @@ public class ZoneServiceImpl extends ServiceImpl<ZoneMapper, Zone> implements Zo
      * @Description: 分页查询我的动态内容
      */
     @Override
-    public ResponseResult getMyArticleByPage(Long userId, Integer page, Integer limit) {
+    public ResponseData getMyArticleByPage(Long userId, Integer page, Integer limit) {
         //        防止错误传递
         if (page == null || page < 1) page = 1;
         if (limit == null || limit <= 1) limit = 10;
@@ -66,8 +65,7 @@ public class ZoneServiceImpl extends ServiceImpl<ZoneMapper, Zone> implements Zo
                         .eq(Zone::getSponsorId, userId)
                         .orderByDesc(Zone::getId)
                         .page(new Page<>(page, limit));
-
-        return new ResponseResult(200, "资源请求成功", zonePage);
+        return  ResponseData.success(200, "资源请求成功", zonePage);
     }
 
 

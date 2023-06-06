@@ -1,6 +1,7 @@
 package xyz.leeyangy.school.modular.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import xyz.leeyangy.school.framework.response.ResponseData;
 import xyz.leeyangy.school.modular.system.entity.Message;
 
 /**

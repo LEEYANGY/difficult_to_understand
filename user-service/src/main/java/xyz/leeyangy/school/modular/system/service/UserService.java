@@ -1,6 +1,7 @@
 package xyz.leeyangy.school.modular.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import xyz.leeyangy.school.framework.response.ResponseData;
 import xyz.leeyangy.school.framework.response.ResponseResult;
 import xyz.leeyangy.school.modular.system.entity.User;
 
@@ -34,4 +35,22 @@ public interface UserService extends IService<User> {
     * @Description: 管理员登录
     */
     ResponseResult adminLogin(User user, HttpServletResponse response);
+
+    /**
+    * @Param: [user]
+    * @return: xyz.leeyangy.school.framework.response.ResponseData
+    * @Author: liyangyang
+    * @Date: 2023/6/6 13:50
+    * @Description: 更新用户信息
+    */
+    ResponseData updateUserInfo(User user);
+
+    /**
+    * @Param: [page, limit]
+    * @return: xyz.leeyangy.school.framework.response.ResponseData
+    * @Author: liyangyang
+    * @Date: 2023/6/6 13:52
+    * @Description: 分页查询所有用户
+    */
+    ResponseData getAllUserByPage(Integer page, Integer limit);
 }
