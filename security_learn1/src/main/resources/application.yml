@@ -1,0 +1,17 @@
+#Redis
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost/security_skill?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+#    type: com.alibaba.druid.pool.DruidDataSource
+
+
+mybatis-plus:
+  type-aliases-package: xyz.leeyangy.security_learn1.entity
+  mapper-locations: classpath:/mappers/*Mapper.xml
