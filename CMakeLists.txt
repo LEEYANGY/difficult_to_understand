@@ -3,4 +3,5 @@ project(DataStruct)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(DataStruct main.cpp)
+add_executable(DataStruct main.cpp
+        linklist/singlelinklist.h)
