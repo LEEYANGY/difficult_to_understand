@@ -9,21 +9,22 @@ using namespace std;
 
 int main() {
     // 单链表的增删改查
-    linklist * node = initLinkList();
-    insertHeader(node,1);
-    insertHeader(node,2);
-    insertHeader(node,3);
+    cout << "单链表的增删改查" << endl;
+    linklist *node = initLinkList();
+    insertHeader(node, 1);
+    insertHeader(node, 2);
+    insertHeader(node, 3);
     cout << "头插: ";
     printNode(node);
 
     cout << "尾插: ";
-    insertTail(node,3);
-    insertTail(node,2);
-    insertTail(node,1);
+    insertTail(node, 3);
+    insertTail(node, 2);
+    insertTail(node, 1);
     printNode(node);
 
     cout << "删除指定位置的元素: ";
-    deltelinklistpositionnode(node,3);
+    deltelinklistpositionnode(node, 3);
     printNode(node);
 
     cout << "移除头节点: ";
@@ -31,8 +32,31 @@ int main() {
     printNode(node);
 
     cout << "修改指定位置的节点元素: ";
-    updatenodevalue(node,2,1);
+    updatenodevalue(node, 2, 1);
     printNode(node);
 
+//    双向链表
+    cout << "双向链表的增删改查" << endl;
+
+    doublelinklist *d = initdoublelinklist();
+
+    headInsert(d, 1);
+    headInsert(d, 2);
+    headInsert(d, 3);
+    headInsert(d, 4);
+    headInsert(d, 5);
+    headInsert(d, 6);
+    cout << "头插: ";
+    printDoubleNode(d);
+    cout << endl;
+
+    tailInsert(d, 6);
+    tailInsert(d, 5);
+    tailInsert(d, 4);
+    tailInsert(d, 3);
+    tailInsert(d, 2);
+    tailInsert(d, 1);
+    cout << "尾插: ";
+    printDoubleNode(d);
     return 0;
 }
