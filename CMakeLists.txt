@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(DataStruct main.cpp
         linklist/singlelinklist.h
-        linklist/doublelinklist.h)
+        linklist/doublelinklist.h
+        linklist/looplinklist.h
+)
