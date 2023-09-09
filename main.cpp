@@ -4,8 +4,8 @@ using namespace std;
 
 //引入头文件
 #include "linklist/singlelinklist.h"
-
 #include "linklist/doublelinklist.h"
+#include "linklist/looplinklist.h"
 
 int main() {
     // 单链表的增删改查
@@ -58,5 +58,28 @@ int main() {
     tailInsert(d, 1);
     cout << "尾插: ";
     printDoubleNode(d);
+
+    cout << endl << "循环链表" << endl;
+
+//    初始化链表
+    loopbacklinklist* loop = initloopbacklinklist();
+//    头插
+    headInsertLoop(loop,1);
+    headInsertLoop(loop,2);
+    headInsertLoop(loop,3);
+    headInsertLoop(loop,4);
+    cout << "头插: ";
+    printloopbacklinklist(loop);
+    cout << endl;
+
+    //    尾插
+    tailInsertLoop(loop,8);
+    tailInsertLoop(loop,7);
+    tailInsertLoop(loop,6);
+    tailInsertLoop(loop,5);
+    cout << "尾插: ";
+    printloopbacklinklist(loop);
+    cout << endl;
+
     return 0;
 }
