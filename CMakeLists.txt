@@ -7,4 +7,6 @@ add_executable(DataStruct main.cpp
         linklist/singlelinklist.h
         linklist/doublelinklist.h
         linklist/looplinklist.h
+        linklist/staticlinklist.h
+        linklist/doublelooplinklist.h
 )

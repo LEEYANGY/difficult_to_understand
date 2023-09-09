@@ -116,7 +116,7 @@ int updatenodevalue(linklist *node, int position, int value) {
         if (++flag == position) break;
         node = node->next;
     }
-    node ->data = value;
+    node->data = value;
     return 1;
 }
 

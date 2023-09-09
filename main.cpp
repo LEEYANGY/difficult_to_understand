@@ -6,6 +6,7 @@ using namespace std;
 #include "linklist/singlelinklist.h"
 #include "linklist/doublelinklist.h"
 #include "linklist/looplinklist.h"
+#include "linklist/doublelooplinklist.h"
 
 int main() {
     // 单链表的增删改查
@@ -62,24 +63,33 @@ int main() {
     cout << endl << "循环链表" << endl;
 
 //    初始化链表
-    loopbacklinklist* loop = initloopbacklinklist();
+    loopbacklinklist *loop = initloopbacklinklist();
 //    头插
-    headInsertLoop(loop,1);
-    headInsertLoop(loop,2);
-    headInsertLoop(loop,3);
-    headInsertLoop(loop,4);
+    headInsertLoop(loop, 1);
+    headInsertLoop(loop, 2);
+    headInsertLoop(loop, 3);
+    headInsertLoop(loop, 4);
     cout << "头插: ";
     printloopbacklinklist(loop);
     cout << endl;
 
     //    尾插
-    tailInsertLoop(loop,8);
-    tailInsertLoop(loop,7);
-    tailInsertLoop(loop,6);
-    tailInsertLoop(loop,5);
+    tailInsertLoop(loop, 8);
+    tailInsertLoop(loop, 7);
+    tailInsertLoop(loop, 6);
+    tailInsertLoop(loop, 5);
     cout << "尾插: ";
     printloopbacklinklist(loop);
     cout << endl;
 
+    cout << "双循环链表";
+    doublelooplinklist *dl = initdoublelooplinklist();
+    headInsertdoublelooplinklist(dl, 1);
+    headInsertdoublelooplinklist(dl, 2);
+    headInsertdoublelooplinklist(dl, 3);
+    headInsertdoublelooplinklist(dl, 4);
+    cout << "头插: ";
+    printdoublelooplinklist(dl);
+    cout << endl;
     return 0;
 }
