@@ -9,4 +9,5 @@ add_executable(DataStruct main.cpp
         linklist/looplinklist.h
         linklist/staticlinklist.h
         linklist/doublelooplinklist.h
+        string/forceMatch.h
 )

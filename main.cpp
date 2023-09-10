@@ -7,6 +7,7 @@ using namespace std;
 #include "linklist/doublelinklist.h"
 #include "linklist/looplinklist.h"
 #include "linklist/doublelooplinklist.h"
+#include "string/forceMatch.h"
 
 int main() {
     // 单链表的增删改查
@@ -90,6 +91,14 @@ int main() {
     headInsertdoublelooplinklist(dl, 4);
     cout << "头插: ";
     printdoublelooplinklist(dl);
-    cout << endl;
+    cout << endl << "暴力匹配串" << endl;
+
+    String *str1 = initString();
+    String *str2 = initString();
+    stringAssign(str1, "HELLo");
+    stringAssign(str2, "HELLO,I'm from Liuzhou City, Guangxi Zhuang Autonomous Region,China");
+    printString(str1);
+    printString(str2);
+    matchString(str2,str1);
     return 0;
 }
