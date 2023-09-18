@@ -4,6 +4,8 @@ package xyz.leeyangy.exception;
 import lombok.Data;
 import xyz.leeyangy.common.result.RCodeEnum;
 
+import java.io.IOException;
+
 @Data
 public class AuthException extends RuntimeException {
     private Integer code;
@@ -39,5 +41,6 @@ public class AuthException extends RuntimeException {
                 ", message=" + this.getMessage() +
                 '}';
     }
+
 
 }
