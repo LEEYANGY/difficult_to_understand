@@ -6,7 +6,7 @@
         <el-row>
           <el-col :span="24">
             <el-form-item label="角色名称">
-              <el-input style="width: 100%" v-model="searchObj.roleName"
+              <el-input style="width: 100%" v-model="roleName"
                         placeholder="角色名称"></el-input>
             </el-form-item>
           </el-col>
@@ -81,8 +81,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-<el-button @click="dialogVisible = false" size="small" icon="el-iconrefresh-right">取 消</el-button>
-<el-button type="primary" icon="el-icon-check" @click="saveOrUpdate()"
+        <el-button @click="dialogVisible = false" size="small" icon="el-icon-refresh-right">取 消</el-button>
+        <el-button type="primary" icon="el-icon-check" @click="saveOrUpdate()"
            size="small">确 定</el-button>
 </span>
     </el-dialog>
@@ -102,11 +102,12 @@ export default {
       page: 1, //页码
       limit: 5, //每页记录数
       total: 0, //总记录数
-      searchObj: {}, //查询条件
+      roleName: '', //查询条件
       multipleSelection: [],// 批量删除选中的记录列表
       dialogVisible: false,
       sysRole: {},
-      saveBtnDisabled: false
+      saveBtnDisabled: false,
+      handleSelectionChange: false,
     };
   },
   //页面渲染之前获取数据
@@ -117,17 +118,18 @@ export default {
   methods: {
     // 修改页面容量
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      // 修改页面容量
       this.limit = val;
       this.fetchData();
     },
     // 分页查询
     fetchData(pageNum = this.page, pageSize = this.limit) {
+      console.log(this.roleName);
       this.page = pageNum
       this.limit = pageSize
       //调用API
       request
-        .getPageList(this.page, this.limit, this.searchObj)
+        .getPageList(this.page, this.limit, this.roleName)
         .then((response) => {
           this.listLoading = false
           this.list = response.data.records;
@@ -157,7 +159,7 @@ export default {
       this.searchObj = {}
       this.fetchData()
     },
-    // 角色修改
+    // 角色修改 TODO
     edit(id) {
       this.dialogVisible = true
       request.getById(id).then(response => {
@@ -165,12 +167,12 @@ export default {
       })
 
     },
-    //弹出添加的表单
+    //弹出添加的表单  TODO
     add() {
       this.dialogVisible = true
       this.sysRole = {}
     },
-    //添加或更新
+    //添加或更新  TODO
     saveOrUpdate() {
       if (!this.sysRole.id) {
         this.save()
@@ -178,7 +180,7 @@ export default {
         this.update()
       }
     },
-    //添加
+    //添加  TODO
     save() {
       request.save(this.sysRole).then(response => {
         this.$message.success(response.message || '操作成功')
@@ -187,7 +189,7 @@ export default {
       })
     }
   },
-  //批量删除
+  //批量删除  TODO
   batchRemove() {
     if (this.multipleSelection.length == 0) {
       this.$message.warning("请选择要删除的记录");
@@ -203,7 +205,7 @@ export default {
       this.multipleSelection.forEach(item => {
         idList.push(item.id)
       });
-      api.batchRemove(idList).then(response => {
+      request.batchRemove(idList).then(response => {
         this.fetchData(this.page)
         this.$message({
           type: 'success',
