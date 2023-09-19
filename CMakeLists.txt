@@ -10,4 +10,5 @@ add_executable(DataStruct main.cpp
         linklist/staticlinklist.h
         linklist/doublelooplinklist.h
         string/forceMatch.h
+        string/KMPMatch.h
 )

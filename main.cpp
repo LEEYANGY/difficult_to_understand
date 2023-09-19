@@ -8,6 +8,7 @@ using namespace std;
 #include "linklist/looplinklist.h"
 #include "linklist/doublelooplinklist.h"
 #include "string/forceMatch.h"
+#include "string/KMPMatch.h"
 
 int main() {
     // 单链表的增删改查
@@ -91,14 +92,30 @@ int main() {
     headInsertdoublelooplinklist(dl, 4);
     cout << "头插: ";
     printdoublelooplinklist(dl);
-    cout << endl << "暴力匹配串" << endl;
 
+    cout << endl << "暴力匹配串" << endl;
     String *str1 = initString();
     String *str2 = initString();
     stringAssign(str1, "HELLo");
     stringAssign(str2, "HELLO,I'm from Liuzhou City, Guangxi Zhuang Autonomous Region,China");
     printString(str1);
     printString(str2);
-    matchString(str2,str1);
+    matchString(str2, str1);
+
+    cout << "kmp匹配" << endl;
+    KMPString *kstr1 = initKMPString();
+    KMPString *kstr2 = initKMPString();
+    //    master string
+    KMPStringAssign(kstr1, "Hello,I'm Good Boy.");
+    //    sub string
+    KMPStringAssign(kstr2, "Hello");
+    printKMPString(kstr1);
+    printKMPString(kstr2);
+
+    cout << "获取next[]" << endl;
+    int *next = getNext(kstr2);
+    printNext(next, kstr2->length);
+    cout << "kmp匹配" << endl;
+    kmpMatch(kstr1, kstr2, next);
     return 0;
 }
