@@ -99,13 +99,16 @@ int matchString(String *masterString, String *subString) {
             i = i - j + 1;
             j = 0;
         }
-
     }
 
     if (j == subString->length) {
         cout << "force match success." << endl;
+//        匹配成功返回找到的下标
+        return j;
     } else {
         cout << "force match error." << endl;
+//        匹配失败返回0
+        return 0;
     }
 }
 
