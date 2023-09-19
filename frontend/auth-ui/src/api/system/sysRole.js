@@ -3,17 +3,17 @@
 */
 import request from '@/utils/request'
 
-const api_name = '/api/v1/role/getRoleByPage'
+const api_name = '/api/v1/role'
 
 export default {
   /*
   分页查询(带搜索)
   */
-  getPageList(page, limit, roleName) {
+  getPageList(page, limit, searchObj) {
     return request({
-      url: `${api_name}/${page}/${limit}`,
+      url: `${api_name}/getRoleByPage/${page}/${limit}`,
       method: 'get',
-      params: {roleName}
+      params: searchObj,
     })
   },
   // 根据id移除角色  TODO

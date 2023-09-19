@@ -7,11 +7,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 import xyz.leeyangy.common.result.R;
+import xyz.leeyangy.exception.AuthException;
 import xyz.leeyangy.model.system.SysRole;
 import xyz.leeyangy.model.vo.SysRoleQueryVo;
 import xyz.leeyangy.system.service.SysRoleService;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -91,10 +93,47 @@ public class SysRoleController {
                            @PathVariable Long pageSize,
                            @ApiParam(name = "roleQueryVo", value = "查询对象", required = false)
                            SysRoleQueryVo roleQueryVo) {
+        System.out.println("roleQueryVo = " + roleQueryVo.getRoleName());
         Page<SysRole> pageParam = new Page<>(currentPage, pageSize);
         IPage<SysRole> pageModel = sysRoleService.selectPage(pageParam,
                 roleQueryVo);
+//        try {
+//            int a = 110 / 0;
+//        } catch (Exception e) {
+//            throw new AuthException(30001,"你干嘛？");
+//        }
+
         return R.ok(pageModel);
+    }
+
+    @GetMapping("/get/{id}")
+    @ApiOperation(value = "根据id获取角色信息")
+    public R getRoleInfo(@PathVariable String id) {
+        return R.ok(sysRoleService.getById(id));
+    }
+
+    @DeleteMapping("/remove/{id}")
+    @ApiOperation(value = "根据id删除角色")
+    public R removeRoleById(@PathVariable String id) {
+        return R.ok(sysRoleService.removeById(id));
+    }
+
+    @PutMapping("/update")
+    @ApiOperation(value = "根据id修改角色信息")
+    public R updateRoleById(@RequestBody SysRole sysRole) {
+        return R.ok(sysRoleService.updateById(sysRole));
+    }
+
+    @DeleteMapping("/batchRemove")
+    @ApiOperation(value = "根据id修改角色信息")
+    public R batchRemove(@RequestBody List<String> ids) {
+        return R.ok(sysRoleService.removeByIds(ids));
+    }
+
+    @PostMapping("/save")
+    @ApiOperation(value = "根据id修改角色信息")
+    public R batchRemove(@RequestBody SysRole sysRole) {
+        return R.ok(sysRoleService.save(sysRole));
     }
 
     /**
