@@ -13,7 +13,7 @@
         </el-row>
         <el-row style="display:flex">
           <el-button type="primary" icon="el-icon-search" size="mini"
-                     @click="fetchData">搜索
+                     @click="fetchData(page,limit,searchObj)">搜索
           </el-button>
           <el-button icon="el-icon-refresh" size="mini" @click="resetData">重置
           </el-button>
@@ -107,7 +107,6 @@ export default {
       dialogVisible: false,
       sysRole: {},
       saveBtnDisabled: false,
-      // handleSelectionChange: false,
     };
   },
   //页面渲染之前获取数据

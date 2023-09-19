@@ -4,6 +4,7 @@
 import request from '@/utils/request'
 
 const api_name = '/api/v1/role'
+const api_selectPage = '/api/v1/role/getRoleByPage'
 
 export default {
   /*
@@ -11,7 +12,7 @@ export default {
   */
   getPageList(page, limit, searchObj) {
     return request({
-      url: `${api_name}/getRoleByPage/${page}/${limit}`,
+      url: `${api_selectPage}/${page}/${limit}`,
       method: 'get',
       params: searchObj,
     })
