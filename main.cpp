@@ -10,6 +10,7 @@ using namespace std;
 #include "string/forceMatch.h"
 #include "string/KMPMatch.h"
 #include "tree/tree.h"
+#include "tree/treeLevelTraverse.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -133,6 +134,19 @@ int main(int argc, char *argv[]) {
     midOrder(T);
     cout << endl << "后序遍历：" << endl;
     postOrder(T);
-    cout << endl;
+    cout << endl << "层次遍历(先序遍历):" << endl;
+
+    TreeNode *TL;
+//    char *chl = "AB##C###";
+//    char *chl = "AB##C###";
+    char *chl = "ABD##E##CF##G##";
+    int index_level = 0;
+//    createLevelTree(&TL, argv[1], &index_level);
+    createLevelTree(&TL, chl, &index_level);
+    preLevelOrder(TL);
+    cout << endl << "层次遍历:" << endl;
+//    初始化一个Queue
+    QueueNode *Q = initQueue();
+    levelTraverse(Q, TL);
     return 0;
 }
