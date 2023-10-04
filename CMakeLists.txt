@@ -11,4 +11,5 @@ add_executable(DataStruct main.cpp
         linklist/doublelooplinklist.h
         string/forceMatch.h
         string/KMPMatch.h
+        tree/tree.h
 )

@@ -9,8 +9,9 @@ using namespace std;
 #include "linklist/doublelooplinklist.h"
 #include "string/forceMatch.h"
 #include "string/KMPMatch.h"
+#include "tree/tree.h"
 
-int main() {
+int main(int argc, char *argv[]) {
     // 单链表的增删改查
     cout << "单链表的增删改查" << endl;
     linklist *node = initLinkList();
@@ -117,5 +118,21 @@ int main() {
     printNext(next, kstr2->length);
     cout << "kmp匹配" << endl;
     kmpMatch(kstr1, kstr2, next);
+
+    TreeNode *T;
+//    char *data = "AB##C#D#E##";
+    char *data = "AB##C#D#E#FGHIJKLMNOPQRSTUVWXYZ######################";
+//    索引
+    int index = 0;
+//    createTree(&T, argv[1], &index);
+    createTree(&T, data, &index);
+//    先序遍历
+    cout << "先序遍历：" << endl;
+    preOrder(T);
+    cout << endl << "中序遍历：" << endl;
+    midOrder(T);
+    cout << endl << "后序遍历：" << endl;
+    postOrder(T);
+    cout << endl;
     return 0;
 }
