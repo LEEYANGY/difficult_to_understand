@@ -11,6 +11,7 @@ using namespace std;
 #include "string/KMPMatch.h"
 #include "tree/tree.h"
 #include "tree/treeLevelTraverse.h"
+#include "tree/treeNonRecursive.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -148,5 +149,22 @@ int main(int argc, char *argv[]) {
 //    初始化一个Queue
     QueueNode *Q = initQueue();
     levelTraverse(Q, TL);
+
+    cout << endl << "非递归算法的二叉树" << endl;
+    TreeNode *TN;
+    int index_Non = 0;
+//    char *chn = "AB##C##";
+    char *chn = "ABD##E##CF##G##";
+    createNonTree(&TN, chn, &index_Non);
+    preNonOrder(TN);
+    inNonOrder(TN);
+
+    StackNodePost *SP = initStackPost();
+    TreeNodePost *TNP;
+    int index_NonPost = 0;
+    char *chnp = "ABD#F##E##C##";
+    createNonTreePost(&TNP,chnp,&index_NonPost);
+    postNonOrder(TNP);
+//    postNonOrder(TN);
     return 0;
 }

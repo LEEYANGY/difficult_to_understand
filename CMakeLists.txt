@@ -12,4 +12,5 @@ add_executable(DataStruct main.cpp
         string/forceMatch.h
         string/KMPMatch.h
         tree/tree.h
+        tree/treeNonRecursive.h
 )
