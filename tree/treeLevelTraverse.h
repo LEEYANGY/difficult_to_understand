@@ -3,7 +3,8 @@
 * File Name      : treeLevelTraverse.h  
 * Author         : leeyangy  
 * E-mail         : liyangyang0713@foxmail.com  
-* Create         : 2023/10/5 0:23  
+* Create         : 2023/10/5 0:23
+* Description    : 层次遍历二叉树
 ******************************************************************************  
 */
 
