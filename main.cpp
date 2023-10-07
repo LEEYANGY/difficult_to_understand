@@ -12,6 +12,7 @@ using namespace std;
 #include "tree/tree.h"
 #include "tree/treeLevelTraverse.h"
 #include "tree/treeNonRecursive.h"
+#include "tree/tagTree/inThreadTree.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -163,8 +164,23 @@ int main(int argc, char *argv[]) {
     TreeNodePost *TNP;
     int index_NonPost = 0;
     char *chnp = "ABD#F##E##C##";
-    createNonTreePost(&TNP,chnp,&index_NonPost);
+    createNonTreePost(&TNP, chnp, &index_NonPost);
     postNonOrder(TNP);
 //    postNonOrder(TN);
+
+//    创建线索二叉树
+    cout << "线索二叉树中序遍历:" << endl;
+    inThreadTreeNode *iTTN;
+    inThreadTreeNode *pre = nullptr;
+    char *chittn = "ABD##E##CF##G##";
+    int index_ittn = 0;
+    createInThreadTree(&iTTN, chittn, &index_ittn);
+    inThreadTree(iTTN, &pre);
+    pre->rtag = 1;
+    pre->rchild = nullptr;
+
+    for(inThreadTreeNode * node = getFirst(iTTN); node!= nullptr;node = getNext(node))
+        cout<< node->data << " ";
+    cout << endl;
     return 0;
 }

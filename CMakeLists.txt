@@ -13,4 +13,5 @@ add_executable(DataStruct main.cpp
         string/KMPMatch.h
         tree/tree.h
         tree/treeNonRecursive.h
+        tree/tagTree/inThreadTree.h
 )
