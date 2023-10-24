@@ -14,4 +14,6 @@ add_executable(DataStruct main.cpp
         tree/tree.h
         tree/treeNonRecursive.h
         tree/tagTree/inThreadTree.h
+        tree/solver/treeMaxDepth.h
+        tree/bst/bstTree.h
 )

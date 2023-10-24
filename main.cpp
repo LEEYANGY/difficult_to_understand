@@ -13,6 +13,7 @@ using namespace std;
 #include "tree/treeLevelTraverse.h"
 #include "tree/treeNonRecursive.h"
 #include "tree/tagTree/inThreadTree.h"
+#include "tree/bst/bstTree.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -179,8 +180,17 @@ int main(int argc, char *argv[]) {
     pre->rtag = 1;
     pre->rchild = nullptr;
 
-    for(inThreadTreeNode * node = getFirst(iTTN); node!= nullptr;node = getNext(node))
-        cout<< node->data << " ";
+    for (inThreadTreeNode *node = getFirst(iTTN); node != nullptr; node = getNext(node))
+        cout << node->data << " ";
     cout << endl;
+
+    cout << "二叉排序树" << endl;
+    BSTNode *bst = nullptr;
+//    int nums[6] = {4, 5, 19, 23, 2, 8};
+    int nums[7] = {8, 6, 10, 9, 11, 23, 6};
+    for (int x = 0; x < sizeof(nums) / sizeof(int); ++x) {
+        bstInsert(&bst, nums[x]);
+    }
+    bstPreOrder(bst);
     return 0;
 }
