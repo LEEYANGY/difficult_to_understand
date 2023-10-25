@@ -14,6 +14,7 @@ using namespace std;
 #include "tree/treeNonRecursive.h"
 #include "tree/tagTree/inThreadTree.h"
 #include "tree/bst/bstTree.h"
+#include "tree/bst-avl/avlTree.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -186,11 +187,22 @@ int main(int argc, char *argv[]) {
 
     cout << "二叉排序树" << endl;
     BSTNode *bst = nullptr;
-//    int nums[6] = {4, 5, 19, 23, 2, 8};
-    int nums[7] = {8, 6, 10, 9, 11, 23, 6};
-    for (int x = 0; x < sizeof(nums) / sizeof(int); ++x) {
-        bstInsert(&bst, nums[x]);
+    int nums[6] = {4, 5, 19, 23, 2, 8};
+//    int nums[7] = {8, 6, 10, 9, 11, 23, 6};
+//    for (int x = 0; x < sizeof(nums) / sizeof(int); ++x) {
+//        bstInsert(&bst, nums[x]);
+//    }
+    for (auto num: nums) {
+        bstInsert(&bst, num);
     }
     bstPreOrder(bst);
+
+    cout << endl << "平衡二叉排序树" << endl;
+    avlTreeNode *atn = nullptr;
+    int avl_nums[5] = {1, 2, 3, 4, 5};
+    for (auto avl_num: avl_nums) {
+        avlTreeInsert(&atn, avl_num);
+    }
+    avlPreOrder(atn);
     return 0;
 }
