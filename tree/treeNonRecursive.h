@@ -101,14 +101,21 @@ StackNode *pop(StackNode *S) {
 void preNonOrder(TreeNode *T) {
     cout << "先序遍历" << endl;
     TreeNode *node = T;
+//    初始化栈
     StackNode *S = initStack();
+//    判断是否有节点和是否空栈
     while (node || !isEmpty(S)) {
+//        先取左子树,左子树拿完就去访问右子树
         if (node) {
             cout << node->data << " ";
+//            进栈操作
             push(node, S);
+//            拿到左子树
             node = node->lchild;
         } else {
+//            出栈获取节点元素
             node = pop(S)->data;
+//            拿到右子树
             node = node->rchild;
         }
     }
@@ -230,7 +237,7 @@ StackNodePost *popPost(StackNodePost *S) {
 * @return:
 * @Author: liyangyang
 * @Date: 2023/10/6 0:10
-* @Description: 出栈
+* @Description: 获取栈顶元素
 */
 StackNodePost *getTopPost(StackNodePost *S) {
     if (isEmptyPost(S)) return nullptr;
@@ -260,6 +267,7 @@ void postNonOrder(TreeNodePost *T) {
         } else {
 //            左孩子为空后
             TreeNodePost *top = getTopPost(S)->data;
+//            查找右孩子,且有孩子没有被访问过
             if (top->rchild && top->rchild->flag == 0) {
                 top = top->rchild;
                 pushPost(top, S);
