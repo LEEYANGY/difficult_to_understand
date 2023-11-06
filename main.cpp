@@ -15,6 +15,8 @@ using namespace std;
 #include "tree/tagTree/inThreadTree.h"
 #include "tree/bst/bstTree.h"
 #include "tree/bst-avl/avlTree.h"
+#include "tree/huffman/huffmanTree.h"
+#include "graph/graph.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -204,5 +206,45 @@ int main(int argc, char *argv[]) {
         avlTreeInsert(&atn, avl_num);
     }
     avlPreOrder(atn);
+
+    cout << endl << "哈夫曼树" << endl;
+////    初始化哈夫曼树
+//    int weight[6] = {1, 2, 3, 6, 4, 5};
+//    HFTree *hft = initHFTree(weight, sizeof(weight) / sizeof(weight[0]));
+//    createHFTree(hft);
+//    preOrderHFTree(hft, hft->length - 1);
+
+    cout << endl;
+
+//    分配一个5个顶点，5条边的图
+    Graph *G = initGraph(5);
+    int edge[5][5] = {
+            0, 1, 1, 1, 0,
+            1, 0, 1, 1, 1,
+            1, 1, 0, 0, 0,
+            1, 1, 0, 0, 1,
+            0, 1, 0, 1, 0
+    };
+    createGraph(G, "ABCDE", (int *) edge);
+    cout << "深度优先搜索" << endl;
+//    访问表，查询是否被访问了
+    int *visited = (int *) malloc(sizeof(int) * G->vertexNum);
+    for (int i = 0; i < G->vertexNum; ++i) visited[i] = 0;
+    dfs(G, visited, 0);
+    cout << endl;
+//    重新给数组赋值
+    for (int i = 0; i < G->vertexNum; ++i) visited[i] = 0;
+    cout << "广度优先搜索" << endl;
+    bfs(G, visited, 0);
+    cout << endl;
+    // 释放图顶点内存
+    free(G->vertex);
+    // 释放图边内存
+    for (int i = 0; i < G->vertexNum; ++i) {
+        free(G->edge[i]);
+    }
+    free(G->edge);
+    // 释放图结构内存
+    free(G);
     return 0;
 }

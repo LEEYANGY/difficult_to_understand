@@ -17,4 +17,6 @@ add_executable(DataStruct main.cpp
         tree/solver/treeMaxDepth.h
         tree/bst/bstTree.h
         tree/bst-avl/avlTree.h
+        tree/huffman/huffmanTree.h
+        graph/graph.h
 )
