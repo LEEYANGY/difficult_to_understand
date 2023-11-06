@@ -86,7 +86,7 @@ QueueNode *initQueue() {
 * @return: 
 * @Author: liyangyang
 * @Date: 2023/10/5 1:20
-* @Description: 
+* @Description: 入队操作
 */
 void enQueue(TreeNode *data, QueueNode *Q) {
 //    开辟内存空间
@@ -116,7 +116,7 @@ int isEmpty(QueueNode *Q) {
 * @return: 
 * @Author: liyangyang
 * @Date: 2023/10/5 1:23
-* @Description: 
+* @Description:  出队操作
 */
 QueueNode *deQueue(QueueNode *Q) {
     if (isEmpty(Q)) return nullptr;
@@ -133,19 +133,26 @@ QueueNode *deQueue(QueueNode *Q) {
 * @return:
 * @Author: liyangyang
 * @Date: 2023/10/5 1:28
-* @Description:
+* @Description: 层次遍历
 */
 void levelTraverse(QueueNode *Q, TreeNode *T) {
+//    先入队操作
     enQueue(T, Q);
+//    判断队列是否为空
     while (!isEmpty(Q)) {
+//        执行出队操作
         QueueNode *node = deQueue(Q);
+//        访问元素
         cout << node->data->data;
+//        判断是否有左孩子,有的话,执行入队操作
         if (node->data->lchild) {
             enQueue(node->data->lchild, Q);
         }
+//        判断是否有右孩子,有的话,执行入队操作
         if (node->data->rchild) {
             enQueue(node->data->rchild, Q);
         }
+//        依次往复遍历
     }
 
 }
