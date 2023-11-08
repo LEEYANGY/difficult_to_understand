@@ -1,17 +1,69 @@
 #include <iostream>
 #include <algorithm>
 
+#include "class/Box.h"
+
 using namespace std;
+
+//¶þ·Ö²éÕÒ
+int binSearch(){
+
+    return 0;
+}
 
 int main() {
     int num[4] = {4, 2, 3, 1};
-    //å¯¹ a æ•°ç»„ä¸­çš„å…ƒç´ è¿›è¡ŒæŽ’åº
+    //¶Ô a Êý×éÖÐµÄÔªËØ½øÐÐÅÅÐò
     sort(num, num + 4, [=](int x, int y) -> bool { return x < y; });
     for (int n: num) {
         cout << n << " ";
     }
     auto display = [](int a,int b) -> void{cout << a << " " << b;};
-    //è°ƒç”¨ lambda å‡½æ•°
+    //µ÷ÓÃ lambda º¯Êý
     display(10,20);
+    cout << endl;
+//    ÒýÓÃ
+    int nums = 10;   // ´´½¨Ò»¸öÕûÊý±äÁ¿ num£¬³õÊ¼ÖµÎª 10
+    cout << "ÐÞ¸ÄÇ°:" << nums << endl;
+    int& ref = nums; // ´´½¨Ò»¸öÕûÊýÒýÓÃ ref£¬°ó¶¨µ½ num
+    ref = 20;       // ÐÞ¸ÄÒýÓÃµÄÖµ£¬Êµ¼ÊÉÏÐÞ¸ÄÁË num µÄÖµ
+    cout << "ÐÞ¸Äºó:" << nums << endl;  // Êä³ö£º20
+
+    Box Box1;        // ÉùÃ÷ Box1£¬ÀàÐÍÎª Box
+    Box Box2;        // ÉùÃ÷ Box2£¬ÀàÐÍÎª Box
+    Box Box3;        // ÉùÃ÷ Box3£¬ÀàÐÍÎª Box
+    double volume = 0.0;     // ÓÃÓÚ´æ´¢Ìå»ý
+
+    // box 1 ÏêÊö
+    Box1.height = 5.0;
+    Box1.length = 6.0;
+    Box1.breadth = 7.0;
+
+    // box 2 ÏêÊö
+    Box2.height = 10.0;
+    Box2.length = 12.0;
+    Box2.breadth = 13.0;
+
+    // box 1 µÄÌå»ý
+    volume = Box1.height * Box1.length * Box1.breadth;
+    cout << "Box1 µÄÌå»ý£º" << volume << endl;
+
+    // box 2 µÄÌå»ý
+    volume = Box2.height * Box2.length * Box2.breadth;
+    cout << "Box2 µÄÌå»ý£º" << volume << endl;
+
+
+    // box 3 ÏêÊö
+    Box3.set(16.0, 8.0, 12.0);
+    volume = Box3.get();
+    cout << "Box3 µÄÌå»ý£º" << volume << endl;
+
+    Box box4;
+    box4.setBreadth(10);
+    box4.setHeight(10);
+    box4.setLength(10);
+    cout << "Box4 µÄÌå»ý£º" << box4.get() << endl;
+    cout << "Box4 µÄÌå»ý£º" << box4.getVolume() << endl;
+
     return 0;
 }
