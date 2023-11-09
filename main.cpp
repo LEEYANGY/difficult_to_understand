@@ -6,6 +6,7 @@
 #include "class/animal/Animal.h"
 #include "class/animal/Dog.h"
 #include "class/shape/Rectangle.h"
+#include "class/shape/Triangle.h"
 //#include "class/Line.h"
 
 using namespace std;
@@ -124,5 +125,25 @@ int main() {
     cout << "Final Stage Count: " << Box::getCount() << endl;
     ++box7.objectCount;
     cout << "Final Stage Count: " << box8.getCount() << endl;
+
+    //    多态按字面的意思就是多种形态。当类之间存在层次结构，并且类之间是通过继承关联时，就会用到多态。
+    //    C++ 多态意味着调用成员函数时，会根据调用函数的对象的类型来执行不同的函数
+    //    虚函数 是在基类中使用关键字 virtual 声明的函数。在派生类中重新定义基类中定义的虚函数时，会告诉编译器不要静态链接到该函数。
+    //    我们想要的是在程序中任意点可以根据所调用的对象类型来选择调用的函数，这种操作被称为动态链接，或后期绑定。
+    Shape *shape = new Shape();
+    Rectangle rec(10, 7);
+    Triangle tri(10, 5);
+    // 存储矩形的地址
+    shape = &rec;
+    // 调用矩形的求面积函数 area
+    shape->area();
+
+    // 存储三角形的地址
+    shape = &tri;
+    // 调用三角形的求面积函数 area
+    shape->area();
+    // 输出对象的面积
+    cout << "Total Rectangle area: " << rec.getArea() << endl;
+    cout << "Total Triangle area: " << tri.getArea() << endl;
     return 0;
 }
