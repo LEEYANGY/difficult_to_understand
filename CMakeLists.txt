@@ -16,4 +16,7 @@ add_executable(server main.cpp
         class/Line.cpp
         class/Line.h
         class/SmailBox.h
+        class/shape/Triangle.cpp
+        class/shape/Triangle.h
+        exception/MyException.h
 )
