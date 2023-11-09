@@ -19,4 +19,5 @@ add_executable(server main.cpp
         class/shape/Triangle.cpp
         class/shape/Triangle.h
         exception/MyException.h
+        alg/ShellSort.h
 )

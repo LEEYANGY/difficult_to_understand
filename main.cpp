@@ -9,6 +9,7 @@
 #include "class/shape/Triangle.h"
 //#include "class/Line.h"
 #include "exception/MyException.h"
+#include "alg/ShellSort.h"
 
 // 第一个命名空间
 namespace first_space {
@@ -288,12 +289,12 @@ int main() {
 //    }
 
     try {
-        Stack<int>         intStack;  // int 类型的栈
+        Stack<int> intStack;  // int 类型的栈
         Stack<string> stringStack;    // string 类型的栈
 
         // 操作 int 类型的栈
         intStack.push(7);
-        cout << intStack.top() <<endl;
+        cout << intStack.top() << endl;
 
         // 操作 string 类型的栈
         stringStack.push("hello");
@@ -301,10 +302,17 @@ int main() {
         stringStack.pop();
         stringStack.pop();
     }
-    catch (exception const& ex) {
-        cerr << "Exception: " << ex.what() <<endl;
-        return -1;
+    catch (exception const &ex) {
+        cerr << "Exception: " << ex.what() << endl;
+//        return -1;
     }
 
+    vector<int> arr = {1, 11, 2, 21, 2222, 9, 3, 4, 5, 6, 7, 8, 9};
+    cout << "排序前" << endl;
+    for (auto a: arr) cout << a << " ";
+    shellSort(arr);
+    cout << "排序后" << endl;
+    for (auto a: arr) cout << a << " ";
+    cout << endl;
     return 0;
 }
