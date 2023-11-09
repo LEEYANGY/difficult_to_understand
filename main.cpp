@@ -44,6 +44,65 @@ namespace third_space {
 
 using namespace first_space;
 
+using namespace std;
+
+//函数模板
+//template <typename type> ret-type func-name(parameter list)
+//{
+//// 函数的主体
+//}
+//type 是函数所使用的数据类型的占位符名称
+
+//返回两个数中的最大值
+template<typename T>
+inline T const &Max(T const &a, T const &b) {
+    return a < b ? b : a;
+}
+
+//类模板 正如定义函数模板一样，也可以定义类模板。泛型类声明的一般形式如下
+//template <class type> class class-name {
+//...
+//}
+//在这里，type 是占位符类型名称，可以在类被实例化的时候进行指定。可以使用一个逗号分隔的列表来定义多个泛型数据类型
+//定义类 Stack<>，并实现了泛型方法来对元素进行入栈出栈操作
+template<class T>
+class Stack {
+private:
+    vector<T> elems;     // 元素
+
+public:
+    void push(T const &);  // 入栈
+    void pop();               // 出栈
+    T top() const;            // 返回栈顶元素
+    bool empty() const {       // 如果为空则返回真。
+        return elems.empty();
+    }
+};
+
+template<class T>
+void Stack<T>::push(T const &elem) {
+    // 追加传入元素的副本
+    elems.push_back(elem);
+}
+
+template<class T>
+void Stack<T>::pop() {
+    if (elems.empty()) {
+        throw out_of_range("Stack<>::pop(): empty stack");
+    }
+    // 删除最后一个元素
+    elems.pop_back();
+}
+
+template<class T>
+T Stack<T>::top() const {
+    if (elems.empty()) {
+        throw out_of_range("Stack<>::top(): empty stack");
+    }
+    // 返回最后一个元素的副本
+    return elems.back();
+}
+
 // 初始化类 Box 的静态成员
 int Box::objectCount = 0;
 
@@ -214,6 +273,38 @@ int main() {
     cout << "Value of __FILE__ : " << __FILE__ << endl;
     cout << "Value of __DATE__ : " << __DATE__ << endl;
     cout << "Value of __TIME__ : " << __TIME__ << endl;
+
+    cout << "使用自定义函数模板" << endl;
+    cout << "Max(100, 200): " << Max(100, 200) << endl;
+    cout << "Max(Hello, World): " << Max("Hello", "World") << endl;
+
+//    template <typename type> ret-type func-name(parameter list)
+//    {
+//        // 函数的主体
+//    }
+
+//    template <class type> class class-name {
+//        ...
+//    }
+
+    try {
+        Stack<int>         intStack;  // int 类型的栈
+        Stack<string> stringStack;    // string 类型的栈
+
+        // 操作 int 类型的栈
+        intStack.push(7);
+        cout << intStack.top() <<endl;
+
+        // 操作 string 类型的栈
+        stringStack.push("hello");
+        cout << stringStack.top() << std::endl;
+        stringStack.pop();
+        stringStack.pop();
+    }
+    catch (exception const& ex) {
+        cerr << "Exception: " << ex.what() <<endl;
+        return -1;
+    }
 
     return 0;
 }
