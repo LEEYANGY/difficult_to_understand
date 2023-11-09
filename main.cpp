@@ -8,6 +8,7 @@
 #include "class/shape/Rectangle.h"
 #include "class/shape/Triangle.h"
 //#include "class/Line.h"
+#include "exception/MyException.h"
 
 using namespace std;
 
@@ -145,5 +146,22 @@ int main() {
     // 输出对象的面积
     cout << "Total Rectangle area: " << rec.getArea() << endl;
     cout << "Total Triangle area: " << tri.getArea() << endl;
+
+//     自定义异常
+    cout << "异常发生前" << endl;
+    try {
+        cout << "异常发生前 try" << endl;
+        throw MyException();
+    } catch (MyException e) {
+        cout << "异常发生中catch1" << endl;
+        cout << "MyException caught" << endl;
+        cout << "异常发生中catch2" << endl;
+        cout << e.what() << endl;
+        cout << "异常发生中catch3" << endl;
+    } catch (std::exception &e) {
+        //其他的错误
+        cout << "其它异常";
+    }
+
     return 0;
 }
