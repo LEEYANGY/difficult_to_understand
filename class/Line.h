@@ -11,28 +11,58 @@ using namespace std;
 
 class Line {
 public:
-    double length;
+//    double length;
 
-    void setLength(double len) {
-        length = len;
-    }
+//    void setLength(double len);
 
-    double getLength() {
-        return length;
-    }
-//private:
+    double getLength();
+
+    // ¼òµ¥µÄ¹¹Ôìº¯Êı
+    Line(double len);
+
+    // ¿½±´¹¹Ôìº¯Êı
+    Line(const Line &obj);
+    void display();
+    ~Line();
+
+private:
+    double *ptr;
 //protected:
 };
 
-// æˆå‘˜å‡½æ•°å®šä¹‰
-//è·å–ç»³é•¿åº¦
-//double Line::getLength() {
+Line::Line(double len) {
+    cout << "µ÷ÓÃ¹¹Ôìº¯Êı" << endl;
+    // ÎªÖ¸Õë·ÖÅäÄÚ´æ
+    ptr = new double;
+    *ptr = len;
+//    this->length = len;
+}
+
+Line::Line(const Line &obj) {
+    cout << "µ÷ÓÃ¿½±´¹¹Ôìº¯Êı²¢ÎªÖ¸Õë ptr ·ÖÅäÄÚ´æ" << endl;
+    ptr = new double;
+    // ¿½±´Öµ
+    *ptr = *obj.ptr;
+}
+
+Line::~Line(void) {
+    cout << "ÊÍ·ÅÄÚ´æ" << endl;
+    delete ptr;
+}
+
+// ³ÉÔ±º¯Êı¶¨Òå
+//»ñÈ¡Éş³¤¶È
+double Line::getLength() {
 //    return length;
-//}
+    return *ptr;
+}
 
 //void Line::setLength(double len) {
 //    length = len;
 //}
 
+void display(Line obj) {
+    cout << "line ´óĞ¡ : " << obj.getLength() << endl;
+}
 
 #endif //SERVER_LINE_H

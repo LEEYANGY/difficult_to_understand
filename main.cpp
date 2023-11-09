@@ -6,15 +6,12 @@
 #include "class/animal/Animal.h"
 #include "class/animal/Dog.h"
 #include "class/shape/Rectangle.h"
-#include "class/Line.h"
+//#include "class/Line.h"
 
 using namespace std;
 
-//二分查找
-int binSearch() {
-
-    return 0;
-}
+// 初始化类 Box 的静态成员
+int Box::objectCount = 0;
 
 int main() {
     int num[4] = {4, 2, 3, 1};
@@ -23,9 +20,9 @@ int main() {
     for (int n: num) {
         cout << n << " ";
     }
-    auto display = [](int a, int b) -> void { cout << a << " " << b; };
+    auto displays = [](int a, int b) -> void { cout << a << " " << b; };
     //调用 lambda 函数
-    display(10, 20);
+    displays(10, 20);
     cout << endl;
 //    引用
     int nums = 10;   // 创建一个整数变量 num，初始值为 10
@@ -91,13 +88,13 @@ int main() {
     cout << "Total paint cost: $" << r.getCost(area) << endl;
     cout << "Total paint cost: $" << cost << endl;
 
-    Line l;
-    double len = 10.0;
-    cout << "Line length = " << len << endl;
+//    Line l;
+//    double len = 10.0;
+//    cout << "Line length = " << len << endl;
 //    l.setLength(len);
 //    len = l.getLength();
-    l.length=100.0;
-    cout << "Line length = " << l.getLength() << endl;
+//    l.length=100.0;
+//    cout << "Line length = " << l.getLength() << endl;
 
     Box box5;
     box5.setWidth(11.11);
@@ -106,6 +103,26 @@ int main() {
     SmailBox box6;
     box6.setPrice(10000);
     cout << "get box6 price = " << box6.getPrice() << endl;
+    SmailBox box7 = *new SmailBox(70);
+    cout << "get box7 price = " << box7.getPrice() << endl;
 
+//    Line l(10);
+//    display(l);
+    //    指向类的指针
+    // Declare pointer to a class.
+    Box *ptrBox = new Box();
+    Box box8;
+    box8.setWidth(100);
+    ptrBox = &box8;
+    cout << ptrBox->getWidth() << " " << endl;
+//    静态成员变量和静态方法
+    box8.objectCount++;
+    // 输出对象的总数
+    cout << "Total objects: " << Box::objectCount << endl;
+    box8.objectCount++;
+    // 在创建对象之后输出对象的总数
+    cout << "Final Stage Count: " << Box::getCount() << endl;
+    ++box7.objectCount;
+    cout << "Final Stage Count: " << box8.getCount() << endl;
     return 0;
 }

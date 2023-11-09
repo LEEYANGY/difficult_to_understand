@@ -4,18 +4,30 @@ using namespace std;
 
 class Box {
 public:
+    static int objectCount;
     double length;   // 长度
     double breadth;  // 宽度
     double height;   // 高度
     // 成员函数声明
     double get();
+
     double getVolume();
+
     void setLength(double len);
+
     void setBreadth(double bre);
+
     void setHeight(double hei);
+
     void set(double len, double bre, double hei);
+
     double getWidth();
-    void setWidth( double wid );
+
+    void setWidth(double wid);
+
+    static int getCount() {
+        return objectCount;
+    }
 
 private:
     double width;
@@ -51,7 +63,7 @@ double Box::getVolume() {
     return length * breadth * height;
 }
 
-double Box::getWidth(){
+double Box::getWidth() {
     return width;
 }
 
