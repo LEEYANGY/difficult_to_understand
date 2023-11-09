@@ -10,7 +10,39 @@
 //#include "class/Line.h"
 #include "exception/MyException.h"
 
-using namespace std;
+// 第一个命名空间
+namespace first_space {
+    void func() {
+        cout << "Inside first_space" << endl;
+    }
+}
+
+// 第二个命名空间
+namespace second_space {
+    void func() {
+        cout << "Inside second_space" << endl;
+    }
+}
+
+// 第三个命名空间
+namespace third_space {
+    void func() {
+        cout << "Inside second_space" << endl;
+    }
+
+    namespace first_space {
+        void func() {
+            cout << "Inside first_space" << endl;
+        }
+    }
+    namespace second_space {
+        void func() {
+            cout << "Inside second_space" << endl;
+        }
+    }
+}
+
+using namespace first_space;
 
 // 初始化类 Box 的静态成员
 int Box::objectCount = 0;
@@ -162,6 +194,26 @@ int main() {
         //其他的错误
         cout << "其它异常";
     }
+
+//    c++动态内存
+//    栈：在函数内部声明的所有变量都将占用栈内存。
+//    堆：这是程序中未使用的内存，在程序运行时可用于动态分配内存。
+//    操作动态内存要有始有终 new了要delete
+//    ........
+    cout << "调用第一个命名空间中的函数" << endl;
+    first_space::func();
+    cout << "调用第二个命名空间中的函数" << endl;
+    second_space::func();
+    cout << "测试自定义命名空间" << endl;
+    func();
+    cout << "测试自定义嵌套命名空间" << endl;
+    third_space::first_space::func();
+
+//    预定义宏
+    cout << "Value of __LINE__ : " << __LINE__ << endl;
+    cout << "Value of __FILE__ : " << __FILE__ << endl;
+    cout << "Value of __DATE__ : " << __DATE__ << endl;
+    cout << "Value of __TIME__ : " << __TIME__ << endl;
 
     return 0;
 }
