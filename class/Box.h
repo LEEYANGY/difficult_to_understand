@@ -14,6 +14,14 @@ public:
     void setBreadth(double bre);
     void setHeight(double hei);
     void set(double len, double bre, double hei);
+    double getWidth();
+    void setWidth( double wid );
+
+private:
+    double width;
+
+protected:
+    double price;
 };
 
 // 成员函数定义
@@ -41,4 +49,12 @@ void Box::setHeight(double hei) {
 
 double Box::getVolume() {
     return length * breadth * height;
+}
+
+double Box::getWidth(){
+    return width;
+}
+
+void Box::setWidth(double wid) {
+    this->width = wid;
 }

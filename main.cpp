@@ -1,12 +1,17 @@
 #include <iostream>
 #include <algorithm>
 
-#include "class/Box.h"
+//#include "class/Box.h"
+#include "class/SmailBox.h"
+#include "class/animal/Animal.h"
+#include "class/animal/Dog.h"
+#include "class/shape/Rectangle.h"
+#include "class/Line.h"
 
 using namespace std;
 
 //二分查找
-int binSearch(){
+int binSearch() {
 
     return 0;
 }
@@ -18,14 +23,14 @@ int main() {
     for (int n: num) {
         cout << n << " ";
     }
-    auto display = [](int a,int b) -> void{cout << a << " " << b;};
+    auto display = [](int a, int b) -> void { cout << a << " " << b; };
     //调用 lambda 函数
-    display(10,20);
+    display(10, 20);
     cout << endl;
 //    引用
     int nums = 10;   // 创建一个整数变量 num，初始值为 10
     cout << "修改前:" << nums << endl;
-    int& ref = nums; // 创建一个整数引用 ref，绑定到 num
+    int &ref = nums; // 创建一个整数引用 ref，绑定到 num
     ref = 20;       // 修改引用的值，实际上修改了 num 的值
     cout << "修改后:" << nums << endl;  // 输出：20
 
@@ -64,6 +69,43 @@ int main() {
     box4.setLength(10);
     cout << "Box4 的体积：" << box4.get() << endl;
     cout << "Box4 的体积：" << box4.getVolume() << endl;
+
+    Animal a;
+    a.eat("动物");
+    a.sleep("动物");
+    Dog d;
+    d.sleep("狗");
+    d.eat("狗");
+    d.bark();
+
+    Rectangle r;
+    int area = 0;
+    r.setHeight(10);
+    r.setWidth(10);
+    area = r.getArea();
+    cout << "矩形面积：" << area << endl;
+
+    int cost = 0;
+    cost = r.getCost(area);
+    // 输出总花费
+    cout << "Total paint cost: $" << r.getCost(area) << endl;
+    cout << "Total paint cost: $" << cost << endl;
+
+    Line l;
+    double len = 10.0;
+    cout << "Line length = " << len << endl;
+//    l.setLength(len);
+//    len = l.getLength();
+    l.length=100.0;
+    cout << "Line length = " << l.getLength() << endl;
+
+    Box box5;
+    box5.setWidth(11.11);
+    cout << "get Box5 width = " << box5.getWidth() << endl;
+
+    SmailBox box6;
+    box6.setPrice(10000);
+    cout << "get box6 price = " << box6.getPrice() << endl;
 
     return 0;
 }
