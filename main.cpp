@@ -17,6 +17,7 @@ using namespace std;
 #include "tree/bst-avl/avlTree.h"
 #include "tree/huffman/huffmanTree.h"
 #include "graph/graph.h"
+#include "tree/btree/BTree.h"
 
 int main(int argc, char *argv[]) {
     // 单链表的增删改查
@@ -246,5 +247,18 @@ int main(int argc, char *argv[]) {
     free(G->edge);
     // 释放图结构内存
     free(G);
+    cout << "BTree" << endl;
+    auto *BT = initBTree(5);
+    insertBTree(&BT,1);
+    insertBTree(&BT,2);
+    insertBTree(&BT,3);
+    insertBTree(&BT,4);
+    insertBTree(&BT,5);
+    insertBTree(&BT,6);
+    insertBTree(&BT,7);
+    insertBTree(&BT,8);
+    insertBTree(&BT,9);
+    insertBTree(&BT,10);
+    printBTree(BT);
     return 0;
 }

@@ -19,4 +19,5 @@ add_executable(DataStruct main.cpp
         tree/bst-avl/avlTree.h
         tree/huffman/huffmanTree.h
         graph/graph.h
+        tree/btree/BTree.h
 )
