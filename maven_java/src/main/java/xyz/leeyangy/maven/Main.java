@@ -1,4 +1,4 @@
-package xyz.leeyangy;
+package xyz.leeyangy.maven;
 
 /**
  * @ProjectName : Default (Template) Project

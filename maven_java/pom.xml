@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!--    maven工程坐标-->
-    <groupId>xyz.leeyangy</groupId>
+    <groupId>xyz.leeyangy.maven</groupId>
     <artifactId>maven_java</artifactId>
     <version>1.0.0</version>
     <!--    maven工程打包方式-->
