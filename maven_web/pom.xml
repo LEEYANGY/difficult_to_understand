@@ -20,7 +20,7 @@
     <!--    添加自定义jar-->
     <dependencies>
         <!--        在打包时候如果出现如下提示，则需要在对应依赖执行mvn install，讲依赖安装到本地仓库-->
-<!--        [ERROR] Failed to execute goal on project maven_web: Could not resolve dependencies for project xyz.leeyangy.maven:maven_web:war:1.0.0: The following artifacts could not be resolved: xyz.leeyangy.maven:maven_java:jar:1.0.0 (absent): Could not find artifact xyz.leeyangy.maven:maven_java:jar:1.0.0 in central (https://repo.maven.apache.org/maven2) -> [Help 1]-->
+        <!--        [ERROR] Failed to execute goal on project maven_web: Could not resolve dependencies for project xyz.leeyangy.maven:maven_web:war:1.0.0: The following artifacts could not be resolved: xyz.leeyangy.maven:maven_java:jar:1.0.0 (absent): Could not find artifact xyz.leeyangy.maven:maven_java:jar:1.0.0 in central (https://repo.maven.apache.org/maven2) -> [Help 1]-->
         <dependency>
             <groupId>xyz.leeyangy.maven</groupId>
             <artifactId>maven_java</artifactId>
@@ -29,6 +29,31 @@
     </dependencies>
 
     <build>
+        <!--        自定义打包名称-->
+        <finalName>maven_web</finalName>
+        <!--        设置要打包的资源位置-->
+        <resources>
+            <resource>
+                <!--设置资源所在目录-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!--设置包含的资源的类型-->
+                    <include>
+                        **/*.xml
+                    </include>
+                </includes>
+            </resource>
+            <resource>
+                <!--设置资源所在目录-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!--设置包含的资源的类型-->
+                    <include>
+                        ../**/*.xml
+                    </include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <!--            war包打包插件-->
             <plugin>
