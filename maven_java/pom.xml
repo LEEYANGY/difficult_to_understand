@@ -32,4 +32,32 @@
             <version>1.18.30</version>
         </dependency>
     </dependencies>
+
+    <!--将自己的jar上传到私服-->
+    <distributionManagement>
+        <snapshotRepository>
+            <!--id要和settings中设置的<server>中的id一致-->
+            <id>nexus-mine</id>
+            <!--name 随便设置-->
+            <name>Nexus Snapshot</name>
+            <!--仓库url-->
+            <url>http://localhost:8081</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--引用别人的仓库jar包-->
+    <repositories>
+        <repository>
+            <id>nexus-mine</id>
+            <name>nexus-mine</name>
+            <url>http://192.168.1.1:8081</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
 </project>
