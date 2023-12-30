@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>xyz.leeyangy</groupId>
+    <artifactId>micro-shop</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>micro-shop</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <junit.version>3.8.1</junit.version>
+        <druid.version>1.2.16</druid.version>
+        <junit.jupiter.api.version>5.10.1</junit.jupiter.api.version>
+        <spring.version>6.0.10</spring.version>
+        <jackson.version>2.15.0</jackson.version>
+        <commons.version>2.11.0</commons.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--依赖管理-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.jupiter.api.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!--        自定义打包名称-->
+        <finalName>micro-shop</finalName>
+        <!--        设置要打包的资源位置-->
+        <resources>
+            <resource>
+                <!--设置资源所在目录-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!--设置包含的资源的类型-->
+                    <include>
+                        **/*.xml
+                    </include>
+                </includes>
+            </resource>
+            <resource>
+                <!--设置资源所在目录-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!--设置包含的资源的类型-->
+                    <include>
+                        ../**/*.xml
+                    </include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <!--            war包打包插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--将自己的jar上传到私服-->
+    <distributionManagement>
+        <snapshotRepository>
+            <!--id要和settings中设置的<server>中的id一致-->
+            <id>nexus-mine</id>
+            <!--name 随便设置-->
+            <name>Nexus Snapshot</name>
+            <!--仓库url-->
+            <url>http://localhost:8081</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--引用别人的仓库jar包-->
+    <repositories>
+        <repository>
+            <id>nexus-mine</id>
+            <name>nexus-mine</name>
+            <url>http://192.168.1.1:8081</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+</project>
