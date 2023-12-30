@@ -9,8 +9,14 @@
 
     <name>micro-shop</name>
     <url>http://maven.apache.org</url>
+    <modules>
+        <module>common-service</module>
+        <module>user-service</module>
+        <module>order-service</module>
+    </modules>
 
     <properties>
+        <!--版本统一管理-->
         <junit.version>3.8.1</junit.version>
         <druid.version>1.2.16</druid.version>
         <junit.jupiter.api.version>5.10.1</junit.jupiter.api.version>
