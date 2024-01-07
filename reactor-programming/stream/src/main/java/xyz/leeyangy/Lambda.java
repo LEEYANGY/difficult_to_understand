@@ -2,7 +2,9 @@ package xyz.leeyangy;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.*;
+import java.util.stream.Stream;
 
 /**
  * Hello world!
@@ -68,8 +70,8 @@ public class Lambda {
         System.out.println("myInterface2 = " + myInterface2.sum(2, 2));
 
 
-        MyInterface myInterface4 = (a,b) -> a*b;
-        System.out.println("myInterface4 = " + myInterface4.sum(1,2));
+        MyInterface myInterface4 = (a, b) -> a * b;
+        System.out.println("myInterface4 = " + myInterface4.sum(1, 2));
 
 //        3. Lambda 表达式写法2 简写    参数列表参数类型可以不写，参数变量名自定义 + 箭头 + 方法体
         MyInterface myInterface3 = (i, j) -> {
@@ -204,6 +206,97 @@ public class Lambda {
                 System.out::println
         );
 
+
+        // 声明式处理集合数据，包括筛选、转换、组合
+        // 1.创建流  2.中间操作 filter、map、flatMap  3.生成新流  4.终止操作 count、max  5.结果
+//        找最大偶数
+//        传统写法
+        List<Integer> nums = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+//        for循环遍历
+        int tmp = 0;
+        for (Integer i : nums) {
+            if (i % 2 == 0) {
+//                if(i>tmp) {
+//                    tmp = i;
+//                }
+                tmp = i >= tmp ? i : tmp;
+            }
+        }
+        System.out.println("tmp = " + tmp);
+
+        /**
+         * 流的特性是懒加载，不用方法就不会被调用
+         *      流是惰性的：只有在启动最终操作时候才会对原计算进行计算，而且只在需要时才会消耗元素
+         *
+         *  Stream pipeline 流水线操作
+         *  Intermediate Operation 中间操作
+         *      filter、
+         *      map、mapToInt、mapToLong、mapToDouble、
+         *      flatMap、flatMapToInt、flatMapToLong、flatMapToDouble、
+         *      mapMulti、mapMultiToInt、mapMultiToLong、mapMultiToDouble、
+         *      parallel、unordered、onClose、sequential、
+         *      distinct、sorted、peek、limit、skip、takeWhile、dropWhile
+         *  Terminal Operation     终止操作
+         *
+         *  Stream 所有数据和操作被组合成流管道
+         *          流管道
+         *               一个数据源(可以是一个数组、集合、生成器函数、I/O管道)
+         *               零或多个中间操作(将一个流变形成另一个流)
+         *               一个种植操作(产生最终结果)
+         *
+         *
+         * 流式编程写法
+         * StreamApi
+         *      1. 把数据封装成流，要到数据流; 集合类.stream
+         *      2. 定义流式操作
+         *      3.获取最终结果
+         *      list.stream()
+         *          .filter()  // 过滤出我们想要的数据，如果断言返回true就是我们要的
+         *          .max()     //
+         *          .
+         *
+         *
+         *     流默认是不并发进行操作的，如需并发操作 需要添加 parallel 这个中间操作方法；流的操作也是for循环进行处理
+         *
+         *
+         *     并发以后会产生多线程安全问题
+         *     比如说
+         *          List aList = new ArrayList();
+         *          此时会变成有状态数据，将产生并发安全问题
+         *          long count = Stream.of(1,2,3,4,5)
+         *                              .parallel()  // 并发流操作
+         *                              .filter(i->{
+         *                                  aList.add(i);
+         *                                  return i>2;
+         *                              })
+         *                              .count();
+         *
+         *     流的操作应该都是无状态操作
+         *            流的每次操作的数据，仅在本次有效；数据状态仅在此函数内有效，不溢出函数外
+         */
+
+        List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+                .stream()
+                .filter(integer -> integer%2==0)
+                .max(Integer::compareTo)
+                .ifPresent(System.out::println);
+
+        Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+                .filter(integer -> integer % 2 == 0)
+                .max(Integer::compareTo)
+                .ifPresent(System.out::println);
+
+
+        /**
+         * 流的三大部分
+         *      1.数据流   2.N个中间操作   3.一个终止操作
+         *
+         *      1.数据流       创建流
+         *         Stream<Integer> stream = Stream.of(1,2,3,4);
+         *
+         *      2. 从集合中获取这个流，List 、Set、Map
+         *
+         */
     }
 
     private static void mymethod(Supplier<String> supplier,
@@ -253,7 +346,6 @@ public class Lambda {
      *
      *         底层应该是帮我们做了我们以前写的实现方法？
      */
-
 
 
 }
