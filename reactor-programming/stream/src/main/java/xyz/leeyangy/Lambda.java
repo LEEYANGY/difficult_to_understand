@@ -1,9 +1,12 @@
 package xyz.leeyangy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -41,6 +44,15 @@ interface MyInterfacess {
 
 interface MyDisplay {
     void print();
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class Person {
+    private String name;
+    private String gender;
+    private Integer age;
 }
 
 public class Lambda {
@@ -230,9 +242,9 @@ public class Lambda {
          *
          *  Stream pipeline 流水线操作
          *  Intermediate Operation 中间操作
-         *      filter、
-         *      map、mapToInt、mapToLong、mapToDouble、
-         *      flatMap、flatMapToInt、flatMapToLong、flatMapToDouble、
+         *      filter(过滤，挑选出需要的元素)、
+         *      map(映射：-- a 变 b)、mapToInt、mapToLong、mapToDouble、
+         *      flatMap(打散、散列、展开、扩维：一对多映射)、flatMapToInt、flatMapToLong、flatMapToDouble、
          *      mapMulti、mapMultiToInt、mapMultiToLong、mapMultiToDouble、
          *      parallel、unordered、onClose、sequential、
          *      distinct、sorted、peek、limit、skip、takeWhile、dropWhile
@@ -277,7 +289,7 @@ public class Lambda {
 
         List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
                 .stream()
-                .filter(integer -> integer%2==0)
+                .filter(integer -> integer % 2 == 0)
                 .max(Integer::compareTo)
                 .ifPresent(System.out::println);
 
@@ -297,6 +309,80 @@ public class Lambda {
          *      2. 从集合中获取这个流，List 、Set、Map
          *
          */
+        // 挑选出 年龄 大于 18岁的人，拿到集合流其实就是拿到深拷贝的值，流的所有操作都是流的元素引用
+        // filter、map、flatMap 流里面的每一个元素都完整走完流水线才能轮到下一个元素；  非并发操作
+        // 第一个元素流经所有管道处理后，下一个元素才能继续执行完整的管道流程
+//        List<Person> pList = List.of(
+//                new Person("喜羊羊", "男", 22),
+//                new Person("美羊羊", "女", 20),
+//                new Person("懒羊羊", "男", 18),
+//                new Person("沸羊羊", "男", 19),
+//                new Person("暖羊羊", "女", 20),
+//                new Person("慢羊羊", "男", 80)
+//        );
+
+//        pList.stream()
+//                .filter(person -> {
+//                    System.out.println("filter person = " + person.hashCode());
+//                    return person.getAge() > 19;
+//                })
+////                .map(Person::getName)
+//                .map(person -> {
+//                    System.out.println("map person = " + person.hashCode());
+//                    return person.getName();
+//                })
+//                .forEach(System.out::println);
+        List<Person> pList = List.of(
+                new Person("喜 羊羊", "男", 22),
+                new Person("美 羊羊", "女", 20),
+                new Person("懒 羊羊", "男", 18),
+                new Person("沸 羊羊", "男", 19),
+                new Person("暖 羊羊", "女", 20),
+                new Person("慢 羊羊", "男", 80)
+        );
+
+        pList.stream()
+                .filter(person -> {
+                    System.out.println("filter person = " + person.hashCode());
+                    return person.getAge() > 19;
+                })
+                // 查看被过滤的元素
+                .peek(person -> {
+                    System.out.println("peek person = " + person);
+                })
+//                .map(Person::getName)
+                // 拿到所有人的姓名
+                .map(person -> {
+                    System.out.println("map person = " + person.hashCode());
+                    return person.getName();
+                })
+                .flatMap(ele -> {
+                    String[] s = ele.split(" ");
+//                    System.out.println("flatMap s = " + s[0]);
+                    return Arrays.stream(s);
+                })
+                // 去重
+//                .distinct()
+                // 排序，没有参数，默认排序规则
+                .sorted(String::compareTo)
+                .forEach(System.out::println);
+
+//            filter会无条件的遍历集合中的每一个元素
+
+//            takeWhile当条件成立时候，会理解拿到这个元素；不满足直接结束流操作
+
+
+//        分组
+        Map<String, List<Person>> collect = pList
+                .stream()
+                .filter(person -> person.getAge() > 18)
+                .collect(
+                        Collectors.groupingBy(Person::getGender)
+                );
+        System.out.println("collect = " + collect);
+
+//        声明式编程基于事件机制的回调
+
     }
 
     private static void mymethod(Supplier<String> supplier,
