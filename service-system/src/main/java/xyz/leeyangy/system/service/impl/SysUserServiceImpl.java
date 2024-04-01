@@ -1,7 +1,9 @@
 package xyz.leeyangy.system.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -49,5 +51,24 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
             return null;
         }
 
+    }
+
+    /**
+    * @Param: [pageParam, adminQueryVo]
+    * @return: com.baomidou.mybatisplus.core.metadata.IPage<xyz.leeyangy.model.system.SysUser>
+    * @Author: liyangyang
+    * @Date: 2023/9/20 14:21
+    * @Description: 用户信息分页查询
+    */
+    @Override
+    public IPage<SysUser> selectPage(Page<SysUser> pageParam, SysUserQueryVo adminQueryVo) {
+        return baseMapper.selectPage(pageParam,adminQueryVo);
+    }
+
+    @Override
+    public void updateStatus(Long id, Integer status) {
+        SysUser sysUser = baseMapper.selectById(id);
+        sysUser.setStatus(status);
+        baseMapper.updateById(sysUser);
     }
 }

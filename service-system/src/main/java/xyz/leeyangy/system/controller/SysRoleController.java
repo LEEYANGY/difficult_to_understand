@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import xyz.leeyangy.common.result.R;
 import xyz.leeyangy.exception.AuthException;
 import xyz.leeyangy.model.system.SysRole;
+import xyz.leeyangy.model.vo.AssginRoleVo;
 import xyz.leeyangy.model.vo.SysRoleQueryVo;
 import xyz.leeyangy.system.service.SysRoleService;
 
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/role")
@@ -148,6 +150,19 @@ public class SysRoleController {
     public R<List<SysRole>> findAll() {
         List<SysRole> roleList = sysRoleService.list();
         return R.ok(roleList);
+    }
+
+    @ApiOperation(value = "根据用户获取角色数据")
+    @GetMapping("/toAssign/{userId}")
+    public R toAssign(@PathVariable Long userId) {
+        Map<String, Object> roleMap = sysRoleService.getRolesByUserId(userId);
+        return R.ok(roleMap);
+    }
+    @ApiOperation(value = "根据用户分配角色")
+    @PostMapping("/doAssign")
+    public R doAssign(@RequestBody AssginRoleVo assginRoleVo) {
+        sysRoleService.doAssign(assginRoleVo);
+        return R.ok();
     }
 
 }
